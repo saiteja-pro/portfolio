@@ -1,0 +1,17 @@
+export { default as Navbar } from './Navbar/Navbar'
+export { default as Footer } from './Footer/Footer'
+export { default as Landing } from './Landing/Landing'
+export { default as About } from './About/About'
+export { default as Skills } from './Skills/Skills'
+export { default as Recommendations } from './Recommendations/Recommendations'
+export { default as Blog } from './Blog/Blog'
+export { default as SingleBlog } from './Blog/SingleBlog/SingleBlog'
+export { default as Education } from './Education/Education'
+export { default as Experience } from'./Experience/Experience'
+export { default as Contacts } from'./Contacts/Contacts'
+export { default as Hobbies } from'./Hobbies/Hobbies'
+
+export { default as SingleHobbie } from './Hobbies/SingleHobbie/SingleHobbie'
+export { default as Achievement } from './Achievement/Achievement'
+
+export { default as BackToTop } from'./BackToTop/BackToTop'
