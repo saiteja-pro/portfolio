@@ -239,11 +239,13 @@
         margin-top: 2rem;
     }
     .socialmedia-icons {
+        padding-left: 7rem;
         width: 100%;
         gap: 1.5rem;
         margin-top: 2rem;
     }
     .personal-details {
+        margin-left: 12rem;
         margin-bottom: 1.8rem;
     }
     .personal-details p {

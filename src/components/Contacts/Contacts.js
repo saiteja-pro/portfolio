@@ -289,7 +289,7 @@ function Contacts() {
                             <div className={classes.detailsIcon}>
                                 <FiAtSign />
                             </div>
-                            <p style={{ color: theme.tertiary }}>
+                            <p style={{ color: theme.tertiary, fontSize: '15px' }}>
                                 {contactsData.email}
                             </p>
                         </a>
@@ -308,7 +308,7 @@ function Contacts() {
                             <div className={classes.detailsIcon}>
                                 <HiOutlineLocationMarker />
                             </div>
-                            <p style={{ color: theme.tertiary }}>
+                            <p style={{ color: theme.tertiary}}>
                                 {contactsData.address}
                             </p>
                         </div>
