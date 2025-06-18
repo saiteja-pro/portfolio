@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Hey there! 👋. Thanks for stopping by. This space is a collection of the things I’ve built, explored, and enjoyed working on — from full-stack applications to creative side projects.
+Hey there! 👋. Thanks for stopping by. This space is a collection of the things I’ve built, explored, and enjoyed working on — from full-stack applications to creative side projects. 
 
 ## About Me
 
