@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button } from '@material-ui/core';
 import { NavHashLink as NavLink } from 'react-router-hash-link';
 import { makeStyles } from '@material-ui/core/styles';
@@ -19,46 +19,102 @@ import {
 
 function Landing() {
     const { theme, drawerOpen } = useContext(ThemeContext);
+    const [displayText, setDisplayText] = useState('');
+    const [isTyping, setIsTyping] = useState(true);
+
+    // Typing animation effect
+    useEffect(() => {
+        if (!headerData.description) return;
+
+        let index = 0;
+        const text = headerData.description;
+
+        const typeInterval = setInterval(() => {
+            if (index <= text.length) {
+                setDisplayText(text.slice(0, index));
+                index++;
+            } else {
+                setIsTyping(false);
+                clearInterval(typeInterval);
+            }
+        }, 25);
+
+        return () => clearInterval(typeInterval);
+    }, []);
 
     const useStyles = makeStyles((t) => ({
         resumeBtn: {
-            color: theme.primary,
-            borderRadius: '30px',
+            color: theme.tertiary,
+            borderRadius: '50px',
             textTransform: 'inherit',
             textDecoration: 'none',
-            width: '150px',
-            fontSize: '1rem',
-            fontWeight: '500',
-            height: '50px',
-            fontFamily: 'var(--primaryFont)',
-            border: `3px solid ${theme.primary}`,
-            transition: '100ms ease-out',
+            width: '160px',
+            fontSize: '0.95rem',
+            fontWeight: '600',
+            height: '52px',
+            fontFamily: 'var(--font-primary, Inter, sans-serif)',
+            border: `2px solid ${theme.tertiary}50`,
+            background: 'rgba(255, 255, 255, 0.03)',
+            backdropFilter: 'blur(10px)',
+            transition: 'all 400ms cubic-bezier(0.4, 0, 0.2, 1)',
+            position: 'relative',
+            overflow: 'hidden',
+            letterSpacing: '0.5px',
+            '&::before': {
+                content: '""',
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%)',
+                opacity: 0,
+                transition: 'opacity 300ms ease',
+            },
             '&:hover': {
                 backgroundColor: theme.tertiary,
                 color: theme.secondary,
-                border: `3px solid ${theme.tertiary}`,
+                border: `2px solid ${theme.tertiary}`,
+                transform: 'translateY(-4px)',
+                boxShadow: `0 20px 40px -15px ${theme.tertiary}60, 0 0 30px ${theme.tertiary}20`,
+            },
+            '&:hover::before': {
+                opacity: 1,
+            },
+            '&:active': {
+                transform: 'translateY(-2px)',
             },
             [t.breakpoints.down('sm')]: {
-                width: '180px',
+                width: '100%',
+                maxWidth: '200px',
             },
         },
         contactBtn: {
-            backgroundColor: theme.primary,
+            backgroundColor: theme.tertiary,
             color: theme.secondary,
-            borderRadius: '30px',
+            borderRadius: '50px',
             textTransform: 'inherit',
             textDecoration: 'none',
-            width: '150px',
-            height: '50px',
-            fontSize: '1rem',
-            fontWeight: '500',
-            fontFamily: 'var(--primaryFont)',
-            border: `3px solid ${theme.primary}`,
-            transition: '100ms ease-out',
+            width: '160px',
+            height: '52px',
+            fontSize: '0.95rem',
+            fontWeight: '600',
+            fontFamily: 'var(--font-primary, Inter, sans-serif)',
+            border: 'none',
+            transition: 'all 400ms cubic-bezier(0.4, 0, 0.2, 1)',
+            letterSpacing: '0.5px',
+            position: 'relative',
+            overflow: 'hidden',
+            '&::before': {
+                content: '""',
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%)',
+                transition: 'transform 300ms ease',
+            },
             '&:hover': {
-                backgroundColor: theme.secondary,
-                color: theme.tertiary,
-                border: `3px solid ${theme.tertiary}`,
+                transform: 'translateY(-4px)',
+                boxShadow: `0 20px 40px -15px ${theme.tertiary}80`,
+            },
+            '&:active': {
+                transform: 'translateY(-2px)',
             },
             [t.breakpoints.down('sm')]: {
                 display: 'none',
@@ -69,7 +125,7 @@ function Landing() {
     const classes = useStyles();
 
     return (
-        <div className='landing'>
+        <div className='landing' style={{ backgroundColor: theme.secondary }}>
             <div className='landing--container'>
                 <div
                     className='landing--container-left'
@@ -145,12 +201,10 @@ function Landing() {
                 </div>
                 <img
                     src={headerData.image}
-                    alt=''
+                    alt={headerData.name}
                     className='landing--img'
                     style={{
-                        opacity: `${drawerOpen ? '0' : '1'}`,
-                        borderColor: theme.secondary,
-                        filter: `grayscale(50%)`,
+                        opacity: drawerOpen ? '0' : '1',
                     }}
                 />
                 <div
@@ -161,9 +215,20 @@ function Landing() {
                         className='lcr--content'
                         style={{ color: theme.tertiary }}
                     >
-                        <h6>{headerData.title}</h6>
-                        <h1  style={{color: theme.primary}}>{headerData.name}</h1>
-                        <p>{headerData.description}</p>
+                        <h6 style={{ color: `${theme.tertiary}99` }}>{headerData.title}</h6>
+                        <h1 style={{ color: theme.tertiary }}>{headerData.name}</h1>
+                        <p style={{ minHeight: '4.5em' }}>
+                            {displayText}
+                            {isTyping && (
+                                <span
+                                    style={{
+                                        borderRight: `2px solid ${theme.primary}`,
+                                        marginLeft: '2px',
+                                        animation: 'blink 1s step-end infinite'
+                                    }}
+                                />
+                            )}
+                        </p>
 
                         <div className='lcr-buttonContainer'>
                             {headerData.resumePdf && (
@@ -190,6 +255,12 @@ function Landing() {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            {/* Scroll Indicator */}
+            <div className='landing--scroll-indicator' style={{ color: theme.tertiary }}>
+                <span>Scroll</span>
+                <div className='scroll-line'></div>
             </div>
         </div>
     );

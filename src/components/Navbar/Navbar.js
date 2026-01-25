@@ -33,6 +33,8 @@ import {
     pinkThemeDark,
     yellowThemeLight,
     yellowThemeDark,
+    contrastThemeLight,
+    contrastThemeDark,
 } from '../../theme/theme';
 import { Menu, MenuItem, IconButton } from '@material-ui/core';
 
@@ -46,6 +48,7 @@ const type = {
         purpleThemeLight,
         pinkThemeLight,
         yellowThemeLight,
+        contrastThemeLight,
     },
     dark: {
         greenThemeDark,
@@ -56,14 +59,25 @@ const type = {
         purpleThemeDark,
         pinkThemeDark,
         yellowThemeDark,
+        contrastThemeDark,
     },
 };
 
 function Navbar() {
     const [open, setOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
     const { theme, setHandleDrawer, setTheme, themeType, setThemeType } = useContext(ThemeContext);
     const [themes, setThemes] = useState(type[themeType]);
     const [anchorEl, setAnchorEl] = React.useState(null);
+
+    // Scroll detection for glassmorphic navbar
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -103,12 +117,14 @@ function Navbar() {
     const useStyles = makeStyles((t) => ({
         navMenu: {
             fontSize: '2.5rem',
-            color: theme.tertiary,
+            color: '#ffffff',
             cursor: 'pointer',
             transform: 'translateY(-10px)',
-            transition: 'color 0.3s',
+            transition: 'all 0.3s',
+            filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))',
             '&:hover': {
                 color: theme.primary,
+                transform: 'translateY(-10px) scale(1.1)',
             },
             [t.breakpoints.down('sm')]: {
                 fontSize: '2.5rem',
@@ -118,60 +134,70 @@ function Navbar() {
             },
         },
         MuiDrawer: {
-            padding: '0em 1.8em',
-            width: '14em',
-            fontFamily: ' var(--primaryFont)',
-            fontStyle: ' normal',
-            fontWeight: ' normal',
-            fontSize: ' 24px',
-            background: theme.secondary,
+            padding: '2em 1.5em',
+            width: '280px',
+            fontFamily: 'var(--font-primary, Inter, sans-serif)',
+            fontStyle: 'normal',
+            fontWeight: 'normal',
+            fontSize: '18px',
+            background: 'rgba(0, 0, 0, 0.85)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            border: 'none',
+            borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
             overflow: 'hidden',
-            borderTopLeftRadius: '40px',
-            borderBottomLeftRadius: '40px',
+            boxShadow: '-10px 0 40px rgba(0, 0, 0, 0.5)',
             [t.breakpoints.down('sm')]: {
-                width: '12em',
+                width: '240px',
+                padding: '1.5em 1em',
             },
         },
         closebtnIcon: {
-            fontSize: '2rem',
+            fontSize: '1.75rem',
             fontWeight: 'bold',
             cursor: 'pointer',
-            color: theme.primary,
+            color: theme.tertiary,
             position: 'absolute',
-            right: 40,
-            top: 40,
-            transition: 'color 0.2s',
+            right: 30,
+            top: 30,
+            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             '&:hover': {
-                color: theme.tertiary,
+                color: theme.primary,
+                transform: 'rotate(90deg) scale(1.1)',
             },
             [t.breakpoints.down('sm')]: {
                 right: 20,
                 top: 20,
+                fontSize: '1.5rem',
             },
         },
         drawerItem: {
-            margin: '2rem auto',
-            borderRadius: '78.8418px',
-            background: theme.secondary,
-            color: theme.primary,
-            width: '90%',
-            height: '60px',
+            margin: '1.2rem auto',
+            borderRadius: '16px',
+            background: 'rgba(255, 255, 255, 0.05)',
+            backdropFilter: 'blur(10px)',
+            color: '#eaeaea',
+            width: '100%',
+            height: '56px',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-evenly',
-            padding: '0 30px',
+            justifyContent: 'flex-start',
+            padding: '0 20px',
+            gap: '15px',
             boxSizing: 'border-box',
-            border: '2px solid',
-            borderColor: theme.primary,
-            transition: 'background-color 0.2s, color 0.2s',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             '&:hover': {
                 background: theme.primary,
                 color: theme.secondary,
+                transform: 'translateX(-5px)',
+                borderColor: theme.primary,
+                boxShadow: '0 10px 30px -10px rgba(0, 0, 0, 0.5)',
             },
             [t.breakpoints.down('sm')]: {
                 width: '100%',
-                padding: '0 25px',
-                height: '55px',
+                padding: '0 18px',
+                height: '52px',
             },
         },
         drawerLinks: {
@@ -196,12 +222,18 @@ function Navbar() {
             transform: 'translateY(-10px)',
             marginRight: 10,
             overflow: 'hidden',
-            backgroundColor: theme.primary,
-            border: `2px solid ${themeType === 'light' ? 'white' : 'black'}`,
+            backgroundColor: '#ffffff',
+            border: '2px solid rgba(255, 255, 255, 0.3)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             padding: 0,
+            boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+            transition: 'all 0.3s',
+            '&:hover': {
+                transform: 'translateY(-10px) scale(1.1)',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
+            },
         },
     }));
 
@@ -216,9 +248,9 @@ function Navbar() {
     };
 
     return (
-        <div className='navbar'>
+        <div className={`navbar ${scrolled ? 'scrolled' : ''}`}>
             <div className='navbar--container'>
-                <h1 style={{ color: theme.secondary }}>{shortname(headerData.firstName)}</h1>
+                <h1 style={{ color: '#ffffff' }}>{shortname(headerData.firstName)}</h1>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <>
                         <IconButton

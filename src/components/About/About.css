@@ -1,160 +1,352 @@
 .about {
-    min-height: 80vh;
-    position: relative;
+  min-height: 100vh;
+  position: relative;
+  padding: 6rem 0;
+  overflow: hidden;
 }
 
-.about .line-styling{
+/* Subtle background gradient */
+.about::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 80% 30%, rgba(120, 119, 198, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 70%, rgba(255, 119, 198, 0.05) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+/* Premium line styling with animation */
+.about .line-styling {
   position: absolute;
   top: 50px;
   left: 50%;
   transform: translateX(-50%);
   height: 50px;
   width: 85%;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
+  animation: lineReveal 1s ease-out;
 }
 
-.about .line-styling .style-circle{
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+@keyframes lineReveal {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scaleX(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1);
+  }
 }
-.about .line-styling .style-line{
+
+.about .line-styling .style-circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow: 0 0 20px currentColor;
+  animation: circlePulse 2s ease-in-out infinite;
+}
+
+@keyframes circlePulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px currentColor;
+  }
+
+  50% {
+    transform: scale(1.2);
+    box-shadow: 0 0 30px currentColor, 0 0 50px currentColor;
+  }
+}
+
+.about .line-styling .style-line {
   width: 95%;
-  height: 5px;
+  height: 3px;
   border-radius: 10px;
+  background: linear-gradient(90deg, currentColor, transparent, currentColor);
+  opacity: 0.5;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated shimmer on line */
+.about .line-styling .style-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  animation: lineShimmer 3s ease-in-out infinite;
+}
+
+@keyframes lineShimmer {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 200%;
+  }
 }
 
 .about-body {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    padding-top: 8rem;
-    height: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-top: 6rem;
+  height: fit-content;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
+/* Glassmorphic About Description Card with Motion */
 .about-description {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-evenly;
-    flex: 0.5;
-    width: 100%;
-    height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  flex: 0.55;
+  width: 100%;
+  height: fit-content;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: aboutCardSlide 0.8s ease-out;
+  position: relative;
+  overflow: hidden;
 }
 
-.about-description >h2 {
-    margin-bottom: 40px;
-    font-size: 3.5rem;
-    font-family: var(--primaryFont);
+@keyframes aboutCardSlide {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-.about-description > p {
-    font-size: 1.25rem;
-    color: #e0d9d9;
-    font-family: var(--primaryFont);
+/* Card shimmer effect */
+.about-description::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+  animation: cardShimmer 4s ease-in-out infinite;
+  animation-delay: 1s;
 }
 
+@keyframes cardShimmer {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+.about-description:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-8px) translateX(10px);
+  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.35);
+}
+
+.about-description>h2 {
+  margin-bottom: 30px;
+  font-size: 3rem;
+  font-family: var(--font-primary, Inter, sans-serif);
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  animation: textReveal 0.6s ease-out 0.3s both;
+}
+
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(5px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.about-description>p {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  font-family: var(--font-primary, Inter, sans-serif);
+  font-weight: 400;
+  opacity: 0.8;
+  animation: textReveal 0.6s ease-out 0.5s both;
+}
+
+/* Premium About Image with Motion */
 .about-img {
-    margin-top: 40px;
-    pointer-events: none;
+  flex: 0.4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: imageFloat 0.8s ease-out;
 }
 
-.about-img > img {
-    width: 380px;
-    flex: 0.5;
+@keyframes imageFloat {
+  0% {
+    opacity: 0;
+    transform: translateX(60px) scale(0.9);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
 }
+
+.about-img>img {
+  width: 350px;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: gentleFloat 5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+@keyframes gentleFloat {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(2deg);
+  }
+}
+
+.about-img>img:hover {
+  transform: scale(1.1) translateY(-15px) rotate(5deg);
+  filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.45));
+}
+
+/* ========================================
+   RESPONSIVE STYLES
+   ======================================== */
 
 @media (min-width: 992px) and (max-width: 1380px) {
+  .about-description>h2 {
+    font-size: 2.8rem;
+    margin-bottom: 25px;
+  }
 
-    .about-description > h2 {
-      font-size: 3.3rem;
-      margin-bottom: 30px;
-    }
-    .about-description > p {
-      font-size: 1.15rem;
-    }
+  .about-description>p {
+    font-size: 1.1rem;
+  }
 
-    .about-img>img {
-        width: 300px;
-    } 
+  .about-img>img {
+    width: 280px;
+  }
+
+  .about-body {
+    gap: 3rem;
+  }
 }
 
-@media screen and (max-width: 992px){
-
-  .about .line-styling{
+@media screen and (max-width: 992px) {
+  .about .line-styling {
     top: 20px;
   }
 
-    .about-body {
-        padding-top: 2rem;
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: center;
-        justify-content: space-evenly;
-    }
+  .about-body {
+    padding-top: 4rem;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 2rem;
+  }
 
-    .about-description{
-        flex: 0.6;
-        box-sizing: border-box;
-        /* padding: 5% 10%; */
-        padding: 20px;
+  .about-description {
+    flex: 1;
+    box-sizing: border-box;
+    padding: 2rem;
+    text-align: center;
+    align-items: center;
+  }
 
-    }
+  .about-description>h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
 
-    .about-description > h2 {
-        font-size: 3rem;
-        margin-bottom: 20px;
-    }
+  .about-description>p {
+    font-size: 1.05rem;
+  }
 
-    .about-description > p {
-        font-size: 1.1rem;
-    }
-
-    .about-img > img {
-        width: 250px;
-        flex: 0.4;
-    }
-
+  .about-img>img {
+    width: 220px;
+  }
 }
 
-@media screen and (max-width: 800px){
-  .about .line-styling .style-circle{
+@media screen and (max-width: 800px) {
+  .about .line-styling .style-circle {
     width: 8px;
     height: 8px;
-    border-radius: 50%;
   }
-  .about-description > h2{
-    align-self: center;
-  }
-
 }
 
-@media screen and (max-width: 600px){
-
-  .about .line-styling .style-circle{
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
+@media screen and (max-width: 600px) {
+  .about {
+    padding: 4rem 0;
   }
-  .about .line-styling .style-line{
+
+  .about .line-styling .style-circle {
+    width: 6px;
+    height: 6px;
+  }
+
+  .about .line-styling .style-line {
     width: 93%;
-    height: 3px;
-    border-radius: 10px;
+    height: 2px;
   }
 
-  .about-description > h2 {
-    font-size: 2.5rem;
+  .about-description {
+    padding: 1.5rem;
+    margin: 0 1rem;
   }
 
-  .about-description > p {
+  .about-description>h2 {
+    font-size: 2rem;
+  }
+
+  .about-description>p {
     font-size: 0.95rem;
   }
 
-  .about-img > img {
-      width: 200px;
+  .about-img>img {
+    width: 180px;
   }
 }

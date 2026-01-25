@@ -1,10 +1,10 @@
 /* eslint-disable */
-import { 
-    blueThemegirl, blueThemeboy, bwThemeboy, bwThemegirl, greenThemeboy, greenThemegirl, orangeThemeboy, 
+import {
+    blueThemegirl, blueThemeboy, bwThemeboy, bwThemegirl, greenThemeboy, greenThemegirl, orangeThemeboy,
     orangeThemegirl, pinkThemeboy, pinkThemegirl, purpleThemeboy, purpleThemegirl, redThemeboy, redThemegirl, yellowThemeboy,
-    yellowThemegirl,eduBlack,eduBlue,eduGreen,eduOrange,eduPink,eduPurple,eduRed,eduYellow,expBlack,expBlue,expGreen,expOrange,
-    expPink,expPurple,expRed,expYellow,contactsBlack,contactsBlue,contactsGreen,contactsOrange,contactsPink,contactsPurple,
-    contactsRed,contactsYellow
+    yellowThemegirl, eduBlack, eduBlue, eduGreen, eduOrange, eduPink, eduPurple, eduRed, eduYellow, expBlack, expBlue, expGreen, expOrange,
+    expPink, expPurple, expRed, expYellow, contactsBlack, contactsBlue, contactsGreen, contactsOrange, contactsPink, contactsPurple,
+    contactsRed, contactsYellow
 } from './images'
 
 export const greenThemeLight = {
@@ -359,4 +359,48 @@ export const yellowThemeDark = {
     eduimg: eduYellow,
     expimg: expYellow,
     contactsimg: contactsYellow
+}
+
+export const contrastThemeLight = {
+    type: 'light',
+    primary: '#E53935',
+    primary400: '#EF5350',
+    primary600: '#C62828',
+    primary80: '#E53935cc',
+    primary50: '#E5393580',
+    primary30: '#E539354d',
+    secondary: '#0a0a0a',
+    secondary70: '#0a0a0ab3',
+    secondary50: '#0a0a0a80',
+    tertiary: '#E8E8E8',
+    tertiary80: '#E8E8E8cc',
+    tertiary70: '#E8E8E8b3',
+    tertiary50: '#E8E8E880',
+    aboutimg1: bwThemeboy,
+    aboutimg2: bwThemegirl,
+    eduimg: eduBlack,
+    expimg: expBlack,
+    contactsimg: contactsBlack
+}
+
+export const contrastThemeDark = {
+    type: 'dark',
+    primary: '#E53935',
+    primary400: '#EF5350',
+    primary600: '#C62828',
+    primary80: '#E53935cc',
+    primary50: '#E5393580',
+    primary30: '#E539354d',
+    secondary: '#0a0a0a',
+    secondary70: '#0a0a0ab3',
+    secondary50: '#0a0a0a80',
+    tertiary: '#E8E8E8',
+    tertiary80: '#E8E8E8cc',
+    tertiary70: '#E8E8E8b3',
+    tertiary50: '#E8E8E880',
+    aboutimg1: bwThemeboy,
+    aboutimg2: bwThemegirl,
+    eduimg: eduBlack,
+    expimg: expBlack,
+    contactsimg: contactsBlack
 }
