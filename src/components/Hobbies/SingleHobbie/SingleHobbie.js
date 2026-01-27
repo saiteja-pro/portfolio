@@ -1,23 +1,20 @@
-import React,{useContext} from 'react';
-import Fade from 'react-reveal/Fade';
+import React, { useContext } from 'react';
 
 import { ThemeContext } from '../../../contexts/ThemeContext';
 
 import './SingleHobbie.css'
 
 
-function SingleHobbie({id, title, icon}) {
+function SingleHobbie({ id, title, icon }) {
 
     const { theme } = useContext(ThemeContext);
     return (
-        <Fade bottom>
-            <div key={id} className="single-hobbie" style={{backgroundColor:theme.primary400}}>
-                <div className="hobbie-content"  style={{color:theme.tertiary}}>
-                    <i className="hobbie-icon" style={{color:theme.secondary}}>{icon}</i>
-                    <h4  style={{color:theme.secondary}}>{title}</h4>  
-                </div>         
+        <div key={id} className="single-hobbie" style={{ backgroundColor: theme.type === 'light' ? '#000000' : 'rgba(0, 0, 0, 0.5)' }}>
+            <div className="hobbie-content" style={{ color: theme.type === 'light' ? '#FFFFFF' : theme.tertiary }}>
+                <i className="hobbie-icon" style={{ color: theme.type === 'light' ? '#FFFFFF' : theme.primary }}>{icon}</i>
+                <h4 style={{ color: theme.type === 'light' ? '#FFFFFF' : theme.tertiary }}>{title}</h4>
             </div>
-        </Fade>
+        </div>
     )
 }
 

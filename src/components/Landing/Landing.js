@@ -12,32 +12,41 @@ import {
     FaTwitter,
     FaLinkedin,
     FaGithub,
-    FaYoutube,
-    FaBlogger,
     FaMedium,
 } from 'react-icons/fa';
 
+/**
+ * Landing Component
+ * 
+ * The main entry point visual for the portfolio.
+ * Features a typing animation, social links, and a call-to-action to resume/contact.
+ * Uses a split-screen design with glassmorphic elements.
+ */
 function Landing() {
     const { theme, drawerOpen } = useContext(ThemeContext);
     const [displayText, setDisplayText] = useState('');
     const [isTyping, setIsTyping] = useState(true);
 
-    // Typing animation effect
+    // Typing animation effect - restored and fixed
     useEffect(() => {
         if (!headerData.description) return;
 
         let index = 0;
         const text = headerData.description;
 
+        // Reset state on mount
+        setDisplayText('');
+        setIsTyping(true);
+
         const typeInterval = setInterval(() => {
-            if (index <= text.length) {
-                setDisplayText(text.slice(0, index));
+            if (index < text.length) {
+                setDisplayText((prev) => prev + text.charAt(index));
                 index++;
             } else {
                 setIsTyping(false);
                 clearInterval(typeInterval);
             }
-        }, 25);
+        }, 20); // Slightly faster for smoother effect
 
         return () => clearInterval(typeInterval);
     }, []);
@@ -129,7 +138,10 @@ function Landing() {
             <div className='landing--container'>
                 <div
                     className='landing--container-left'
-                    style={{ backgroundColor: theme.primary }}
+                    style={{
+                        background: `linear-gradient(90deg, ${theme.secondary} 0%, transparent 100%)`,
+                        borderRight: `1px solid rgba(255, 255, 255, 0.05)`
+                    }}
                 >
                     <div className='lcl--content'>
                         {socialsData.linkedIn && (
@@ -140,7 +152,7 @@ function Landing() {
                             >
                                 <FaLinkedin
                                     className='landing--social'
-                                    style={{ color: theme.secondary }}
+                                    style={{ color: theme.tertiary }}
                                     aria-label='LinkedIn'
                                 />
                             </a>
@@ -153,7 +165,7 @@ function Landing() {
                             >
                                 <FaGithub
                                     className='landing--social'
-                                    style={{ color: theme.secondary }}
+                                    style={{ color: theme.tertiary }}
                                     aria-label='GitHub'
                                 />
                             </a>
@@ -166,24 +178,12 @@ function Landing() {
                             >
                                 <FaMedium
                                     className='landing--social'
-                                    style={{ color: theme.secondary }}
+                                    style={{ color: theme.tertiary }}
                                     aria-label='Medium'
                                 />
                             </a>
                         )}
-                        {socialsData.youtube && (
-                            <a
-                                href={socialsData.youtube}
-                                target='_blank'
-                                rel='noreferrer'
-                            >
-                                <FaYoutube
-                                    className='landing--social'
-                                    style={{ color: theme.secondary }}
-                                    aria-label='YouTube'
-                                />
-                            </a>
-                        )}
+
                         {socialsData.twitter && (
                             <a
                                 href={socialsData.twitter}
@@ -192,7 +192,7 @@ function Landing() {
                             >
                                 <FaTwitter
                                     className='landing--social'
-                                    style={{ color: theme.secondary }}
+                                    style={{ color: theme.tertiary }}
                                     aria-label='Twitter'
                                 />
                             </a>
@@ -217,7 +217,7 @@ function Landing() {
                     >
                         <h6 style={{ color: `${theme.tertiary}99` }}>{headerData.title}</h6>
                         <h1 style={{ color: theme.tertiary }}>{headerData.name}</h1>
-                        <p style={{ minHeight: '4.5em' }}>
+                        <p style={{ minHeight: '4.5em', minWidth: '100%' }}>
                             {displayText}
                             {isTyping && (
                                 <span

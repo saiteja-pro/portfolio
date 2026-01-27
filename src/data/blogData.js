@@ -25,8 +25,8 @@ export const blogData = [
     },
     {
         id: 4,
-        title: 'My Ultimate Camping Checklist',
-        description: 'Everything I packed for a smooth camping experience — plus tips you dont want to miss.',
+        title: 'Ultimate Camping Checklist',
+        description: 'Everything I packed for a smooth camping experience, plus tips you dont want to miss.',
         date: 'May 2025',
         image: 'https://cdn-images-1.medium.com/v2/resize:fit:1600/1*Ut6GR_kfDuNdFQTLMfYJxQ.png',
         url: 'https://saitejapro.medium.com/%EF%B8%8F-my-ultimate-camping-checklist-what-i-carried-and-why-it-mattered-2d9ed9bd33ed'

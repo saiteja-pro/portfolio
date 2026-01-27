@@ -7,31 +7,23 @@
   overflow: hidden;
 }
 
-/* Animated Gradient Background */
+/* Clean, minimal dark background - no colored glows */
 .landing::before {
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse at 20% 50%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 40%),
-    radial-gradient(ellipse at 40% 80%, rgba(120, 200, 255, 0.08) 0%, transparent 40%);
-  animation: gradientFlow 15s ease infinite;
-  background-size: 200% 200%;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.02) 0%, transparent 60%);
   z-index: 0;
 }
 
-/* Floating Particles Effect */
+/* Subtle grain texture for depth */
 .landing::after {
   content: '';
   position: absolute;
   inset: 0;
-  background-image:
-    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 100px 100px, 150px 150px, 200px 200px;
-  animation: float 20s ease-in-out infinite;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
   z-index: 0;
 }
 

@@ -42,26 +42,26 @@ function Recommendations() {
         const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
         if (newWindow) newWindow.opener = null
     }
-    
+
 
     return (
         <>
             {recommendationsData.length > 0 && (
                 <div
                     className='recommendations'
-                    style={{ backgroundColor: theme.primary }}
+                    style={{ backgroundColor: theme.secondary }}
                 >
                     <div className='recommendations--header'>
-                        <h1 style={{ color: theme.secondary }}>Recommendations</h1>
+                        <h1 style={{ color: theme.primary }}>Recommendations</h1>
                     </div>
                     <div className='recommendations--body'>
                         <FaQuoteLeft
                             className='quote'
-                            style={{ color: theme.secondary }}
+                            style={{ color: theme.primary }}
                         />
                         <div
                             className='recommendations--slider'
-                            style={{ backgroundColor: theme.primary }}
+                            style={{ backgroundColor: theme.secondary }}
                         >
                             <Slider {...settings} ref={sliderRef}>
                                 {recommendationsData.map((each) => (
@@ -85,13 +85,13 @@ function Recommendations() {
                                             <div
                                                 className='review--content'
                                                 style={{
-                                                    backgroundColor:
-                                                        theme.secondary,
+                                                    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                                                    border: `1px solid ${theme.primary}50`,
                                                     color: theme.tertiary,
                                                 }}
                                             >
                                                 <p>{each.text}</p>
-                                                <h1 onClick={()=> openInNewTab(each.url)}>{each.name}</h1>
+                                                <h1 onClick={() => openInNewTab(each.url)}>{each.name}</h1>
                                                 <h4>{each.title}</h4>
                                             </div>
                                         </div>
@@ -101,20 +101,20 @@ function Recommendations() {
                             <button
                                 className='prevBtn'
                                 onClick={gotoPrev}
-                                style={{ backgroundColor: theme.secondary }}
+                                style={{ backgroundColor: theme.primary }}
                             >
                                 <FaArrowLeft
-                                    style={{ color: theme.primary }}
+                                    style={{ color: theme.secondary }}
                                     aria-label='Previous recommendation'
                                 />
                             </button>
                             <button
                                 className='nextBtn'
                                 onClick={gotoNext}
-                                style={{ backgroundColor: theme.secondary }}
+                                style={{ backgroundColor: theme.primary }}
                             >
                                 <FaArrowRight
-                                    style={{ color: theme.primary }}
+                                    style={{ color: theme.secondary }}
                                     aria-label='Next recommendation'
                                 />
                             </button>

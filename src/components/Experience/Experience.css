@@ -1,18 +1,16 @@
 .experience {
     min-height: 100vh;
-    padding: 5rem 0;
+    padding: 6rem 0;
     position: relative;
     overflow: hidden;
 }
 
-/* Background accent */
+/* Clean background */
 .experience::before {
     content: '';
     position: absolute;
     inset: 0;
-    background:
-        radial-gradient(ellipse at 70% 20%, rgba(120, 119, 198, 0.06) 0%, transparent 50%),
-        radial-gradient(ellipse at 30% 80%, rgba(100, 200, 255, 0.04) 0%, transparent 40%);
+    background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.01) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -59,32 +57,13 @@
     padding: 1.5rem 2rem;
     border-radius: 20px;
     margin-bottom: 1.25rem;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform 300ms ease, background 300ms ease, box-shadow 300ms ease;
     position: relative;
     overflow: hidden;
-    animation: fadeInRight 0.6s ease-out;
-    animation-fill-mode: both;
 }
 
-.experience-card:nth-child(2) {
-    animation-delay: 0.1s;
-}
-
-.experience-card:nth-child(3) {
-    animation-delay: 0.2s;
-}
-
-.experience-card:nth-child(4) {
-    animation-delay: 0.3s;
-}
-
-.experience-card:nth-child(5) {
-    animation-delay: 0.4s;
-}
 
 /* Timeline connector */
 .experience-card::before {
@@ -102,7 +81,7 @@
 .experience-card:hover {
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.12);
-    transform: translateX(-10px);
+    transform: translateX(-10px) scale(1.01);
     box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
 }
 
@@ -110,25 +89,44 @@
     opacity: 0.8;
 }
 
+/* Standardize container size */
 .expcard-img {
-    border-radius: 16px;
-    width: 55px;
-    height: 55px;
+    border-radius: 12px;
+    /* Slightly softer radius */
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    overflow: hidden;
+    /* Ensure images don't overflow */
     transition: all 300ms ease;
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Fallback background */
 }
 
-.experience-card:hover .expcard-img {
-    transform: scale(1.1);
-}
-
-.expcard-img>img {
-    width: 32px;
+/* Image Logos - strict sizing */
+.expcard-logo {
+    width: 36px !important;
+    height: 36px !important;
+    object-fit: contain;
     pointer-events: none;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Icons (React Icons) */
+.expcard-icon {
+    font-size: 24px !important;
+    /* Fixed pixel size for consistency */
+    color: #FFFFFF;
+    /* Ensure visibility */
+}
+
+/* Emojis */
+.expcard-emoji {
+    font-size: 22px !important;
+    line-height: 1;
 }
 
 .experience-details {

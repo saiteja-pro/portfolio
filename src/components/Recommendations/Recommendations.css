@@ -6,6 +6,8 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    /* Subtle partition */
 }
 
 
@@ -28,6 +30,7 @@
     padding: 0;
     width: 100%;
 }
+
 .slick-dots {
     position: relative !important;
     bottom: 1rem !important;
@@ -35,7 +38,7 @@
 }
 
 
-.recommendations--header h1{
+.recommendations--header h1 {
     font-style: normal;
     font-weight: bold;
     font-size: 3.5rem;
@@ -54,7 +57,7 @@
 
 }
 
-.recommendations--body .quote{
+.recommendations--body .quote {
     font-size: 4rem;
     position: absolute;
     z-index: 10;
@@ -64,7 +67,7 @@
     opacity: 0.5;
 }
 
-.recommendations--body button{
+.recommendations--body button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -82,11 +85,13 @@
 
     font-size: 1.6rem;
 }
-.recommendations--body .prevBtn{
+
+.recommendations--body .prevBtn {
     left: 5%;
     cursor: pointer;
 }
-.recommendations--body .nextBtn{
+
+.recommendations--body .nextBtn {
     right: 5%;
     cursor: pointer;
 }
@@ -120,7 +125,7 @@
     justify-content: center;
 }
 
-.review--img{
+.review--img {
     margin: 0 auto;
     margin-bottom: 2%;
     width: 100px;
@@ -128,18 +133,19 @@
     border-radius: 50%;
     z-index: 3;
     transform: translateY(50%);
-    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
     display: flex;
     align-items: center;
     justify-content: center;
 
 }
-.review--img img{
+
+.review--img img {
     width: 90px;
 }
 
-.review--content{
+.review--content {
     margin: 0 auto;
     width: 90%;
     height: 250px;
@@ -155,19 +161,20 @@
     justify-content: center;
 }
 
-.review--content p{
+.review--content p {
     font-style: calibri;
     font-weight: 300;
     width: 80%;
 }
-.review--content h1{
+
+.review--content h1 {
     font-size: 1.5rem;
     font-weight: 600;
 
     margin-top: 10px;
 }
 
-.review--content h4{
+.review--content h4 {
     font-size: 1rem;
     font-weight: 500;
 }
@@ -180,81 +187,92 @@
         padding-bottom: 2rem;
     }
 
-  .recommendations--header h1{
-    font-size: 3rem;
-    margin-top: 1.75rem;
-  }
+    .recommendations--header h1 {
+        font-size: 3rem;
+        margin-top: 1.75rem;
+    }
 
-  .recommendations--body .quote{
-      font-size: 3.5rem;
-  }
+    .recommendations--body .quote {
+        font-size: 3.5rem;
+    }
 
 
-  .review--content{
-      border-radius: 50px;
-  }
+    .review--content {
+        border-radius: 50px;
+    }
 }
 
 @media (max-width: 768px) {
 
-  .recommendations--header h1{
-    font-size: 2.5rem;
-  }
-  .recommendations--body{
-    width: 100%;
-  }
-  .recommendations--body button{
-    display: none;
-  }
-  .recommendations--slider {
-    width: 90%;
-  }
+    .recommendations--header h1 {
+        font-size: 2.5rem;
+    }
 
-  .review--content{
-      border-radius: 50px;
-  }
+    .recommendations--body {
+        width: 100%;
+    }
+
+    .recommendations--body button {
+        display: none;
+    }
+
+    .recommendations--slider {
+        width: 90%;
+    }
+
+    .review--content {
+        border-radius: 50px;
+    }
 }
 
 @media (max-width: 576px) {
-  .review--img {
-    margin: initial;
-    align-self: flex-start;
-  }
-  .review--content{
-      border-radius: 20px;
-      min-height: 300px;
-  }
-  .review--content p{
-      font-size: 0.9rem;
-      width: 90%;
-  }
-  .review--content h1{
-      font-size: 1.3rem;
-  }
+    .review--img {
+        margin: initial;
+        align-self: flex-start;
+    }
 
-  .review--content h4{
-      font-size: 0.9rem;
-  }
+    .review--content {
+        border-radius: 20px;
+        min-height: 300px;
+    }
+
+    .review--content p {
+        font-size: 0.9rem;
+        width: 90%;
+    }
+
+    .review--content h1 {
+        font-size: 1.3rem;
+    }
+
+    .review--content h4 {
+        font-size: 0.9rem;
+    }
 }
 
-@media (max-width: 360px){
-  .recommendations--header h1{
-    font-size: 2.2rem;
-  }
-  .recommendations--body .quote{
-      font-size: 3rem;
-  }
-  .recommendations--slider {
-    width: 100%;
-  }
-.review--img{
-    width: 80px;
-    height: 80px;
-}
-.review--img img{
-    width: 70px;
-}
-  .review--content{
-      min-height: 350px;
-  }
+@media (max-width: 360px) {
+    .recommendations--header h1 {
+        font-size: 2.2rem;
+    }
+
+    .recommendations--body .quote {
+        font-size: 3rem;
+    }
+
+    .recommendations--slider {
+        width: 100%;
+    }
+
+    .review--img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .review--img img {
+        width: 70px;
+    }
+
+    .review--content {
+        min-height: 350px;
+    }
 }

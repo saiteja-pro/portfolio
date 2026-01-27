@@ -2,35 +2,70 @@ import React, { useContext } from 'react'
 import './Footer.css'
 import { ThemeContext } from '../../contexts/ThemeContext'
 import { headerData } from '../../data/headerData'
+import { socialsData } from '../../data/socialsData'
+import { FaLinkedin, FaGithub, FaMedium, FaArrowUp, FaFacebook, FaInstagram, FaYoutube } from 'react-icons/fa'
 
 function Footer() {
-
-    const shortname = (name) => {
-        if (name.length > 10) {
-            return name.split(" ")[0]
-        } else {
-            return name
-        }
-    }
-
-    const getYear = () => {
-        return new Date().getFullYear();
-    }
-
-
     const { theme } = useContext(ThemeContext)
 
-    return (
-        <div className="footer" style={{ backgroundColor: theme.secondary }}>
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
 
-            <p style={{ color: theme.tertiary }}>
-                Built with passion by {headerData.name}
-                <br />
-                <p style={{ textAlign: 'center' }}>copyright © {getYear()} </p>
-            </p>
-        </div>
+    return (
+        <footer className="footer" style={{ backgroundColor: theme.secondary }}>
+            <div className="footer--container">
+                {/* Social Links */}
+                <div className="footer--socials">
+                    {socialsData.linkedIn && (
+                        <a href={socialsData.linkedIn} target="_blank" rel="noreferrer" aria-label="LinkedIn" style={{ color: theme.tertiary }}>
+                            <FaLinkedin />
+                        </a>
+                    )}
+                    {socialsData.github && (
+                        <a href={socialsData.github} target="_blank" rel="noreferrer" aria-label="GitHub" style={{ color: theme.tertiary }}>
+                            <FaGithub />
+                        </a>
+                    )}
+                    {socialsData.medium && (
+                        <a href={socialsData.medium} target="_blank" rel="noreferrer" aria-label="Medium" style={{ color: theme.tertiary }}>
+                            <FaMedium />
+                        </a>
+                    )}
+                    {socialsData.facebook && (
+                        <a href={socialsData.facebook} target="_blank" rel="noreferrer" aria-label="Facebook" style={{ color: theme.tertiary }}>
+                            <FaFacebook />
+                        </a>
+                    )}
+                    {socialsData.instagram && (
+                        <a href={socialsData.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" style={{ color: theme.tertiary }}>
+                            <FaInstagram />
+                        </a>
+                    )}
+                    {socialsData.youtube && (
+                        <a href={socialsData.youtube} target="_blank" rel="noreferrer" aria-label="YouTube" style={{ color: theme.tertiary }}>
+                            <FaYoutube />
+                        </a>
+                    )}
+                </div>
+
+                {/* Copyright */}
+                <p className="footer--text" style={{ color: theme.tertiary }}>
+                    © {new Date().getFullYear()} {headerData.name}. All rights reserved.
+                </p>
+
+                {/* Back to Top */}
+                <button
+                    className="footer--back-to-top"
+                    onClick={scrollToTop}
+                    aria-label="Back to top"
+                    style={{ backgroundColor: theme.primary, color: theme.secondary }}
+                >
+                    <FaArrowUp />
+                </button>
+            </div>
+        </footer>
     )
 }
 
 export default Footer
-

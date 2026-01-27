@@ -1,6 +1,7 @@
 {
-  "short_name": "Sai Teja Bhoomraogari's Portfolio",
-  "name": "Sai Teja Bhoomraogari's Portfolio by Sai Teja",
+  "short_name": "Sai Teja",
+  "name": "Sai Teja Bhoomraogari - Software Engineer",
+  "description": "Portfolio of Sai Teja Bhoomraogari - Expert Software Engineer specializing in Java, Python, AWS, React, and Cloud Engineering",
   "icons": [
     {
       "src": "favicon.ico",
@@ -13,13 +14,27 @@
       "sizes": "64x64"
     },
     {
+      "src": "favicon192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
       "src": "favicon512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
-  "start_url": "https://saiteja.pro/",
+  "start_url": "./",
+  "scope": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "portrait-primary",
+  "theme_color": "#0a0a0a",
+  "background_color": "#0a0a0a",
+  "categories": [
+    "portfolio",
+    "personal",
+    "developer"
+  ]
 }

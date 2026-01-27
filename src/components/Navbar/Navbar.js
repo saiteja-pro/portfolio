@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { NavHashLink as NavLink } from 'react-router-hash-link';
 import Fade from 'react-reveal/Fade';
-import { IoMenuSharp, IoHomeSharp } from 'react-icons/io5';
+import { IoMenuSharp, IoHomeSharp, IoSunny, IoMoon } from 'react-icons/io5';
 import { HiDocumentText, HiStar } from 'react-icons/hi';
 import { BsFillGearFill } from 'react-icons/bs';
 import { MdPhone } from 'react-icons/md';
@@ -9,66 +9,18 @@ import { FaUser, FaFolderOpen } from 'react-icons/fa';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CloseIcon from '@material-ui/icons/Close';
-import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
-import Brightness4Icon from '@material-ui/icons/Brightness4';
+import { IconButton } from '@material-ui/core';
 
 import './Navbar.css';
 import { headerData } from '../../data/headerData';
 import { ThemeContext } from '../../contexts/ThemeContext';
-import { useEffect } from 'react';
-import {
-    greenThemeLight,
-    greenThemeDark,
-    bwThemeLight,
-    bwThemeDark,
-    blueThemeLight,
-    blueThemeDark,
-    redThemeLight,
-    redThemeDark,
-    orangeThemeLight,
-    orangeThemeDark,
-    purpleThemeLight,
-    purpleThemeDark,
-    pinkThemeLight,
-    pinkThemeDark,
-    yellowThemeLight,
-    yellowThemeDark,
-    contrastThemeLight,
-    contrastThemeDark,
-} from '../../theme/theme';
-import { Menu, MenuItem, IconButton } from '@material-ui/core';
-
-const type = {
-    light: {
-        greenThemeLight,
-        bwThemeLight,
-        blueThemeLight,
-        redThemeLight,
-        orangeThemeLight,
-        purpleThemeLight,
-        pinkThemeLight,
-        yellowThemeLight,
-        contrastThemeLight,
-    },
-    dark: {
-        greenThemeDark,
-        bwThemeDark,
-        blueThemeDark,
-        redThemeDark,
-        orangeThemeDark,
-        purpleThemeDark,
-        pinkThemeDark,
-        yellowThemeDark,
-        contrastThemeDark,
-    },
-};
+import { darkTheme, lightTheme } from '../../theme/theme';
 
 function Navbar() {
     const [open, setOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const { theme, setHandleDrawer, setTheme, themeType, setThemeType } = useContext(ThemeContext);
-    const [themes, setThemes] = useState(type[themeType]);
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const { theme, setHandleDrawer, setTheme } = useContext(ThemeContext);
+    const [isDark, setIsDark] = useState(theme.type === 'dark');
 
     // Scroll detection for glassmorphic navbar
     useEffect(() => {
@@ -79,13 +31,10 @@ function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+    // Sync isDark state with theme
+    useEffect(() => {
+        setIsDark(theme.type === 'dark');
+    }, [theme]);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -97,34 +46,26 @@ function Navbar() {
         setHandleDrawer();
     };
 
-    const handleSetTheme = (theme, e) => {
-        setTheme(themes[theme]);
-        handleClick(e);
-    };
-
-    useEffect(() => {
-        if (themeType === 'dark') {
-            setThemes(type['dark']);
-            const find = Object.keys(type.dark).filter((item) => type.dark[item].primary === theme.primary);
-            setTheme(type.dark[find]);
+    const toggleTheme = () => {
+        if (isDark) {
+            setTheme(lightTheme);
         } else {
-            setThemes(type['light']);
-            const find = Object.keys(type.light).filter((item) => type.light[item].primary === theme.primary);
-            setTheme(type.light[find]);
+            setTheme(darkTheme);
         }
-    }, [setTheme, theme.primary, themeType]);
+        setIsDark(!isDark);
+    };
 
     const useStyles = makeStyles((t) => ({
         navMenu: {
             fontSize: '2.5rem',
-            color: '#ffffff',
+            color: theme.tertiary,
             cursor: 'pointer',
             transform: 'translateY(-10px)',
             transition: 'all 0.3s',
-            filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))',
+            filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))',
             '&:hover': {
-                color: theme.primary,
                 transform: 'translateY(-10px) scale(1.1)',
+                opacity: 0.8,
             },
             [t.breakpoints.down('sm')]: {
                 fontSize: '2.5rem',
@@ -140,13 +81,13 @@ function Navbar() {
             fontStyle: 'normal',
             fontWeight: 'normal',
             fontSize: '18px',
-            background: 'rgba(0, 0, 0, 0.85)',
+            background: isDark ? 'rgba(10, 10, 10, 0.95)' : 'rgba(250, 250, 250, 0.95)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
             border: 'none',
-            borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
+            borderLeft: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
             overflow: 'hidden',
-            boxShadow: '-10px 0 40px rgba(0, 0, 0, 0.5)',
+            boxShadow: '-10px 0 40px rgba(0, 0, 0, 0.3)',
             [t.breakpoints.down('sm')]: {
                 width: '240px',
                 padding: '1.5em 1em',
@@ -162,7 +103,7 @@ function Navbar() {
             top: 30,
             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             '&:hover': {
-                color: theme.primary,
+                opacity: 0.7,
                 transform: 'rotate(90deg) scale(1.1)',
             },
             [t.breakpoints.down('sm')]: {
@@ -174,9 +115,9 @@ function Navbar() {
         drawerItem: {
             margin: '1.2rem auto',
             borderRadius: '16px',
-            background: 'rgba(255, 255, 255, 0.05)',
+            background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.03)',
             backdropFilter: 'blur(10px)',
-            color: '#eaeaea',
+            color: theme.tertiary,
             width: '100%',
             height: '56px',
             display: 'flex',
@@ -185,14 +126,13 @@ function Navbar() {
             padding: '0 20px',
             gap: '15px',
             boxSizing: 'border-box',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
+            border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.08)',
             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             '&:hover': {
-                background: theme.primary,
+                background: theme.tertiary,
                 color: theme.secondary,
                 transform: 'translateX(-5px)',
-                borderColor: theme.primary,
-                boxShadow: '0 10px 30px -10px rgba(0, 0, 0, 0.5)',
+                boxShadow: '0 10px 30px -10px rgba(0, 0, 0, 0.3)',
             },
             [t.breakpoints.down('sm')]: {
                 width: '100%',
@@ -215,25 +155,30 @@ function Navbar() {
                 fontSize: '1.385rem',
             },
         },
-        toggleThemeIconButton: {
-            height: '30px',
-            width: '30px',
+        themeToggleButton: {
+            height: '40px',
+            width: '40px',
             borderRadius: '50%',
             transform: 'translateY(-10px)',
-            marginRight: 10,
+            marginRight: 15,
             overflow: 'hidden',
-            backgroundColor: '#ffffff',
-            border: '2px solid rgba(255, 255, 255, 0.3)',
+            backgroundColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
+            border: isDark ? '2px solid rgba(255, 255, 255, 0.2)' : '2px solid rgba(0, 0, 0, 0.1)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             padding: 0,
-            boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
-            transition: 'all 0.3s',
+            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+            cursor: 'pointer',
             '&:hover': {
-                transform: 'translateY(-10px) scale(1.1)',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
+                transform: 'translateY(-10px) scale(1.1) rotate(15deg)',
+                backgroundColor: isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.1)',
             },
+        },
+        themeIcon: {
+            fontSize: '1.3rem',
+            color: theme.tertiary,
+            transition: 'all 0.3s ease',
         },
     }));
 
@@ -248,52 +193,27 @@ function Navbar() {
     };
 
     return (
-        <div className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+        <div className={`navbar ${scrolled ? 'scrolled' : ''}`} style={{
+            backgroundColor: scrolled
+                ? (isDark ? 'rgba(10, 10, 10, 0.85)' : 'rgba(250, 250, 250, 0.85)')
+                : 'transparent'
+        }}>
             <div className='navbar--container'>
-                <h1 style={{ color: '#ffffff' }}>{shortname(headerData.firstName)}</h1>
+                <h1 style={{ color: theme.tertiary }}>{shortname(headerData.firstName)}</h1>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <>
-                        <IconButton
-                            className={classes.toggleThemeIconButton}
-                            aria-controls='simple-menu'
-                            aria-haspopup='true'
-                            onClick={handleClick}
-                        />
-                        <Menu
-                            id='simple-menu'
-                            anchorEl={anchorEl}
-                            keepMounted
-                            open={Boolean(anchorEl)}
-                            onClose={handleClose}
-                        >
-                            {Object.keys(themes).map((item, index) => {
-                                return (
-                                    <MenuItem onClick={handleClose} key={index}>
-                                        <IconButton
-                                            style={{
-                                                height: '30px',
-                                                width: '30px',
-                                                borderRadius: '50%',
-                                                overflow: 'hidden',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                padding: 0,
-                                            }}
-                                            aria-controls='simple-menu'
-                                            aria-haspopup='true'
-                                            onClick={(e) => handleSetTheme(item, e)}
-                                        >
-                                            <div style={{ width: '15px', height: '30px', backgroundColor: themes[item].primary }} />
-                                            <div
-                                                style={{ width: '15px', height: '30px', backgroundColor: themes[item].secondary }}
-                                            />
-                                        </IconButton>
-                                    </MenuItem>
-                                );
-                            })}
-                        </Menu>
-                    </>
+                    {/* Theme Toggle Button */}
+                    <IconButton
+                        className={classes.themeToggleButton}
+                        onClick={toggleTheme}
+                        aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+                    >
+                        {isDark ? (
+                            <IoSunny className={classes.themeIcon} />
+                        ) : (
+                            <IoMoon className={classes.themeIcon} />
+                        )}
+                    </IconButton>
+
                     <IoMenuSharp className={classes.navMenu} onClick={handleDrawerOpen} aria-label='Menu' />
                 </div>
             </div>
@@ -358,7 +278,6 @@ function Navbar() {
                             </NavLink>
                         </Fade>
 
-
                         <Fade right>
                             <NavLink to='/#education' smooth={true} spy='true' duration={2000}>
                                 <div className={classes.drawerItem}>
@@ -369,19 +288,10 @@ function Navbar() {
                         </Fade>
 
                         <Fade right>
-                            <NavLink
-                                to='/#hobbies'
-                                smooth={true}
-                                spy='true'
-                                duration={2000}
-                            >
+                            <NavLink to='/#hobbies' smooth={true} spy='true' duration={2000}>
                                 <div className={classes.drawerItem}>
-                                    <BsFillGearFill
-                                        className={classes.drawerIcon}
-                                    />
-                                    <span className={classes.drawerLinks}>
-                                        Hobbies
-                                    </span>
+                                    <BsFillGearFill className={classes.drawerIcon} />
+                                    <span className={classes.drawerLinks}>Hobbies</span>
                                 </div>
                             </NavLink>
                         </Fade>
@@ -404,19 +314,7 @@ function Navbar() {
                             </NavLink>
                         </Fade>
 
-                        {/* <Fade right>
-                            <div
-                                className={classes.drawerItem}
-                                onClick={() => setThemeType(themeType === 'light' ? 'dark' : 'light')}
-                            >
-                                {themeType === 'light' ? (
-                                    <Brightness4Icon className={classes.drawerIcon} />
-                                ) : (
-                                    <BrightnessHighIcon className={classes.drawerIcon} />
-                                )}
-                                <span className={classes.drawerLinks}>{themeType === 'light' ? 'Dark' : 'Light'}</span>
-                            </div>
-                        </Fade> */}
+
                     </div>
                 </div>
             </Drawer>
