@@ -14,6 +14,7 @@ import certificate2 from '../assets/publications/certificate2.png';
  * - date: Publication date
  * - field: Research domain
  * - url: Link to the paper or journal entry
+ * - videoUrl: (optional) YouTube video link for video presentations
  * - image: Representative icon/image
  */
 
@@ -30,6 +31,7 @@ export const achievementData = {
             date: 'September 2020',
             field: 'Business Analytics',
             url: 'https://www.ijert.org/a-comprehensive-study-on-business-analytics',
+            videoUrl: 'https://www.youtube.com/watch?v=zcfEZRuyj14',
             image: certificate
         },
         {
@@ -39,6 +41,7 @@ export const achievementData = {
             date: 'September 2020',
             field: 'Business Intelligence',
             url: 'https://www.ijert.org/consequences-and-determinants-towards-business-analytics-success',
+            videoUrl: 'https://www.youtube.com/watch?v=oAw70pUEk-w',
             image: certificate1
         },
         {

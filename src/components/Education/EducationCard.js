@@ -18,9 +18,9 @@ function EducationCard({ id, institution, course, startYear, endYear, emoji, ico
 
     const useStyles = makeStyles((t) => ({
         educationCard: {
-            backgroundColor: theme.type === 'light' ? '#000000' : 'rgba(0, 0, 0, 0.5)',
+            backgroundColor: theme.type === 'light' ? 'rgba(0, 0, 0, 0.75)' : 'rgba(0, 0, 0, 0.4)',
             "&:hover": {
-                backgroundColor: theme.type === 'light' ? '#1a1a1a' : 'rgba(0, 0, 0, 0.7)',
+                backgroundColor: theme.type === 'light' ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.08)',
             },
         },
     }));
@@ -50,7 +50,7 @@ function EducationCard({ id, institution, course, startYear, endYear, emoji, ico
     };
 
     return (
-        <div key={id} className={`education-card ${classes.educationCard}`} >
+        <div key={id} className={`education-card ${classes.educationCard} theme-${theme.type}`} >
             <div className="educard-img" style={{ backgroundColor: logo ? 'transparent' : theme.primary }}>
                 {renderIcon()}
             </div>

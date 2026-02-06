@@ -49,6 +49,7 @@ function Recommendations() {
             {recommendationsData.length > 0 && (
                 <div
                     className='recommendations'
+                    id='recommendations'
                     style={{ backgroundColor: theme.secondary }}
                 >
                     <div className='recommendations--header'>

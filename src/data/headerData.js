@@ -5,7 +5,7 @@ export const headerData = {
     firstName: 'Sai Teja',
     lastName: 'Bhoomraogari',
     title: 'Software Engineer',
-    description: 'I dont code for awards or applause. I code because making a machine obey my chaotic logic is the closest thing to magic. Also, debugging is just modern-day hide and seek.',
+    description: "I don't code for awards or applause. I code because making a machine obey my chaotic logic is the closest thing to magic. Also, debugging is just modern-day hide and seek.",
     image: display_pic,
     resumePdf: resume
 }

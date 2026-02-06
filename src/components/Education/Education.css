@@ -85,6 +85,13 @@
     box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
 }
 
+/* Change text color to black on hover only in light theme */
+.education-card.theme-light:hover .education-details h6,
+.education-card.theme-light:hover .education-details h4,
+.education-card.theme-light:hover .education-details h5 {
+    color: #000000 !important;
+}
+
 .education-card:hover::after {
     opacity: 0.8;
 }

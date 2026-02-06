@@ -181,7 +181,7 @@
   animation: contentSlideIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Shimmer effect on card */

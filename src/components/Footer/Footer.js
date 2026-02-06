@@ -3,14 +3,10 @@ import './Footer.css'
 import { ThemeContext } from '../../contexts/ThemeContext'
 import { headerData } from '../../data/headerData'
 import { socialsData } from '../../data/socialsData'
-import { FaLinkedin, FaGithub, FaMedium, FaArrowUp, FaFacebook, FaInstagram, FaYoutube } from 'react-icons/fa'
+import { FaLinkedin, FaGithub, FaMedium, FaFacebook, FaInstagram, FaYoutube } from 'react-icons/fa'
 
 function Footer() {
     const { theme } = useContext(ThemeContext)
-
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
 
     return (
         <footer className="footer" style={{ backgroundColor: theme.secondary }}>
@@ -53,19 +49,10 @@ function Footer() {
                 <p className="footer--text" style={{ color: theme.tertiary }}>
                     © {new Date().getFullYear()} {headerData.name}. All rights reserved.
                 </p>
-
-                {/* Back to Top */}
-                <button
-                    className="footer--back-to-top"
-                    onClick={scrollToTop}
-                    aria-label="Back to top"
-                    style={{ backgroundColor: theme.primary, color: theme.secondary }}
-                >
-                    <FaArrowUp />
-                </button>
             </div>
         </footer>
     )
 }
 
 export default Footer
+

@@ -2,10 +2,10 @@ import React, { useContext, useState, useEffect } from 'react';
 import { NavHashLink as NavLink } from 'react-router-hash-link';
 import Fade from 'react-reveal/Fade';
 import { IoMenuSharp, IoHomeSharp, IoSunny, IoMoon } from 'react-icons/io5';
-import { HiDocumentText, HiStar } from 'react-icons/hi';
-import { BsFillGearFill } from 'react-icons/bs';
-import { MdPhone } from 'react-icons/md';
-import { FaUser, FaFolderOpen } from 'react-icons/fa';
+import { HiDocumentText, HiStar, HiLightBulb } from 'react-icons/hi';
+import { BsFillGearFill, BsTrophyFill } from 'react-icons/bs';
+import { MdPhone, MdRecommend } from 'react-icons/md';
+import { FaUser, FaFolderOpen, FaPodcast } from 'react-icons/fa';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CloseIcon from '@material-ui/icons/Close';
@@ -113,46 +113,73 @@ function Navbar() {
             },
         },
         drawerItem: {
-            margin: '1.2rem auto',
-            borderRadius: '16px',
-            background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.03)',
-            backdropFilter: 'blur(10px)',
+            margin: '0.5rem auto',
+            borderRadius: '14px',
+            background: isDark
+                ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%)'
+                : 'linear-gradient(135deg, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.01) 100%)',
+            backdropFilter: 'blur(12px)',
             color: theme.tertiary,
             width: '100%',
-            height: '56px',
+            height: '46px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'flex-start',
-            padding: '0 20px',
-            gap: '15px',
+            padding: '0 18px',
+            gap: '14px',
             boxSizing: 'border-box',
             border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.08)',
-            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            position: 'relative',
+            overflow: 'hidden',
+            '&::before': {
+                content: '""',
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                width: '3px',
+                height: '100%',
+                background: `linear-gradient(180deg, ${theme.primary}00, ${theme.primary}, ${theme.primary}00)`,
+                opacity: 0,
+                transition: 'opacity 0.3s ease',
+            },
             '&:hover': {
-                background: theme.tertiary,
-                color: theme.secondary,
-                transform: 'translateX(-5px)',
-                boxShadow: '0 10px 30px -10px rgba(0, 0, 0, 0.3)',
+                background: isDark
+                    ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%)'
+                    : 'linear-gradient(135deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.03) 100%)',
+                transform: 'translateX(-6px) scale(1.02)',
+                boxShadow: isDark
+                    ? '0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.03)'
+                    : '0 10px 30px -10px rgba(0, 0, 0, 0.15)',
+                borderColor: isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.12)',
+                '&::before': {
+                    opacity: 1,
+                },
             },
             [t.breakpoints.down('sm')]: {
                 width: '100%',
-                padding: '0 18px',
-                height: '52px',
+                padding: '0 14px',
+                height: '42px',
             },
         },
         drawerLinks: {
             fontFamily: 'var(--primaryFont)',
-            width: '50%',
-            fontSize: '1.3rem',
-            fontWeight: 600,
+            fontSize: '0.9rem',
+            fontWeight: 500,
+            letterSpacing: '0.3px',
+            whiteSpace: 'nowrap',
+            transition: 'all 0.3s ease',
             [t.breakpoints.down('sm')]: {
-                fontSize: '1.125rem',
+                fontSize: '0.85rem',
             },
         },
         drawerIcon: {
-            fontSize: '1.6rem',
+            fontSize: '1.15rem',
+            flexShrink: 0,
+            opacity: 0.85,
+            transition: 'all 0.3s ease',
             [t.breakpoints.down('sm')]: {
-                fontSize: '1.385rem',
+                fontSize: '1.05rem',
             },
         },
         themeToggleButton: {
@@ -288,10 +315,46 @@ function Navbar() {
                         </Fade>
 
                         <Fade right>
+                            <NavLink to='/#achievement' smooth={true} spy='true' duration={2000}>
+                                <div className={classes.drawerItem}>
+                                    <BsTrophyFill className={classes.drawerIcon} />
+                                    <span className={classes.drawerLinks}>Achievements</span>
+                                </div>
+                            </NavLink>
+                        </Fade>
+
+                        <Fade right>
+                            <NavLink to='/#skills' smooth={true} spy='true' duration={2000}>
+                                <div className={classes.drawerItem}>
+                                    <HiLightBulb className={classes.drawerIcon} />
+                                    <span className={classes.drawerLinks}>Skills</span>
+                                </div>
+                            </NavLink>
+                        </Fade>
+
+                        <Fade right>
                             <NavLink to='/#hobbies' smooth={true} spy='true' duration={2000}>
                                 <div className={classes.drawerItem}>
                                     <BsFillGearFill className={classes.drawerIcon} />
                                     <span className={classes.drawerLinks}>Hobbies</span>
+                                </div>
+                            </NavLink>
+                        </Fade>
+
+                        <Fade right>
+                            <NavLink to='/#recommendations' smooth={true} spy='true' duration={2000}>
+                                <div className={classes.drawerItem}>
+                                    <MdRecommend className={classes.drawerIcon} />
+                                    <span className={classes.drawerLinks}>Recommendations</span>
+                                </div>
+                            </NavLink>
+                        </Fade>
+
+                        <Fade right>
+                            <NavLink to='/#podcast' smooth={true} spy='true' duration={2000}>
+                                <div className={classes.drawerItem}>
+                                    <FaPodcast className={classes.drawerIcon} />
+                                    <span className={classes.drawerLinks}>YouTube</span>
                                 </div>
                             </NavLink>
                         </Fade>

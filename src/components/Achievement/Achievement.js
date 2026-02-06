@@ -1,4 +1,4 @@
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 
 import './Achievement.css';
 import { ThemeContext } from '../../contexts/ThemeContext';
@@ -11,25 +11,26 @@ function Achievement() {
     return (
         <>
             {achievementData.achievements.length > 0 && (
-                <div className="achievement" id="achievement" style={{backgroundColor: theme.secondary}}>
-                <div className="achievement-body">
-                    <h1 style={{color: theme.primary}}>Achievements</h1>
-                    <p style={{color: theme.tertiary}}>{achievementData.bio1} <br/><br/> {achievementData.bio2}</p>
+                <div className="achievement" id="achievement" style={{ backgroundColor: theme.secondary }}>
+                    <div className="achievement-body">
+                        <h1 style={{ color: theme.primary }}>Achievements</h1>
+                        <p style={{ color: theme.tertiary }}>{achievementData.bio1} <br /><br /> {achievementData.bio2}</p>
+                    </div>
+                    <div className="achievement-cards">
+                        {achievementData.achievements.map(achieve => (
+                            <AchievementCard
+                                key={achieve.id}
+                                id={achieve.id}
+                                title={achieve.title}
+                                details={achieve.details}
+                                date={achieve.date}
+                                field={achieve.field}
+                                image={achieve.image}
+                                url={achieve.url}
+                                videoUrl={achieve.videoUrl} />
+                        ))}
+                    </div>
                 </div>
-                <div className="achievement-cards">
-                    {achievementData.achievements.map(achieve => ( 
-                        <AchievementCard 
-                        key={achieve.id}
-                        id={achieve.id}
-                        title={achieve.title}
-                        details={achieve.details}
-                        date={achieve.date}
-                        field={achieve.field}
-                        image={achieve.image}
-                        url={achieve.url}/>
-                    ))}
-                </div>
-            </div>
             )}
         </>
     )

@@ -18,9 +18,9 @@ function ExperienceCard({ id, company, location, jobtitle, startYear, endYear, e
 
     const useStyles = makeStyles((t) => ({
         experienceCard: {
-            backgroundColor: theme.type === 'light' ? '#000000' : 'rgba(0, 0, 0, 0.5)',
+            backgroundColor: theme.type === 'light' ? 'rgba(0, 0, 0, 0.75)' : 'rgba(0, 0, 0, 0.4)',
             "&:hover": {
-                backgroundColor: theme.type === 'light' ? '#1a1a1a' : 'rgba(0, 0, 0, 0.7)',
+                backgroundColor: theme.type === 'light' ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.08)',
             },
         },
     }));
@@ -53,7 +53,7 @@ function ExperienceCard({ id, company, location, jobtitle, startYear, endYear, e
     };
 
     return (
-        <div key={id} className={`experience-card ${classes.experienceCard}`}>
+        <div key={id} className={`experience-card ${classes.experienceCard} theme-${theme.type}`}>
             <div className="expcard-img" style={{ backgroundColor: logo ? 'transparent' : theme.primary }}>
                 {renderIcon()}
             </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 
-import { Navbar, Footer, Landing, About, Skills, Recommendations, Blog, Education, Experience, Contacts, Hobbies, Achievement } from '../../components'
+import { Navbar, Footer, Landing, About, Skills, Recommendations, Blog, Education, Experience, Contacts, Hobbies, Achievement, Podcast } from '../../components'
 import { headerData } from '../../data/headerData'
 
 function Main() {
@@ -11,16 +11,17 @@ function Main() {
                 <title>{headerData.name} - Porfolio</title>
             </Helmet>
 
-            <Navbar />        
+            <Navbar />
             <Landing />
             <About />
             <Experience />
             <Education />
             <Achievement />
             <Skills />
-            
+
             <Hobbies />
             <Recommendations />
+            <Podcast />
             <Blog />
             <Contacts />
             <Footer />

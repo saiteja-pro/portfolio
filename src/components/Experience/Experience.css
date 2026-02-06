@@ -85,6 +85,13 @@
     box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
 }
 
+/* Change text color to black on hover only in light theme */
+.experience-card.theme-light:hover .experience-details h6,
+.experience-card.theme-light:hover .experience-details h4,
+.experience-card.theme-light:hover .experience-details h5 {
+    color: #000000 !important;
+}
+
 .experience-card:hover::before {
     opacity: 0.8;
 }

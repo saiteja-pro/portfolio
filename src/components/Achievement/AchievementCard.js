@@ -4,10 +4,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ThemeContext } from '../../contexts/ThemeContext';
 
 import { AiOutlineFolder } from "react-icons/ai";
+import { FaYoutube } from "react-icons/fa";
 
 import './Achievement.css'
 
-function AchievementCard({ id, title, details, date, field, image, url }) {
+function AchievementCard({ id, title, details, date, field, image, url, videoUrl }) {
 
     const { theme } = useContext(ThemeContext);
 
@@ -41,6 +42,19 @@ function AchievementCard({ id, title, details, date, field, image, url }) {
                         <AiOutlineFolder />
                         <h6>{field}</h6>
                     </div>
+                    {/* Show YouTube button only for publications with video links */}
+                    {videoUrl && (
+                        <button
+                            className="achievecard-video-btn"
+                            onClick={(e) => { e.stopPropagation(); openInNewTab(videoUrl); }}
+                            style={{
+                                backgroundColor: '#FF0000',
+                                color: '#FFFFFF'
+                            }}
+                        >
+                            <FaYoutube /> Watch Video
+                        </button>
+                    )}
                 </div>
             </div>
             <div className="achievecard-imgcontainer">
