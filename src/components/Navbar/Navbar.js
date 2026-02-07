@@ -5,7 +5,7 @@ import { IoMenuSharp, IoHomeSharp, IoSunny, IoMoon } from 'react-icons/io5';
 import { HiDocumentText, HiStar, HiLightBulb } from 'react-icons/hi';
 import { BsFillGearFill, BsTrophyFill } from 'react-icons/bs';
 import { MdPhone, MdRecommend } from 'react-icons/md';
-import { FaUser, FaFolderOpen, FaPodcast } from 'react-icons/fa';
+import { FaUser, FaFolderOpen, FaYoutube, FaHandsHelping } from 'react-icons/fa';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CloseIcon from '@material-ui/icons/Close';
@@ -324,6 +324,15 @@ function Navbar() {
                         </Fade>
 
                         <Fade right>
+                            <NavLink to='/#volunteering' smooth={true} spy='true' duration={2000}>
+                                <div className={classes.drawerItem}>
+                                    <FaHandsHelping className={classes.drawerIcon} />
+                                    <span className={classes.drawerLinks}>Volunteering</span>
+                                </div>
+                            </NavLink>
+                        </Fade>
+
+                        <Fade right>
                             <NavLink to='/#skills' smooth={true} spy='true' duration={2000}>
                                 <div className={classes.drawerItem}>
                                     <HiLightBulb className={classes.drawerIcon} />
@@ -351,9 +360,9 @@ function Navbar() {
                         </Fade>
 
                         <Fade right>
-                            <NavLink to='/#podcast' smooth={true} spy='true' duration={2000}>
+                            <NavLink to='/#youtube' smooth={true} spy='true' duration={2000}>
                                 <div className={classes.drawerItem}>
-                                    <FaPodcast className={classes.drawerIcon} />
+                                    <FaYoutube className={classes.drawerIcon} />
                                     <span className={classes.drawerLinks}>YouTube</span>
                                 </div>
                             </NavLink>

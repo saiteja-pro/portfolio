@@ -3,14 +3,14 @@
    Embedded video player with glassmorphic card
    ============================================= */
 
-.podcast {
+.youtube-section {
     min-height: 60vh;
     padding: 5rem 0;
     position: relative;
     overflow: hidden;
 }
 
-.podcast-body {
+.youtube-body {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,7 +20,7 @@
     padding: 0 2rem;
 }
 
-.podcast-body>h1 {
+.youtube-body>h1 {
     font-size: 3rem;
     font-family: var(--font-primary, Inter, sans-serif);
     font-weight: 700;
@@ -29,7 +29,7 @@
     letter-spacing: -1px;
 }
 
-.podcast-card {
+.youtube-card {
     width: 100%;
     background: rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -38,33 +38,33 @@
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.podcast-card:hover {
+.youtube-card:hover {
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.12);
     transform: translateY(-5px);
     box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.4);
 }
 
-.podcast-header {
+.youtube-header {
     margin-bottom: 1.5rem;
     text-align: center;
 }
 
-.podcast-header h3 {
+.youtube-header h3 {
     font-size: 1.5rem;
     font-weight: 600;
     font-family: var(--font-primary, Inter, sans-serif);
     margin-bottom: 0.5rem;
 }
 
-.podcast-header p {
+.youtube-header p {
     font-size: 1rem;
     opacity: 0.8;
     font-family: var(--font-primary, Inter, sans-serif);
     line-height: 1.6;
 }
 
-.podcast-video {
+.youtube-video {
     position: relative;
     width: 100%;
     padding-bottom: 56.25%;
@@ -74,7 +74,7 @@
     background: rgba(0, 0, 0, 0.3);
 }
 
-.podcast-video iframe {
+.youtube-video iframe {
     position: absolute;
     top: 0;
     left: 0;
@@ -86,38 +86,38 @@
 
 /* Responsive */
 @media screen and (max-width: 768px) {
-    .podcast {
+    .youtube-section {
         padding: 4rem 0;
     }
 
-    .podcast-body>h1 {
+    .youtube-body>h1 {
         font-size: 2rem;
     }
 
-    .podcast-card {
+    .youtube-card {
         padding: 1.5rem;
         border-radius: 20px;
     }
 
-    .podcast-header h3 {
+    .youtube-header h3 {
         font-size: 1.25rem;
     }
 
-    .podcast-header p {
+    .youtube-header p {
         font-size: 0.9rem;
     }
 
-    .podcast-video {
+    .youtube-video {
         border-radius: 12px;
     }
 }
 
 @media screen and (max-width: 480px) {
-    .podcast-body {
+    .youtube-body {
         padding: 0 1rem;
     }
 
-    .podcast-card {
+    .youtube-card {
         padding: 1rem;
         border-radius: 16px;
     }

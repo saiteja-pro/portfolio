@@ -13,6 +13,7 @@ export { default as Hobbies } from './Hobbies/Hobbies'
 
 export { default as SingleHobbie } from './Hobbies/SingleHobbie/SingleHobbie'
 export { default as Achievement } from './Achievement/Achievement'
-export { default as Podcast } from './Podcast/Podcast'
+export { default as YouTube } from './YouTube/YouTube'
+export { default as Volunteering } from './Volunteering/Volunteering'
 
 export { default as BackToTop } from './BackToTop/BackToTop'

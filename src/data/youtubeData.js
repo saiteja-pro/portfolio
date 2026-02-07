@@ -4,7 +4,7 @@
  * Video content for the portfolio's YouTube section.
  * Add new videos by extending this structure or create an array for multiple videos.
  */
-export const podcastData = {
+export const youtubeData = {
     title: 'YouTube',
     episode: 'RAY RAY · Episode 06',
     tagline: 'International Student Perspectives Across Cultures',
