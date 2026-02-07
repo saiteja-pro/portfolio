@@ -15,26 +15,17 @@ import {
     FaMedium,
 } from 'react-icons/fa';
 
-/**
- * Landing Component
- * 
- * The main entry point visual for the portfolio.
- * Features a typing animation, social links, and a call-to-action to resume/contact.
- * Uses a split-screen design with glassmorphic elements.
- */
 function Landing() {
     const { theme, drawerOpen } = useContext(ThemeContext);
     const [displayText, setDisplayText] = useState('');
     const [isTyping, setIsTyping] = useState(true);
 
-    // Typing animation effect - restored and fixed
     useEffect(() => {
         if (!headerData.description) return;
 
         let index = 0;
         const text = headerData.description;
 
-        // Reset state on mount
         setDisplayText('');
         setIsTyping(true);
 
@@ -46,7 +37,7 @@ function Landing() {
                 setIsTyping(false);
                 clearInterval(typeInterval);
             }
-        }, 20); // Slightly faster for smoother effect
+        }, 20);
 
         return () => clearInterval(typeInterval);
     }, []);
@@ -126,7 +117,8 @@ function Landing() {
                 transform: 'translateY(-2px)',
             },
             [t.breakpoints.down('sm')]: {
-                display: 'none',
+                width: '100%',
+                maxWidth: '200px',
             },
         },
     }));
@@ -249,7 +241,7 @@ function Landing() {
                                 duration={2000}
                             >
                                 <Button className={classes.contactBtn}>
-                                    Contact
+                                    Get in Touch
                                 </Button>
                             </NavLink>
                         </div>

@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { darkTheme, lightTheme } from '../theme/theme'
 
 export const themeData = {

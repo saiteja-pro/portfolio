@@ -1,10 +1,6 @@
-/* eslint-disable */
-// import { BiShoppingBag, BiPencil } from "react-icons/bi";
 import { BsCodeSlash } from "react-icons/bs";
-// import { AiOutlineMail, AiFillAudio } from "react-icons/ai";
-import { FaChalkboardTeacher, FaCameraRetro, FaVideo, FaRegNewspaper, FaTableTennis} from "react-icons/fa";
+import { FaChalkboardTeacher, FaCameraRetro, FaVideo, FaRegNewspaper, FaTableTennis } from "react-icons/fa";
 import { SiCodechef } from "react-icons/si";
- 
 
 export const hobbiesData = {
     description: 'Passions Beyond Programming',
@@ -12,12 +8,12 @@ export const hobbiesData = {
         {
             id: 1,
             title: 'Video Editing',
-            icon: <FaVideo/>
+            icon: <FaVideo />
         },
         {
             id: 2,
             title: 'Cooking',
-            icon: <SiCodechef /> 
+            icon: <SiCodechef />
         },
         {
             id: 3,
@@ -34,7 +30,6 @@ export const hobbiesData = {
             title: 'Tutoring',
             icon: <FaChalkboardTeacher />
         },
-    
         {
             id: 6,
             title: 'Blogging',
@@ -47,7 +42,3 @@ export const hobbiesData = {
         },
     ]
 }
-
-// Uncomment your required hobby.
-// Couldn't find the required hobbies? Raise an issue on github at https://github.com/hhhrrrttt222111/developer-portfolio/issues/new
-// You can also add on your own 😉.

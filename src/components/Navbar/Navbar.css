@@ -13,9 +13,7 @@
     animation: fadeInDown 0.6s ease-out;
 }
 
-/* Glassmorphic background when scrolled */
 .navbar.scrolled {
-    background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -31,104 +29,265 @@
     padding: 0 3rem;
 }
 
-.navbar--container>h1 {
+.navbar--container>a {
+    text-decoration: none;
+}
+
+.navbar--container h1 {
     font-family: 'BestermindRegular', cursive;
-    font-size: 2.2rem;
+    font-size: 2rem;
     user-select: none;
     letter-spacing: 1px;
     transition: all 300ms ease;
     cursor: pointer;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-    color: #ffffff !important;
+    margin: 0;
 }
 
-.navbar--container>h1:hover {
-    transform: scale(1.05);
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+.navbar--container h1:hover {
+    opacity: 0.8;
 }
 
-/* Navigation Links Container */
-.navLink--container {
-    margin-top: 4rem;
-    padding: 0 0.5rem;
-}
-
-/* Premium Drawer Backdrop */
-.drawer>.MuiBackdrop-root {
-    background: rgba(0, 0, 0, 0.4) !important;
-    backdrop-filter: blur(25px) !important;
-    -webkit-backdrop-filter: blur(25px) !important;
-}
-
-/* Theme Button Container */
-.navbar--theme-container {
+.navbar--links {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 2rem;
+    margin-left: auto;
+    margin-right: 2rem;
 }
 
-/* Premium Menu Icon */
-.nav-menu-icon {
+.navbar--link {
+    font-family: var(--primaryFont);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
     position: relative;
-    cursor: pointer;
-    padding: 8px;
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.navbar--link:hover {
+    opacity: 1;
+}
+
+.navbar--link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: width 0.3s ease;
+}
+
+.navbar--link:hover::after {
+    width: 100%;
+}
+
+.navbar--link.active {
+    opacity: 1;
+}
+
+.navbar--link.active::after {
+    width: 100%;
+}
+
+.navbar--controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Mobile Menu - Slide-in Drawer from Right */
+.navbar--mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 70%;
+    max-width: 320px;
+    padding: 2rem;
+    padding-bottom: 6rem;
+    flex-direction: column;
+    z-index: 1000;
+    transform: translateX(100%);
+    pointer-events: none;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5),
+        -2px 0 30px rgba(100, 150, 255, 0.15),
+        inset 1px 0 0 rgba(255, 255, 255, 0.1);
+    background-color: #0a0a0a;
+}
+
+.navbar--mobile-menu.open {
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+/* Backdrop overlay when menu is open */
+.navbar--mobile-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.navbar--mobile-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Close button */
+.navbar--mobile-close {
+    align-self: flex-end;
+    width: 44px;
+    height: 44px;
     border-radius: 12px;
-    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
 }
 
-.nav-menu-icon:hover {
+.navbar--mobile-close:hover {
     background: rgba(255, 255, 255, 0.1);
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
-/* ========================================
-   RESPONSIVE STYLES
-   ======================================== */
+.navbar--mobile-close svg {
+    font-size: 1.4rem;
+}
 
+/* Mobile links container */
+.navbar--mobile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.navbar--mobile-link {
+    font-family: var(--primaryFont);
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    transition: background 0.2s ease;
+    opacity: 0.7;
+    background: transparent;
+}
+
+.navbar--mobile-link:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.navbar--mobile-link:focus {
+    outline: none;
+}
+
+.navbar--mobile-link.active {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Get in Touch button - positioned after links */
+.navbar--mobile-cta {
+    margin-top: 20rem;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, #4a90d9, #667eea);
+    color: #ffffff;
+    font-family: var(--primaryFont);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(74, 144, 217, 0.3);
+}
+
+.navbar--mobile-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(74, 144, 217, 0.4);
+}
+
+/* Responsive */
 @media (max-width: 1100px) {
     .navbar--container {
         padding: 0 2rem;
     }
 
-    .navbar--container>h1 {
-        font-size: 2rem;
+    .navbar--links {
+        gap: 1.5rem;
+    }
+
+    .navbar--link {
+        font-size: 0.9rem;
     }
 }
 
-@media (max-width: 800px) {
-    .navLink--container {
-        margin-top: 3rem;
+@media (max-width: 900px) {
+    .navbar--links {
+        display: none;
     }
 
-    .navbar {
-        height: 4.5rem;
+    .navbar--mobile-menu,
+    .navbar--mobile-backdrop {
+        display: flex;
     }
 }
 
 @media (max-width: 600px) {
-    .navbar--container {
-        padding: 0 1.5rem;
-    }
-
-    .navbar--container>h1 {
-        font-size: 1.8rem;
-    }
-
-    .MuiDrawer-paper {
-        border-radius: 0 !important;
-    }
-}
-
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 2/3) {
     .navbar {
         height: 4rem;
     }
 
     .navbar--container {
-        padding: 0 1rem;
+        padding: 0 1.5rem;
     }
 
-    .navbar--container>h1 {
-        font-size: 1.5rem;
+    .navbar--container h1 {
+        font-size: 1.6rem;
+    }
+
+    .navbar--mobile-menu {
+        width: 80%;
+        padding: 1.5rem;
+    }
+
+    .navbar--mobile-link {
+        font-size: 1rem;
+        padding: 0.875rem 1rem;
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

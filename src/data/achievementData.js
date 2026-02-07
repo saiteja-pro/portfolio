@@ -1,22 +1,6 @@
-// Import icons or representative images for each paper
-import researchPaper from '../assets/publications/publishing.png';
 import certificate from '../assets/publications/certificate.png';
 import certificate1 from '../assets/publications/certificate1.png';
 import certificate2 from '../assets/publications/certificate2.png';
-
-/**
- * Publication Data
- * Contains a short bio and a list of published papers.
- * Each entry includes:
- * - id: Unique identifier
- * - title: Title of the paper
- * - details: Summary of the research or its domain
- * - date: Publication date
- * - field: Research domain
- * - url: Link to the paper or journal entry
- * - videoUrl: (optional) YouTube video link for video presentations
- * - image: Representative icon/image
- */
 
 export const achievementData = {
     bio1: "During my Bachelor's, I explored emerging trends in Business Analytics and contributed to academic literature, with research papers published in the International Journal of Engineering Research & Technology (IJERT). I also took part in leadership and global engagement initiatives, notably representing as a delegate at AIESEC's Youth Speak Forum at BITS Pilani, Hyderabad.",

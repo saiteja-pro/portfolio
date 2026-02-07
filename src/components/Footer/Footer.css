@@ -2,7 +2,6 @@
     font-family: var(--font-primary, Inter, sans-serif);
     width: 100%;
     padding: 3rem 2rem;
-    margin-top: 2rem;
     position: relative;
 }
 

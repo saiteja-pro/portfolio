@@ -1,4 +1,4 @@
- export const skillsData = [
+export const skillsData = [
     'HTML',
     'CSS',
     'Javascript',
@@ -36,16 +36,4 @@
     'AdobeXD',
     'AfterEffects',
     'DaVinciResolve',
-
-
-    // 'Angular',
-    // 'Php',
-    // 'Go',
-    // 'Ruby',
-    // 'Springboot',
-    // 'Nginx',
-    // 'Tomcat',
-    // 'Firebase',
-    // 'Kubernetes',
-    
 ]

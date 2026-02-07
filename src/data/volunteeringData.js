@@ -1,11 +1,3 @@
-/**
- * Volunteering Data
- * 
- * Contains volunteer experience entries.
- * Each entry includes role, organization, duration, cause, description, and image.
- */
-
-// Import organization logos/images
 import streetcause from '../assets/volunteering/streetcause.png';
 import aasya from '../assets/volunteering/aasya.jpg';
 import rudhira from '../assets/volunteering/rudhira.jpeg';

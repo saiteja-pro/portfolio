@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { FaChartLine, FaMicrochip } from 'react-icons/fa';
 
-// Import logos
 import utaLogo from '../../assets/logos/uta.png';
 import jntuLogo from '../../assets/logos/jntu.png';
 import narayanaLogo from '../../assets/logos/narayana.png';
@@ -35,11 +34,9 @@ function EducationCard({ id, institution, course, startYear, endYear, emoji, ico
     };
 
     const renderIcon = () => {
-        // If logo is specified, use the image
         if (logo && logoMap[logo]) {
             return <img src={logoMap[logo]} alt={institution} className="educard-logo" />;
         }
-        // Icon types
         if (iconType === 'stats') {
             return <FaChartLine className="educard-icon" style={{ color: theme.secondary }} />;
         }

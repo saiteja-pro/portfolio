@@ -4,16 +4,9 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 import { volunteeringData } from '../../data/volunteeringData';
 import { FaHandsHelping, FaMedkit, FaUsers, FaPalette } from 'react-icons/fa';
 
-/**
- * Volunteering Component
- * 
- * Displays volunteer experiences in a card-based layout
- * matching the portfolio's glassmorphic aesthetic.
- */
 function Volunteering() {
     const { theme } = useContext(ThemeContext);
 
-    // Map cause to icon
     const getCauseIcon = (cause) => {
         switch (cause) {
             case 'Human Rights':
@@ -38,7 +31,6 @@ function Volunteering() {
                             <div
                                 key={exp.id}
                                 className="volunteering-card"
-                                // Matches Achievement card styling
                                 style={{
                                     backgroundColor: theme.type === 'light' ? '#000000' : 'rgba(0, 0, 0, 0.4)',
                                     border: '1px solid rgba(255, 255, 255, 0.08)'
@@ -59,7 +51,6 @@ function Volunteering() {
                                         </span>
                                     </div>
                                 </div>
-                                {/* Organization logo/image */}
                                 {exp.image && (
                                     <div className="volunteering-card-image">
                                         <img src={exp.image} alt={exp.organization} />

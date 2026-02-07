@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { FaAmazon, FaCode, FaChartBar } from 'react-icons/fa';
 
-// Import logos
 import utaLogo from '../../assets/logos/uta.png';
 import amazonLogo from '../../assets/logos/amazon.png';
 import saifLogo from '../../assets/logos/saif.png';
@@ -35,11 +34,9 @@ function ExperienceCard({ id, company, location, jobtitle, startYear, endYear, e
     };
 
     const renderIcon = () => {
-        // If logo is specified, use the image
         if (logo && logoMap[logo]) {
             return <img src={logoMap[logo]} alt={company} className="expcard-logo" />;
         }
-        // Icon types
         if (iconType === 'amazon') {
             return <FaAmazon className="expcard-icon" style={{ color: theme.secondary }} />;
         }

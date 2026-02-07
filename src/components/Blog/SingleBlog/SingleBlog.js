@@ -1,4 +1,5 @@
 import React from 'react'
+import { FiExternalLink } from 'react-icons/fi'
 
 import placeholder from '../../../assets/png/placeholder.png'
 import './SingleBlog.css'
@@ -13,6 +14,9 @@ function SingleBlog({ theme, title, desc, date, image, url, id }) {
                 <p style={{ color: theme.type === 'light' ? '#FFFFFF' : theme.tertiary }}>{date}</p>
                 <h3 style={{ color: theme.type === 'light' ? '#FFFFFF' : theme.tertiary }}>{title}</h3>
                 <h6 style={{ color: theme.type === 'light' ? '#E0E0E0' : theme.tertiary }}>{desc}</h6>
+                <span className="singleBlog--readMore" style={{ color: theme.primary }}>
+                    Read Article <FiExternalLink />
+                </span>
             </div>
         </a>
     )

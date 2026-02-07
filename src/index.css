@@ -82,6 +82,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Prevent white flash during fast scrolling */
+  background-color: #0a0a0a;
 }
 
 body {
@@ -90,6 +92,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  /* Prevent white flash during fast scrolling */
+  background-color: #0a0a0a;
 }
 
 /* ========================================
