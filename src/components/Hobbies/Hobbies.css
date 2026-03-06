@@ -14,7 +14,7 @@
     width: 100%;
 }
 
-.hobbies-header > h1 {
+.hobbies-header>h1 {
     margin-bottom: 20px;
     font-size: 3.5rem;
     font-family: var(--primaryFont);
@@ -28,7 +28,7 @@
     margin-bottom: 2rem;
 }
 
-.hobbies-body > p {
+.hobbies-body>p {
     font-family: var(--primaryFont);
     font-weight: 400;
     font-size: 1.5rem;
@@ -51,7 +51,8 @@
     .hobbies {
         padding: 2.7rem;
     }
-    .hobbies-body > p {
+
+    .hobbies-body>p {
         width: 70%;
     }
 }
@@ -62,7 +63,7 @@
         padding: 1.7rem;
     }
 
-    .hobbies-body > p {
+    .hobbies-body>p {
         font-size: 1.25rem;
         width: 85%;
         text-align: center;
@@ -70,7 +71,7 @@
     }
 
     .hobbies-bodycontainer {
-        gap: 2.5rem;
+        gap: 1.5rem;
     }
 }
 
@@ -78,11 +79,13 @@
     .hobbies {
         padding: 1rem;
     }
+
     .hobbies-header h1 {
         font-size: 3rem;
         margin-bottom: 30px;
     }
-    .hobbies-body > p {
+
+    .hobbies-body>p {
         font-size: 1.05rem;
         width: 95%;
         text-align: center;
@@ -98,28 +101,24 @@
     .hobbies {
         padding: 0.5rem;
     }
+
     .hobbies-header h1 {
         font-size: 2.5rem;
         margin-bottom: 20px;
     }
-    .hobbies-body p{
+
+    .hobbies-body p {
         width: 80%;
     }
+
     .hobbies-bodycontainer {
         gap: 1rem;
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 400px) {}
 
-}
-  
-@media only screen and (min-device-width: 320px) and (max-device-width: 
-  480px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 2/3) {
-
-}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 2/3) {}
 
 
-@media only screen and (device-width: 768px) {
-
-}
+@media only screen and (device-width: 768px) {}

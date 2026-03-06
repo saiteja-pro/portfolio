@@ -103,7 +103,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.5rem;
 }
 
@@ -351,6 +351,13 @@
 
   .lcl--content {
     margin: 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .landing--social {
+    margin: 0;
   }
 
   .lcr--content {

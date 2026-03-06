@@ -89,7 +89,7 @@
     box-shadow: var(--shadow-card-hover);
 }
 
-/* Text colors now handled by CSS variables — no !important needed */
+/* Text colors now handled by CSS variables - no !important needed */
 
 .experience-card:hover::before {
     opacity: 0.8;

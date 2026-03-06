@@ -4,7 +4,7 @@ import certificate2 from '../assets/publications/certificate2.png';
 
 export const achievementData = {
     bio1: "My academic background includes extensive research into emerging trends in Business Analytics, leading to publications in the International Journal of Engineering Research & Technology (IJERT). This foundation in data-driven decision-making heavily influences how I approach software architecture today.",
-    bio2: "In addition to academic research, my experience in global forums—including representing youth delegates at AIESEC—has honed my ability to lead cross-functional initiatives, tackle complex operational challenges, and design systems with long-term sustainability in mind.",
+    bio2: "In addition to academic research, my experience in global forums including representing youth delegates at AIESEC has honed my ability to lead cross-functional initiatives, tackle complex operational challenges, and design systems with long-term sustainability in mind.",
 
     achievements: [
         {

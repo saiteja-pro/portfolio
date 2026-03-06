@@ -18,7 +18,7 @@
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Poppins', sans-serif;
   --font-accent: 'Big Shoulders Text', cursive;
-  /* Backward-compat alias — some CSS files reference --primaryFont */
+  /* Backward-compat alias - some CSS files reference --primaryFont */
   --primaryFont: var(--font-primary);
 
   /* ---- Theme-aware tokens (dark default) ---- */
@@ -161,14 +161,7 @@ body {
   }
 }
 
-/* GPU acceleration only during interaction (not static) */
-.education-card:hover,
-.experience-card:hover,
-.achievement-card:hover,
-.blog-card:hover,
-.hobby-card:hover {
-  will-change: transform;
-}
+
 
 /* ========================================
    ACCESSIBILITY ENHANCEMENTS

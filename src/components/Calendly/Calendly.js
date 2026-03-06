@@ -69,7 +69,7 @@ function Calendly() {
                     <h6 style={{ color: 'var(--text-muted)' }}>Let's Connect</h6>
                     <h1 style={{ color: 'var(--text-primary)' }}>Schedule a Call</h1>
                     <p style={{ color: 'var(--text-secondary)' }}>
-                        Pick a time that works for you — I'd love to chat about ideas, collaborations, or opportunities.
+                        Pick a time that works for you, I'd love to chat about ideas, collaborations, or opportunities.
                     </p>
                 </div>
 

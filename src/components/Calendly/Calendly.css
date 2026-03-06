@@ -57,7 +57,7 @@
     border-radius: var(--radius-lg);
 }
 
-/* Skeleton overlay — sits on top of the widget while loading */
+/* Skeleton overlay - sits on top of the widget while loading */
 .calendly-section--skeleton {
     position: absolute;
     top: 0;
