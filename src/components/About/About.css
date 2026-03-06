@@ -1,7 +1,7 @@
 .about {
   min-height: 100vh;
   position: relative;
-  padding: 8rem 0;
+  padding: var(--section-padding);
   overflow: hidden;
 }
 
@@ -118,8 +118,10 @@
   width: 100%;
   height: fit-content;
   padding: 3rem;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-subtle);
   border-radius: 24px;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   animation: aboutCardSlide 0.8s ease-out;
@@ -163,10 +165,10 @@
 }
 
 .about-description:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: var(--bg-card-hover);
+  border-color: var(--border-medium);
   transform: translateY(-8px) translateX(10px);
-  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .about-description>h2 {
@@ -316,7 +318,7 @@
 
 @media screen and (max-width: 600px) {
   .about {
-    padding: 4rem 0;
+    padding: var(--section-padding-mobile);
   }
 
   .about .line-styling .style-circle {

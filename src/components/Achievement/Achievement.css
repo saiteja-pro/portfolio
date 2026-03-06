@@ -1,10 +1,17 @@
 .achievement {
     min-height: 80vh;
+    padding: var(--section-padding);
+}
+
+.achievement-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 3rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
 .achievement-body {
@@ -18,7 +25,7 @@
 
 .achievement-body h1 {
     font-family: var(--primaryFont);
-    font-size: 3.5rem;
+    font-size: 3rem;
     margin-bottom: 1.5rem;
 }
 
@@ -29,7 +36,6 @@
 }
 
 .achievement-cards {
-    padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -50,11 +56,14 @@
     border-radius: 20px;
     margin-bottom: 1.5rem;
     margin-left: 1.5rem;
-    transition: transform 300ms ease, box-shadow 300ms ease;
+    transition: transform var(--anim-hover-duration) var(--anim-hover-easing),
+        box-shadow var(--anim-hover-duration) var(--anim-hover-easing);
     width: 100%;
     gap: 1rem;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-subtle);
 }
 
 .achievecard-content {
@@ -108,8 +117,10 @@
 .achievecard-video-btn {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
-    padding: 8px 14px;
+    padding: 12px 18px;
+    min-height: 44px;
     border: none;
     border-radius: 8px;
     font-family: var(--primaryFont);
@@ -172,7 +183,7 @@
 
     .achievement-body h1 {
         font-family: var(--primaryFont);
-        font-size: 3.1rem;
+        font-size: 2.8rem;
     }
 
     .achievement-body>p {
@@ -194,12 +205,16 @@
 
 @media screen and (max-width: 992px) {
     .achievement {
+        padding: var(--section-padding-mobile);
+    }
+
+    .achievement-container {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
         width: 100%;
-        padding: 2rem;
+        padding: 0 1rem;
     }
 
 
@@ -268,7 +283,7 @@
 
 @media screen and (max-width: 600px) {
     .achievement {
-        padding: 1rem;
+        padding: var(--section-padding-mobile);
     }
 
     .achievement-cards {

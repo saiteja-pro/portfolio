@@ -4,6 +4,7 @@ import { ThemeContext } from '../../contexts/ThemeContext'
 import { headerData } from '../../data/headerData'
 import { socialsData } from '../../data/socialsData'
 import { FaLinkedin, FaGithub, FaMedium, FaFacebook, FaInstagram, FaYoutube } from 'react-icons/fa'
+import TimeWeather from '../TimeWeather/TimeWeather'
 
 function Footer() {
     const { theme } = useContext(ThemeContext)
@@ -11,6 +12,9 @@ function Footer() {
     return (
         <footer className="footer" style={{ backgroundColor: theme.secondary }}>
             <div className="footer--container">
+                {/* Time & Weather Widget */}
+                <TimeWeather />
+
                 {/* Social Links */}
                 <div className="footer--socials">
                     {socialsData.linkedIn && (
@@ -55,4 +59,3 @@ function Footer() {
 }
 
 export default Footer
-

@@ -4,7 +4,9 @@
     align-items: center;
     justify-content: flex-start;
     min-height: 60vh;
-    padding: 5rem 2rem;
+    padding: var(--section-padding);
+    padding-left: 2rem;
+    padding-right: 2rem;
     position: relative;
     overflow: hidden;
 }
@@ -200,7 +202,9 @@
 
 @media screen and (max-width: 992px) {
     .skills {
-        padding: 3rem 1rem;
+        padding: var(--section-padding-mobile);
+        padding-left: 1rem;
+        padding-right: 1rem;
         min-height: 100%;
     }
 
@@ -232,7 +236,8 @@
 
 @media screen and (max-width: 800px) {
     .skills {
-        padding: 2.5rem 0.5rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
     }
 
     .skillsContainer {

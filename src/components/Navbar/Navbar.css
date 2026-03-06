@@ -56,7 +56,7 @@
 }
 
 .navbar--link {
-    font-family: var(--primaryFont);
+    font-family: var(--font-primary);
     font-size: 0.95rem;
     font-weight: 500;
     text-decoration: none;
@@ -107,19 +107,21 @@
     right: 0;
     bottom: 0;
     height: 100vh;
+    height: 100dvh;
+    /* Dynamic viewport height for iOS */
     width: 70%;
     max-width: 320px;
     padding: 2rem;
-    padding-bottom: 6rem;
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
     flex-direction: column;
     z-index: 1000;
     transform: translateX(100%);
     pointer-events: none;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.4s var(--anim-hover-easing);
     box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5),
         -2px 0 30px rgba(100, 150, 255, 0.15),
-        inset 1px 0 0 rgba(255, 255, 255, 0.1);
-    background-color: #0a0a0a;
+        inset 1px 0 0 var(--border-subtle);
+    background-color: var(--bg-primary);
 }
 
 .navbar--mobile-menu.open {
@@ -155,18 +157,18 @@
     width: 44px;
     height: 44px;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-medium);
+    background: var(--bg-card);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--anim-hover-duration) var(--anim-hover-easing);
     margin-bottom: 2rem;
 }
 
 .navbar--mobile-close:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--bg-card-hover);
     transform: scale(1.05);
 }
 
@@ -182,7 +184,7 @@
 }
 
 .navbar--mobile-link {
-    font-family: var(--primaryFont);
+    font-family: var(--font-primary);
     font-size: 1.1rem;
     font-weight: 500;
     text-decoration: none;
@@ -195,7 +197,7 @@
 
 .navbar--mobile-link:hover {
     opacity: 1;
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--bg-card-hover);
 }
 
 .navbar--mobile-link:focus {
@@ -204,24 +206,24 @@
 
 .navbar--mobile-link.active {
     opacity: 1;
-    background: rgba(255, 255, 255, 0.12);
+    background: var(--bg-card-hover);
 }
 
-/* Get in Touch button - positioned after links */
+/* Get in Touch button - pushed to bottom via flex auto margin */
 .navbar--mobile-cta {
-    margin-top: 20rem;
+    margin-top: auto;
     padding: 1rem 1.5rem;
     border-radius: 12px;
     border: none;
     background: linear-gradient(135deg, #4a90d9, #667eea);
     color: #ffffff;
-    font-family: var(--primaryFont);
+    font-family: var(--font-primary);
     font-size: 1rem;
     font-weight: 600;
     text-decoration: none;
     text-align: center;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--anim-hover-duration) var(--anim-hover-easing);
     box-shadow: 0 4px 20px rgba(74, 144, 217, 0.3);
 }
 
@@ -280,14 +282,4 @@
     }
 }
 
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+/* Remove duplicate - defined in index.css */

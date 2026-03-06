@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { FaChartLine, FaMicrochip } from 'react-icons/fa';
@@ -14,17 +13,6 @@ import './Education.css'
 function EducationCard({ id, institution, course, startYear, endYear, emoji, iconType, logo }) {
 
     const { theme } = useContext(ThemeContext);
-
-    const useStyles = makeStyles((t) => ({
-        educationCard: {
-            backgroundColor: theme.type === 'light' ? 'rgba(0, 0, 0, 0.75)' : 'rgba(0, 0, 0, 0.4)',
-            "&:hover": {
-                backgroundColor: theme.type === 'light' ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.08)',
-            },
-        },
-    }));
-
-    const classes = useStyles();
 
     const logoMap = {
         'uta': utaLogo,
@@ -47,14 +35,14 @@ function EducationCard({ id, institution, course, startYear, endYear, emoji, ico
     };
 
     return (
-        <div key={id} className={`education-card ${classes.educationCard} theme-${theme.type}`} >
+        <div key={id} className="education-card" >
             <div className="educard-img" style={{ backgroundColor: logo ? 'transparent' : theme.primary }}>
                 {renderIcon()}
             </div>
             <div className="education-details">
-                <h6 style={{ color: theme.type === 'light' ? '#FFFFFF' : theme.primary }}>{startYear}-{endYear}</h6>
-                <h4 style={{ color: theme.type === 'light' ? '#FFFFFF' : theme.tertiary }}>{course}</h4>
-                <h5 style={{ color: theme.type === 'light' ? '#E0E0E0' : theme.tertiary80 }}>{institution}</h5>
+                <h6 style={{ color: 'var(--text-muted)' }}>{startYear}-{endYear}</h6>
+                <h4 style={{ color: 'var(--text-primary)' }}>{course}</h4>
+                <h5 style={{ color: 'var(--text-secondary)' }}>{institution}</h5>
             </div>
         </div>
     )

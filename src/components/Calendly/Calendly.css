@@ -1,0 +1,210 @@
+.calendly-section {
+    padding: var(--section-padding);
+    position: relative;
+    overflow: hidden;
+}
+
+.calendly-section--container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.calendly-section--header {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeInUp var(--anim-entrance-duration) var(--anim-entrance-easing);
+}
+
+.calendly-section--header h6 {
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 0.75rem;
+}
+
+.calendly-section--header h1 {
+    font-family: var(--font-primary);
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 1rem;
+}
+
+.calendly-section--header p {
+    font-family: var(--font-primary);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.8;
+}
+
+.calendly-section--embed {
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-card);
+    position: relative;
+}
+
+/* Override Calendly's own iframe to match our border radius */
+.calendly-section--embed .calendly-inline-widget {
+    border-radius: var(--radius-lg);
+}
+
+/* Skeleton overlay — sits on top of the widget while loading */
+.calendly-section--skeleton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg-card);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+    opacity: 1;
+    visibility: visible;
+    border-radius: var(--radius-lg);
+}
+
+.calendly-section--skeleton.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Calendar-shaped skeleton */
+.skeleton-calendar {
+    width: 80%;
+    max-width: 500px;
+    padding: 2rem;
+}
+
+.skeleton-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.skeleton-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--border-subtle);
+    animation: skeletonPulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+.skeleton-title-block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.skeleton-line {
+    height: 14px;
+    border-radius: 8px;
+    background: var(--border-subtle);
+    animation: skeletonPulse 2s ease-in-out infinite;
+}
+
+.skeleton-line.wide {
+    width: 70%;
+}
+
+.skeleton-line.medium {
+    width: 45%;
+    animation-delay: 0.2s;
+}
+
+.skeleton-line.narrow {
+    width: 30%;
+    animation-delay: 0.4s;
+}
+
+.skeleton-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.skeleton-day {
+    aspect-ratio: 1;
+    border-radius: 8px;
+    background: var(--border-subtle);
+    animation: skeletonPulse 2s ease-in-out infinite;
+}
+
+.skeleton-day:nth-child(even) {
+    animation-delay: 0.3s;
+}
+
+.skeleton-day:nth-child(3n) {
+    animation-delay: 0.6s;
+}
+
+.skeleton-footer {
+    display: flex;
+    justify-content: center;
+}
+
+@keyframes skeletonPulse {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* ---- Responsive ---- */
+@media screen and (max-width: 992px) {
+    .calendly-section {
+        padding: 4rem 0;
+    }
+
+    .calendly-section--header h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .calendly-section {
+        padding: var(--section-padding-mobile);
+    }
+
+    .calendly-section--container {
+        padding: 0 1rem;
+    }
+
+    .calendly-section--header h1 {
+        font-size: 2rem;
+    }
+
+    .calendly-section--header p {
+        font-size: 0.95rem;
+    }
+
+    .calendly-section--embed {
+        border-radius: var(--radius-md);
+    }
+
+    .calendly-section--embed .calendly-inline-widget,
+    .calendly-section--skeleton {
+        height: 600px !important;
+    }
+}

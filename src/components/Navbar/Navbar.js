@@ -186,9 +186,6 @@ function Navbar() {
             {/* Mobile Drawer Menu */}
             <div
                 className={`navbar--mobile-menu ${mobileMenuOpen ? 'open' : ''}`}
-                style={{
-                    backgroundColor: isDark ? '#0a0a0a' : '#fafafa'
-                }}
             >
                 <button
                     className='navbar--mobile-close'

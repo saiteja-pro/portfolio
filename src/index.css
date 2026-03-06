@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@100;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@400;500;600;700&display=swap');
 
 @font-face {
   font-family: 'BestermindRegular';
@@ -18,14 +18,21 @@
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Poppins', sans-serif;
   --font-accent: 'Big Shoulders Text', cursive;
+  /* Backward-compat alias — some CSS files reference --primaryFont */
+  --primaryFont: var(--font-primary);
 
-  /* Premium Shadows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
-  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.16);
-  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.24);
-  --shadow-glow: 0 0 40px rgba(255, 255, 255, 0.1);
-  --shadow-glow-primary: 0 0 60px var(--glow-color, rgba(100, 100, 255, 0.3));
+  /* ---- Theme-aware tokens (dark default) ---- */
+  --bg-primary: #0a0a0a;
+  --bg-surface: #111111;
+  --bg-card: rgba(255, 255, 255, 0.04);
+  --bg-card-hover: rgba(255, 255, 255, 0.08);
+  --text-primary: #ffffff;
+  --text-secondary: #e0e0e0;
+  --text-muted: rgba(255, 255, 255, 0.5);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.15);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
 
   /* Glassmorphism */
   --glass-bg: rgba(255, 255, 255, 0.05);
@@ -35,15 +42,30 @@
   --glass-blur: blur(20px);
   --glass-blur-strong: blur(40px);
 
-  /* Animation Timing */
-  --ease-premium: cubic-bezier(0.4, 0, 0.2, 1);
+  /* Premium Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.16);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.24);
+  --shadow-glow: 0 0 40px rgba(255, 255, 255, 0.1);
+  --shadow-glow-primary: 0 0 60px var(--glow-color, rgba(100, 100, 255, 0.3));
+
+  /* ---- Animation System (single source of truth) ---- */
+  --anim-entrance-duration: 600ms;
+  --anim-entrance-easing: cubic-bezier(0.16, 1, 0.3, 1);
+  --anim-entrance-stagger: 100ms;
+  --anim-hover-duration: 300ms;
+  --anim-hover-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --anim-micro-duration: 150ms;
+  --anim-float-duration: 6s;
+
+  /* Legacy aliases (used by existing utility classes) */
+  --ease-premium: var(--anim-hover-easing);
   --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
   --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-
-  /* Durations */
-  --duration-fast: 150ms;
-  --duration-normal: 300ms;
+  --ease-out-expo: var(--anim-entrance-easing);
+  --duration-fast: var(--anim-micro-duration);
+  --duration-normal: var(--anim-hover-duration);
   --duration-slow: 500ms;
   --duration-slower: 800ms;
 
@@ -63,12 +85,38 @@
   --space-3xl: 4rem;
   --space-4xl: 6rem;
 
+  /* Layout */
+  --container-max: 1200px;
+  --container-wide: 1400px;
+  --section-padding: 6rem 0;
+  --section-padding-mobile: 3rem 0;
+
   /* Border Radius */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 20px;
   --radius-xl: 32px;
   --radius-full: 9999px;
+}
+
+/* ---- Light theme overrides ---- */
+[data-theme="light"] {
+  --bg-primary: #fafafa;
+  --bg-surface: #ffffff;
+  --bg-card: rgba(0, 0, 0, 0.03);
+  --bg-card-hover: rgba(0, 0, 0, 0.06);
+  --text-primary: #0a0a0a;
+  --text-secondary: #333333;
+  --text-muted: rgba(0, 0, 0, 0.45);
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-medium: rgba(0, 0, 0, 0.12);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 20px 40px -15px rgba(0, 0, 0, 0.12);
+  --glass-bg: rgba(0, 0, 0, 0.02);
+  --glass-bg-light: rgba(0, 0, 0, 0.04);
+  --glass-bg-strong: rgba(0, 0, 0, 0.06);
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --shadow-glow: 0 0 40px rgba(0, 0, 0, 0.05);
 }
 
 /* ========================================
@@ -113,14 +161,12 @@ body {
   }
 }
 
-/* GPU acceleration for animated elements */
-.education-card,
-.experience-card,
-.achievement-card,
-.blog-card,
-.hobby-card {
-  transform: translateZ(0);
-  backface-visibility: hidden;
+/* GPU acceleration only during interaction (not static) */
+.education-card:hover,
+.experience-card:hover,
+.achievement-card:hover,
+.blog-card:hover,
+.hobby-card:hover {
   will-change: transform;
 }
 
@@ -186,18 +232,18 @@ img {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--bg-card);
   border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+  background: var(--text-muted);
   border-radius: var(--radius-full);
   transition: background var(--duration-normal) var(--ease-premium);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 100%);
+  background: var(--text-secondary);
 }
 
 /* ========================================

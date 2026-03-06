@@ -1,5 +1,4 @@
 .single-hobbie {
-    box-shadow: 4px 4px 8px rgba(36, 3, 3, 0.2);
     width: 180px;
     height: 180px;
     border-radius: 20px;
@@ -8,12 +7,19 @@
     align-items: center;
     justify-content: center;
     padding: 1.4rem 1.4rem;
-    /* overflow: hidden; */
-    transition: transform 300ms ease-in-out;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    transition: transform 300ms ease-in-out,
+        background 300ms ease,
+        border-color 300ms ease,
+        box-shadow 300ms ease;
 }
 
 .single-hobbie:hover {
-    transform: scale(1.15) ;
+    background: var(--bg-card-hover);
+    border-color: var(--border-medium);
+    transform: scale(1.15);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
 }
 
 .hobbie-content {
@@ -31,27 +37,32 @@
     /* transform: translateY(-50%); */
 }
 
-.hobbie-icon > svg {
+.hobbie-icon>svg {
     font-size: 2.8rem;
     /* color: #000000; */
 }
 
-.single-hobbie:hover svg{
+.single-hobbie:hover svg {
     animation: magic 0.7s ease-in-out both;
 }
 
 @keyframes magic {
-    0%, 100%{
-        transform: translate(0,0);
+
+    0%,
+    100% {
+        transform: translate(0, 0);
     }
-    25%{
-        transform: translate(0,-20px);
+
+    25% {
+        transform: translate(0, -20px);
     }
-    50%{
-        transform: translate(0,0px);
+
+    50% {
+        transform: translate(0, 0px);
     }
-    75%{
-        transform: translate(0,-10px);
+
+    75% {
+        transform: translate(0, -10px);
     }
 
     /* slide-up-fade
@@ -68,10 +79,10 @@
         transform: translate(0,50px);
         opacity: 0;
     } */
-    
+
 }
 
-.hobbie-content > h4 {
+.hobbie-content>h4 {
     position: absolute;
     top: 60%;
     height: 60px;
@@ -95,11 +106,12 @@
         height: 160px;
         padding: 1.2rem 1.2rem;
     }
-    .hobbie-icon > svg {
+
+    .hobbie-icon>svg {
         font-size: 2.5rem;
     }
-    
-    .hobbie-content > h4 {
+
+    .hobbie-content>h4 {
         font-size: 15px;
     }
 }
@@ -110,11 +122,12 @@
         height: 150px;
         padding: 1.2rem 1.2rem;
     }
-    .hobbie-icon > svg {
+
+    .hobbie-icon>svg {
         font-size: 2.2rem;
     }
-    
-    .hobbie-content > h4 {
+
+    .hobbie-content>h4 {
         font-size: 13px;
         top: 50%;
     }

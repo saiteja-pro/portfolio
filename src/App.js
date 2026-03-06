@@ -14,10 +14,13 @@ function App() {
     const bgColor = theme.type === 'dark' ? '#0a0a0a' : '#fafafa';
     document.documentElement.style.backgroundColor = bgColor;
     document.body.style.backgroundColor = bgColor;
+    // Sync CSS custom properties with theme
+    document.documentElement.dataset.theme = theme.type;
   }, [theme]);
 
   return (
     <div className="app">
+      <a href="#main" className="skip-to-main">Skip to main content</a>
       <Router>
         <ScrollToTop />
         <Switch>

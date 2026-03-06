@@ -5,7 +5,7 @@ import triatlon from '../assets/volunteering/triatlon.avif';
 import mgit from '../assets/volunteering/mgit.jpeg';
 
 export const volunteeringData = {
-    bio: "I've actively contributed to various social causes, from organizing health awareness campaigns and blood donation drives to supporting underprivileged communities. These experiences shaped my perspective on community impact and teamwork.",
+    bio: "I strongly believe that technical leadership extends beyond the codebase. My commitment to community impact includes organizing large-scale health awareness campaigns, coordinating fundraising initiatives, and applying strategic planning to support critical social causes. These experiences have fundamentally shaped my collaborative approach to engineering.",
 
     experiences: [
         {

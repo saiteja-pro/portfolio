@@ -16,12 +16,11 @@ function YouTube() {
         <div className="youtube-section" id="youtube" style={{ backgroundColor: theme.secondary }}>
             <div className="youtube-body">
                 <h1 style={{ color: theme.primary }}>{youtubeData.title}</h1>
-                {/* Dark card looks good on both themes - solid in light, glassmorphic in dark */}
-                <div className="youtube-card" style={{ backgroundColor: theme.type === 'light' ? '#1a1a1a' : 'rgba(0, 0, 0, 0.4)' }}>
+                <div className="youtube-card">
                     <div className="youtube-header">
-                        <h3 style={{ color: theme.type === 'light' ? '#ffffff' : theme.tertiary }}>{youtubeData.episode}</h3>
-                        <p className="youtube-tagline" style={{ color: theme.type === 'light' ? '#ffffff' : theme.primary }}>{youtubeData.tagline}</p>
-                        <p style={{ color: theme.type === 'light' ? '#e0e0e0' : theme.tertiary80 }}>{youtubeData.description}</p>
+                        <h3 style={{ color: 'var(--text-primary)' }}>{youtubeData.episode}</h3>
+                        <p className="youtube-tagline" style={{ color: theme.primary }}>{youtubeData.tagline}</p>
+                        <p style={{ color: 'var(--text-muted)' }}>{youtubeData.description}</p>
                     </div>
                     <div className="youtube-video">
                         <iframe

@@ -5,11 +5,18 @@
 
 .volunteering {
     min-height: 80vh;
+    padding: var(--section-padding);
+}
+
+.volunteering-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 3rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
 .volunteering-body {
@@ -26,7 +33,7 @@
 
 .volunteering-body h1 {
     font-family: var(--primaryFont);
-    font-size: 3.5rem;
+    font-size: 3rem;
     margin-bottom: 1.5rem;
 }
 
@@ -37,7 +44,6 @@
 }
 
 .volunteering-cards {
-    padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -55,11 +61,20 @@
     justify-content: space-between;
     padding: 1.5rem;
     border-radius: 20px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     width: 100%;
+    background: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-subtle);
+    transition: transform var(--anim-hover-duration) var(--anim-hover-easing),
+        background var(--anim-hover-duration) var(--anim-hover-easing),
+        border-color var(--anim-hover-duration) var(--anim-hover-easing),
+        box-shadow var(--anim-hover-duration) var(--anim-hover-easing);
 }
 
 .volunteering-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-medium);
     transform: translateX(-10px) scale(1.01);
     box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
 }
@@ -144,15 +159,20 @@
     }
 
     .volunteering-body h1 {
-        font-size: 3rem;
+        font-size: 2.8rem;
     }
 }
 
 @media screen and (max-width: 992px) {
     .volunteering {
+        padding: var(--section-padding-mobile);
+    }
+
+    .volunteering-container {
         flex-direction: column;
         align-items: center;
-        padding: 2rem;
+        width: 100%;
+        padding: 0 1rem;
     }
 
     .volunteering-body {
@@ -186,7 +206,7 @@
 
 @media screen and (max-width: 600px) {
     .volunteering {
-        padding: 1rem;
+        padding: var(--section-padding-mobile);
     }
 
     .volunteering-body>p {

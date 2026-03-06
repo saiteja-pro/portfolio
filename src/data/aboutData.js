@@ -1,6 +1,6 @@
 export const aboutData = {
-    title: "Behind the Code...",
-    description1: "I'm an enthusiastic full-stack developer with a strong passion for learning and growing through hands-on experiences. I enjoy the flexibility of remote work, which allows me to stay productive while exploring new environments and ideas.",
-    description2: "Beyond development, I have a creative side. I enjoy video editing and storytelling through visuals. I'm constantly looking to expand my skill set, embrace new technologies, and take on challenges that push me to think differently. I value collaboration, adaptability, and building solutions that make a meaningful impact.",
+    title: "System Design & Architecture",
+    description1: "I am a Software Engineer specializing in scalable web architecture, full-stack development, and UX continuity. My expertise lies in building robust applications that balance peak performance with intuitive user experiences.",
+    description2: "With a strong foundation in front-end performance and back-end reliability, I prioritize clean code, maintainability, and measurable business impact. When I am not writing code, I am analyzing emerging architectural patterns or refining design systems.",
     image: 1
 }

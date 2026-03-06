@@ -6,7 +6,7 @@ import { headerData } from '../../data/headerData'
 
 function Main() {
     return (
-        <div>
+        <div id="main">
             <Helmet>
                 <title>{headerData.name} - Portfolio</title>
             </Helmet>

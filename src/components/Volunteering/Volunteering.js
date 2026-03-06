@@ -26,42 +26,40 @@ function Volunteering() {
         <>
             {volunteeringData.experiences.length > 0 && (
                 <div className="volunteering" id="volunteering" style={{ backgroundColor: theme.secondary }}>
-                    <div className="volunteering-cards">
-                        {volunteeringData.experiences.map((exp) => (
-                            <div
-                                key={exp.id}
-                                className="volunteering-card"
-                                style={{
-                                    backgroundColor: theme.type === 'light' ? '#000000' : 'rgba(0, 0, 0, 0.4)',
-                                    border: '1px solid rgba(255, 255, 255, 0.08)'
-                                }}
-                            >
-                                <div className="volunteering-card-content">
-                                    <div className="volunteering-card-header">
-                                        <h3 style={{ color: theme.type === 'light' ? '#ffffff' : theme.tertiary }}>{exp.role}</h3>
-                                        <h4 style={{ color: theme.type === 'light' ? '#e0e0e0' : theme.primary }}>{exp.organization}</h4>
+                    <div className="volunteering-container">
+                        <div className="volunteering-cards">
+                            {volunteeringData.experiences.map((exp) => (
+                                <div
+                                    key={exp.id}
+                                    className="volunteering-card"
+                                >
+                                    <div className="volunteering-card-content">
+                                        <div className="volunteering-card-header">
+                                            <h3 style={{ color: 'var(--text-primary)' }}>{exp.role}</h3>
+                                            <h4 style={{ color: 'var(--text-secondary)' }}>{exp.organization}</h4>
+                                        </div>
+                                        <p className="volunteering-description" style={{ color: 'var(--text-muted)' }}>
+                                            {exp.description}
+                                        </p>
+                                        <div className="volunteering-card-footer" style={{ color: 'var(--text-primary)' }}>
+                                            <span className="volunteering-duration">{exp.duration}</span>
+                                            <span className="volunteering-cause">
+                                                {getCauseIcon(exp.cause)} {exp.cause}
+                                            </span>
+                                        </div>
                                     </div>
-                                    <p className="volunteering-description" style={{ color: theme.type === 'light' ? '#c0c0c0' : theme.tertiary80 }}>
-                                        {exp.description}
-                                    </p>
-                                    <div className="volunteering-card-footer" style={{ color: theme.type === 'light' ? '#ffffff' : theme.primary }}>
-                                        <span className="volunteering-duration">{exp.duration}</span>
-                                        <span className="volunteering-cause">
-                                            {getCauseIcon(exp.cause)} {exp.cause}
-                                        </span>
-                                    </div>
+                                    {exp.image && (
+                                        <div className="volunteering-card-image">
+                                            <img src={exp.image} alt={exp.organization} />
+                                        </div>
+                                    )}
                                 </div>
-                                {exp.image && (
-                                    <div className="volunteering-card-image">
-                                        <img src={exp.image} alt={exp.organization} />
-                                    </div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                    <div className="volunteering-body">
-                        <h1 style={{ color: theme.primary }}>Volunteering</h1>
-                        <p style={{ color: theme.tertiary }}>{volunteeringData.bio}</p>
+                            ))}
+                        </div>
+                        <div className="volunteering-body">
+                            <h1 style={{ color: theme.primary }}>Volunteering</h1>
+                            <p style={{ color: theme.tertiary }}>{volunteeringData.bio}</p>
+                        </div>
                     </div>
                 </div>
             )}

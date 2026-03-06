@@ -1,6 +1,6 @@
 .education {
     min-height: 100vh;
-    padding: 6rem 0;
+    padding: var(--section-padding);
     position: relative;
     overflow: hidden;
 }
@@ -57,9 +57,13 @@
     padding: 1.5rem 2rem;
     border-radius: 20px;
     margin-bottom: 1.25rem;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: transform 300ms ease, background 300ms ease, box-shadow 300ms ease;
+    background: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-subtle);
+    transition: transform var(--anim-hover-duration) var(--anim-hover-easing),
+        background var(--anim-hover-duration) var(--anim-hover-easing),
+        box-shadow var(--anim-hover-duration) var(--anim-hover-easing);
     position: relative;
     overflow: hidden;
 }
@@ -79,18 +83,13 @@
 }
 
 .education-card:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.12);
+    background: var(--bg-card-hover);
+    border-color: var(--border-medium);
     transform: translateX(10px) scale(1.01);
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-card-hover);
 }
 
-/* Change text color to black on hover only in light theme */
-.education-card.theme-light:hover .education-details h6,
-.education-card.theme-light:hover .education-details h4,
-.education-card.theme-light:hover .education-details h5 {
-    color: #000000 !important;
-}
+/* Text colors now handled by CSS variables — no !important needed */
 
 .education-card:hover::after {
     opacity: 0.8;
@@ -188,7 +187,7 @@
 @media screen and (max-width: 992px) {
     .education {
         min-height: 100%;
-        padding: 4rem 0;
+        padding: var(--section-padding-mobile);
     }
 
     .education-image {
@@ -254,7 +253,7 @@
 
 @media screen and (max-width: 600px) {
     .education {
-        padding: 3rem 0;
+        padding: var(--section-padding-mobile);
     }
 
     .education-description>h1 {

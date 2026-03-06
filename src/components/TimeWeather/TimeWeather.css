@@ -1,0 +1,54 @@
+.timeweather {
+    font-family: var(--font-primary);
+    padding: 1rem 0;
+    width: 100%;
+}
+
+.timeweather--row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.timeweather--item {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    font-weight: 400;
+    opacity: 0.6;
+    transition: opacity var(--anim-hover-duration) var(--anim-hover-easing);
+    white-space: nowrap;
+}
+
+.timeweather--item:hover {
+    opacity: 0.9;
+}
+
+.timeweather--city {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.timeweather--separator {
+    opacity: 0.5;
+}
+
+.timeweather--time {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.3px;
+}
+
+.timeweather--weather {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+/* ---- Responsive ---- */
+@media screen and (max-width: 600px) {
+    .timeweather--item {
+        font-size: 0.8rem;
+    }
+}

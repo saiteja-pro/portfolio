@@ -31,19 +31,23 @@
 
 .youtube-card {
     width: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
     border-radius: 24px;
     padding: 2rem;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform var(--anim-hover-duration) var(--anim-hover-easing),
+        background var(--anim-hover-duration) var(--anim-hover-easing),
+        border-color var(--anim-hover-duration) var(--anim-hover-easing),
+        box-shadow var(--anim-hover-duration) var(--anim-hover-easing);
 }
 
 .youtube-card:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.12);
+    background: var(--bg-card-hover);
+    border-color: var(--border-medium);
     transform: translateY(-5px);
-    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.4);
+    box-shadow: var(--shadow-card-hover);
 }
+
 
 .youtube-header {
     margin-bottom: 1.5rem;
