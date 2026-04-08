@@ -4,5 +4,5 @@ export const socialsData = {
     medium: 'https://medium.com/@saitejapro',
     instagram: 'https://www.instagram.com/teja___sai/',
     facebook: 'https://www.facebook.com/teja1508/',
-    youtube: 'https://www.youtube.com/@CurryMeetsCoffee'
+    youtube: 'https://www.youtube.com/@TrailsByTeja'
 }
