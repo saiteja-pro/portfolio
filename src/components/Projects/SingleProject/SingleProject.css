@@ -1,0 +1,181 @@
+.showcase-project {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    width: 100%;
+}
+
+.showcase-project.reversed {
+    flex-direction: row-reverse;
+}
+
+.showcase-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 550px;
+}
+
+.showcase-achievement {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    font-family: var(--primaryFont);
+    margin-bottom: 1.5rem;
+    align-self: flex-start;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(10px);
+}
+
+.showcase-title {
+    font-family: var(--primaryFont);
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+}
+
+.showcase-desc {
+    font-family: var(--primaryFont);
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.showcase-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.showcase-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-family: var(--primaryFont);
+    font-size: 1.05rem;
+    line-height: 1.4;
+}
+
+.feature-icon {
+    margin-top: 0.2rem;
+    min-width: 18px;
+}
+
+.showcase-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 2.5rem;
+}
+
+.showcase-tag {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-family: var(--primaryFont);
+    font-weight: 600;
+    backdrop-filter: blur(5px);
+}
+
+.showcase-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.showcase-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1.5rem;
+    border-radius: 12px;
+    font-family: var(--primaryFont);
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.showcase-btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.1);
+}
+
+.primary-btn:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.video-btn:hover {
+    box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3);
+}
+
+/* Slick Slider Overrides */
+.showcase-slider-container {
+    flex: 1.2;
+    width: 100%;
+    min-width: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+    background: #000;
+}
+
+.showcase-slide {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}
+
+.showcase-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 16/10;
+    display: block;
+}
+
+/* Customize slick dots */
+.slick-dots {
+    bottom: 15px;
+}
+
+.slick-dots li button:before {
+    color: white;
+    font-size: 12px;
+    opacity: 0.5;
+}
+
+.slick-dots li.slick-active button:before {
+    color: white;
+    opacity: 1;
+}
+
+@media (max-width: 900px) {
+    .showcase-project, .showcase-project.reversed {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    
+    .showcase-content {
+        max-width: 100%;
+    }
+
+    .showcase-title {
+        font-size: 2.5rem;
+    }
+
+    .showcase-slider-container {
+        width: 100%;
+    }
+}

@@ -114,8 +114,8 @@
 
 /* Image Logos - strict sizing */
 .expcard-logo {
-    width: 36px !important;
-    height: 36px !important;
+    width: 44px !important;
+    height: 44px !important;
     object-fit: contain;
     pointer-events: none;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
@@ -236,7 +236,8 @@
     }
 
     .expcard-img>img {
-        width: 26px;
+        width: 36px !important;
+        height: 36px !important;
     }
 
     .experience-details>h6 {

@@ -9,7 +9,7 @@ import { headerData } from '../../data/headerData';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { darkTheme, lightTheme } from '../../theme/theme';
 
-const SECTION_IDS = ['experience', 'education', 'achievement', 'blog', 'contacts'];
+const SECTION_IDS = ['experience', 'education', 'projects', 'achievement', 'blog', 'contacts'];
 
 function Navbar() {
     const [scrolled, setScrolled] = useState(false);
@@ -21,6 +21,7 @@ function Navbar() {
     const navLinks = [
         { to: '/#experience', label: 'Experience', id: 'experience' },
         { to: '/#education', label: 'Education', id: 'education' },
+        { to: '/#projects', label: 'Projects', id: 'projects' },
         { to: '/#achievement', label: 'Achievements', id: 'achievement' },
         { to: '/#blog', label: 'Writing', id: 'blog' },
         { to: '/#contacts', label: 'Contact', id: 'contacts' },

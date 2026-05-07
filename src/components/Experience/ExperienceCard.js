@@ -4,7 +4,7 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 import { FaAmazon, FaCode, FaChartBar } from 'react-icons/fa';
 
 import utaLogo from '../../assets/logos/uta.png';
-import amazonLogo from '../../assets/logos/amazon.png';
+import amazonLogo from '../../assets/logos/amazon2.png';
 import saifLogo from '../../assets/logos/saif.png';
 import mavensoftLogo from '../../assets/logos/mavensoft.png';
 
