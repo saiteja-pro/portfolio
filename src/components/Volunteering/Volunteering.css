@@ -1,0 +1,231 @@
+/* =============================================
+   Volunteering Section Styles
+   Card-based layout for volunteer experiences
+   ============================================= */
+
+.volunteering {
+    min-height: 80vh;
+    padding: var(--section-padding);
+}
+
+.volunteering-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.volunteering-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    flex: 0.4;
+    width: 90%;
+    position: sticky;
+    top: 100px;
+    text-align: right;
+}
+
+.volunteering-body h1 {
+    font-family: var(--primaryFont);
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.volunteering-body>p {
+    font-size: 1.25rem;
+    font-family: var(--primaryFont);
+    line-height: 1.7;
+}
+
+.volunteering-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-right: 5%;
+    width: 100%;
+    flex: 0.6;
+    gap: 1.5rem;
+}
+
+.volunteering-card {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    padding: 1.5rem;
+    border-radius: 20px;
+    width: 100%;
+    background: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-subtle);
+    transition: transform var(--anim-hover-duration) var(--anim-hover-easing),
+        background var(--anim-hover-duration) var(--anim-hover-easing),
+        border-color var(--anim-hover-duration) var(--anim-hover-easing),
+        box-shadow var(--anim-hover-duration) var(--anim-hover-easing);
+}
+
+.volunteering-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-medium);
+    transform: translateX(-10px) scale(1.01);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+}
+
+.volunteering-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.volunteering-card-header h3 {
+    font-family: var(--primaryFont);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.volunteering-card-header h4 {
+    font-family: var(--primaryFont);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.volunteering-description {
+    font-family: var(--primaryFont);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.volunteering-card-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-family: var(--primaryFont);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+.volunteering-duration {
+    font-weight: 500;
+}
+
+.volunteering-cause {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.volunteering-cause svg {
+    font-size: 1rem;
+}
+
+/* Organization logo/image */
+.volunteering-card-image {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1rem;
+}
+
+.volunteering-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+/* Responsive */
+@media (min-width: 992px) and (max-width: 1380px) {
+    .volunteering-body {
+        flex: 0.35;
+    }
+
+    .volunteering-cards {
+        flex: 0.65;
+        margin-right: 2%;
+    }
+
+    .volunteering-body h1 {
+        font-size: 2.8rem;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .volunteering {
+        padding: var(--section-padding-mobile);
+    }
+
+    .volunteering-container {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    .volunteering-body {
+        width: 100%;
+        position: relative;
+        top: 0;
+        text-align: left;
+        align-items: flex-start;
+    }
+
+    .volunteering-body h1 {
+        font-size: 2.5rem;
+    }
+
+    .volunteering-body>p {
+        font-size: 1.1rem;
+    }
+
+    .volunteering-cards {
+        margin-right: 0;
+        padding: 1rem 0;
+        width: 100%;
+        margin-top: 1rem;
+        order: 2;
+    }
+
+    .volunteering-card:hover {
+        transform: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .volunteering {
+        padding: var(--section-padding-mobile);
+    }
+
+    .volunteering-body>p {
+        font-size: 0.95rem;
+    }
+
+    .volunteering-card {
+        padding: 1.25rem;
+    }
+
+    .volunteering-card-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .volunteering-description {
+        font-size: 0.9rem;
+    }
+
+    .volunteering-card-footer {
+        font-size: 0.8rem;
+    }
+}

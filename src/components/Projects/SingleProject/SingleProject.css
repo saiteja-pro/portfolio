@@ -1,0 +1,223 @@
+.showcase-project {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    width: 100%;
+}
+
+.showcase-project.reversed {
+    flex-direction: row-reverse;
+}
+
+/* When project has no images, content takes full width */
+.showcase-project.no-images {
+    justify-content: center;
+}
+
+.showcase-project.no-images .showcase-content {
+    max-width: 700px;
+}
+
+.showcase-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 550px;
+}
+
+/* Client label for confidential projects */
+.showcase-client {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--primaryFont);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    opacity: 0.6;
+}
+
+.showcase-achievement {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    font-family: var(--primaryFont);
+    margin-bottom: 1.5rem;
+    align-self: flex-start;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(10px);
+}
+
+.showcase-title {
+    font-family: var(--primaryFont);
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 1.25rem;
+    line-height: 1.15;
+}
+
+.showcase-desc {
+    font-family: var(--primaryFont);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.showcase-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.showcase-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-family: var(--primaryFont);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.feature-icon {
+    margin-top: 0.2rem;
+    min-width: 16px;
+    font-size: 0.85rem;
+}
+
+.showcase-role {
+    font-family: var(--primaryFont);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+    opacity: 0.6;
+    font-style: italic;
+}
+
+.showcase-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+}
+
+.showcase-tag {
+    padding: 0.35rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-family: var(--primaryFont);
+    font-weight: 600;
+    backdrop-filter: blur(5px);
+}
+
+.showcase-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.showcase-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.4rem;
+    border-radius: 12px;
+    font-family: var(--primaryFont);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.showcase-btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.1);
+}
+
+.primary-btn:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.video-btn:hover {
+    box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3);
+}
+
+/* Slider Container */
+.showcase-slider-container {
+    flex: 1.2;
+    width: 100%;
+    min-width: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+    background: var(--bg-card, #111);
+}
+
+.showcase-slide {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}
+
+.showcase-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 16/10;
+    display: block;
+}
+
+
+/* Fade transition override for smoother feel */
+.showcase-slider-container .slick-slide {
+    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 900px) {
+    .showcase-project, .showcase-project.reversed {
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+    
+    .showcase-content {
+        max-width: 100%;
+    }
+
+    .showcase-project.no-images .showcase-content {
+        max-width: 100%;
+    }
+
+    .showcase-title {
+        font-size: 1.8rem;
+    }
+
+    .showcase-slider-container {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .showcase-title {
+        font-size: 1.5rem;
+    }
+
+    .showcase-desc {
+        font-size: 0.95rem;
+    }
+
+    .showcase-features li {
+        font-size: 0.9rem;
+    }
+}

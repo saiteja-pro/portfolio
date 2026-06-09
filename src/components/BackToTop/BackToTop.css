@@ -1,0 +1,93 @@
+/* Premium Back to Top Button */
+.back-to-top {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    /* Lower z-index than the mobile menu drawer (1000) and backdrop (999) 
+       so it gets covered when the drawer opens, eliminating visual confusion */
+    z-index: 900; 
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.back-to-top--visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top__icon {
+    font-size: 1.25rem;
+    transition: transform 0.3s ease;
+}
+
+.back-to-top:hover .back-to-top__icon {
+    transform: translateY(-3px);
+}
+
+/* Dark Theme */
+.back-to-top[data-theme="dark"] {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+}
+
+.back-to-top[data-theme="dark"]:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Light Theme */
+.back-to-top[data-theme="light"] {
+    background-color: rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #000000;
+}
+
+.back-to-top[data-theme="light"]:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .back-to-top {
+        right: 1.5rem;
+        bottom: 1.5rem;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .back-to-top__icon {
+        font-size: 1.15rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .back-to-top {
+        /* Move it up slightly to avoid conflicting with mobile browser bottom bars */
+        right: 1.25rem;
+        bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+        width: 38px;
+        height: 38px;
+    }
+    
+    .back-to-top__icon {
+        font-size: 1.1rem;
+    }
+}
