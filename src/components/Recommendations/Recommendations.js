@@ -1,129 +1,96 @@
-import React, { useContext, useRef } from 'react';
-
-import Slider from 'react-slick';
-
-import { FaQuoteLeft, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
-
-import { ThemeContext } from '../../contexts/ThemeContext';
+import React, { useEffect, useRef } from 'react';
+import { FiLinkedin } from 'react-icons/fi';
 import { recommendationsData } from '../../data/recommendationsData';
-
 import './Recommendations.css';
 
 function Recommendations() {
-    const { theme } = useContext(ThemeContext);
-    const sliderRef = useRef();
+    const sectionRef = useRef(null);
 
-    const settings = {
-        dots: true,
-        adaptiveHeight: true,
-        infinite: true,
-        speed: 800,
-        arrows: false,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        margin: 3,
-        loop: true,
-        autoplaySpeed: 3000,
-        draggable: true,
-        swipeToSlide: true,
-        swipe: true,
-    };
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
 
-    const gotoNext = () => {
-        sliderRef.current.slickNext();
-    };
+        const items = sectionRef.current?.querySelectorAll('[data-reveal]') || [];
+        items.forEach((el) => observer.observe(el));
+        return () => observer.disconnect();
+    }, []);
 
-    const gotoPrev = () => {
-        sliderRef.current.slickPrev();
-    };
-
-    const openInNewTab = (url) => {
-        const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
-        if (newWindow) newWindow.opener = null
-    }
-
+    if (!recommendationsData || recommendationsData.length === 0) return null;
 
     return (
-        <>
-            {recommendationsData.length > 0 && (
-                <div
-                    className='recommendations'
-                    id='recommendations'
-                    style={{ backgroundColor: theme.secondary }}
-                >
-                    <div className='recommendations--header'>
-                        <h1 style={{ color: theme.primary }}>Recommendations</h1>
+        <section 
+            className="recommendations" 
+            id="recommendations" 
+            ref={sectionRef} 
+            aria-labelledby="recommendations-heading"
+        >
+            <div className="recommendations__container" data-reveal>
+                <span className="section-label">Endorsements</span>
+                
+                <div className="recommendations__grid">
+                    <div className="recommendations__header-col">
+                        <h2 id="recommendations-heading" className="recommendations__heading">
+                            Recommendations
+                        </h2>
+                        <p className="recommendations__meta-copy">
+                            Peer feedback and testimonials from engineering collaborations.
+                        </p>
                     </div>
-                    <div className='recommendations--body'>
-                        <FaQuoteLeft
-                            className='quote'
-                            style={{ color: theme.primary }}
-                        />
-                        <div
-                            className='recommendations--slider'
-                            style={{ backgroundColor: theme.secondary }}
-                        >
-                            <Slider {...settings} ref={sliderRef}>
-                                {recommendationsData.map((each) => (
-                                    <div
-                                        className='single--recommendation'
-                                        key={each.id}
-                                    >
-                                        <div className='recommendations--container'>
-                                            <div
-                                                className='review--img'
-                                                style={{
-                                                    backgroundColor:
-                                                        theme.secondary,
-                                                }}
-                                            >
-                                                <img
-                                                    src={each.image}
-                                                    alt={each.name}
-                                                />
-                                            </div>
-                                            <div
-                                                className='review--content'
-                                                style={{
-                                                    backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                                                    border: `1px solid ${theme.primary}50`,
-                                                    color: theme.tertiary,
-                                                }}
-                                            >
-                                                <p>{each.text}</p>
-                                                <h1 onClick={() => openInNewTab(each.url)}>{each.name}</h1>
-                                                <h4>{each.title}</h4>
-                                            </div>
+
+                    <div className="recommendations__list-col">
+                        {recommendationsData.map((item) => (
+                            <blockquote key={item.id} className="recommendation-card">
+                                <div className="recommendation-card__quote-icon">“</div>
+                                <p className="recommendation-card__text">
+                                    {item.text}
+                                </p>
+                                
+                                <footer className="recommendation-card__footer">
+                                    {item.image && (
+                                        <div className="recommendation-card__avatar-frame">
+                                            <img 
+                                                src={item.image} 
+                                                alt={item.name} 
+                                                className="recommendation-card__avatar"
+                                                loading="lazy"
+                                            />
                                         </div>
+                                    )}
+                                    <div className="recommendation-card__author-info">
+                                        <cite className="recommendation-card__name">
+                                            {item.name}
+                                        </cite>
+                                        <span className="recommendation-card__title">
+                                            {item.title}
+                                        </span>
                                     </div>
-                                ))}
-                            </Slider>
-                            <button
-                                className='prevBtn'
-                                onClick={gotoPrev}
-                                style={{ backgroundColor: theme.primary }}
-                            >
-                                <FaArrowLeft
-                                    style={{ color: theme.secondary }}
-                                    aria-label='Previous recommendation'
-                                />
-                            </button>
-                            <button
-                                className='nextBtn'
-                                onClick={gotoNext}
-                                style={{ backgroundColor: theme.primary }}
-                            >
-                                <FaArrowRight
-                                    style={{ color: theme.secondary }}
-                                    aria-label='Next recommendation'
-                                />
-                            </button>
-                        </div>
+                                    {item.url && (
+                                        <a 
+                                            href={item.url} 
+                                            target="_blank" 
+                                            rel="noreferrer" 
+                                            className="recommendation-card__linkedin-link"
+                                            aria-label={`${item.name} LinkedIn Profile`}
+                                        >
+                                            <FiLinkedin />
+                                        </a>
+                                    )}
+                                </footer>
+                            </blockquote>
+                        ))}
                     </div>
                 </div>
-            )}
-        </>
+            </div>
+        </section>
     );
 }
 

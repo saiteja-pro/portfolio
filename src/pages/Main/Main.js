@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Helmet } from 'react-helmet';
 
 import {
-    Navbar, Footer, Landing, Experience, Projects, Achievement, Blog, Contacts, Skills, Volunteering
+    Navbar, Footer, Landing, Experience, Projects, Achievement, Blog, Contacts, Skills, Volunteering, MascotBuddy, Recommendations, About
 } from '../../components';
 import CommandPalette from '../../components/CommandPalette/CommandPalette';
 import { headerData } from '../../data/headerData';
@@ -33,16 +33,19 @@ function Main() {
 
             <Navbar onOpenPalette={openPalette} />
             <Landing />
+            <About />
             <Projects />
             <Experience />
             <Skills />
             <Achievement />
             <Blog />
             <Volunteering />
+            <Recommendations />
             <Contacts />
             <Footer />
 
             <CommandPalette isOpen={cmdOpen} onClose={closePalette} />
+            <MascotBuddy />
         </div>
     );
 }

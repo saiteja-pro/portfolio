@@ -1,5 +1,5 @@
 import {
-    bwThemeboy, eduBlack, expBlack, contactsBlack
+    saitejaHeadshot, eduBlack
 } from './images'
 
 export const darkTheme = {
@@ -17,10 +17,8 @@ export const darkTheme = {
     tertiary80: '#f5f5f5cc',
     tertiary70: '#f5f5f5b3',
     tertiary50: '#f5f5f580',
-    aboutimg1: bwThemeboy,
-    eduimg: eduBlack,
-    expimg: expBlack,
-    contactsimg: contactsBlack
+    aboutimg1: saitejaHeadshot,
+    eduimg: eduBlack
 }
 
 export const lightTheme = {
@@ -38,10 +36,8 @@ export const lightTheme = {
     tertiary80: '#1a1a1acc',
     tertiary70: '#1a1a1ab3',
     tertiary50: '#1a1a1a80',
-    aboutimg1: bwThemeboy,
-    eduimg: eduBlack,
-    expimg: expBlack,
-    contactsimg: contactsBlack
+    aboutimg1: saitejaHeadshot,
+    eduimg: eduBlack
 }
 
 export const bwThemeDark = darkTheme;

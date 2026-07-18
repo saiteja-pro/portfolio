@@ -17,7 +17,7 @@ export const experienceData = [
             'Architected Python-based automation frameworks that reduced manual operational overhead across enterprise workflows.',
             'Designed and maintained AWS cloud infrastructure using Terraform, managing provisioning and state for production environments.',
             'Built and hardened CI/CD quality gates, reducing deployment risk and improving release consistency across services.',
-            'Developed internal ETL pipelines to move and transform enterprise data between systems, improving data availability for business reporting.',
+            'Developed internal pipelines to move and transform enterprise data between systems, improving data availability for business reporting.',
             'Created internal developer tooling that standardized deployment processes and accelerated onboarding for new services.'
         ]
     },

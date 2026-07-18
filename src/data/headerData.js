@@ -7,7 +7,7 @@ export const headerData = {
     firstName: 'Sai Teja',
     lastName: 'Bhoomraogari',
     title: 'Software Engineer, Cloud Infrastructure and Backend Systems',
-    description: 'Building automation frameworks, ETL pipelines, and cloud infrastructure at enterprise scale. Currently at SAIF Corporation. Previously Amazon.',
+    description: 'Building automation frameworks, pipelines, and cloud infrastructure at enterprise scale. Currently at SAIF Corporation. Previously Amazon.',
     image: display_pic,
     resumePdf: resume,
     cvPdf: cv

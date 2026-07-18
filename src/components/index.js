@@ -18,5 +18,5 @@ export { default as Volunteering } from './Volunteering/Volunteering'
 
 
 export { default as BackToTop } from './BackToTop/BackToTop'
-export { default as Youtube } from './Youtube/Youtube'
 export { default as TimeWeather } from './TimeWeather/TimeWeather'
+export { default as MascotBuddy } from './MascotBuddy/MascotBuddy'

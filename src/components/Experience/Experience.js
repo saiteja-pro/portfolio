@@ -47,7 +47,7 @@ function Experience() {
                                 >
                                     <div className="exp-entry__meta">
                                         <span className="exp-entry__date">
-                                            {item.startYear} — {item.endYear}
+                                            {item.startYear} - {item.endYear}
                                         </span>
                                         <span className="exp-entry__location">{item.location}</span>
                                     </div>
@@ -80,7 +80,7 @@ function Experience() {
                                 >
                                     <div className="exp-entry__meta">
                                         <span className="exp-entry__date">
-                                            {item.startYear} — {item.endYear}
+                                            {item.startYear} - {item.endYear}
                                         </span>
                                         {item.note && (
                                             <span className="exp-entry__location">{item.note}</span>

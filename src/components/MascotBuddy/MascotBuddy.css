@@ -1,0 +1,285 @@
+.shimeji {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.shimeji__pet {
+    background: transparent;
+    border: none;
+    cursor: grab;
+    padding: 0;
+    pointer-events: auto;
+    width: 60px;
+    height: 60px;
+    outline: none;
+    transition: transform var(--duration-fast) var(--ease-out);
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Grab states */
+.shimeji__pet.state-dragging {
+    cursor: grabbing;
+    transform: scale(1.15) rotate(5deg);
+    filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.45));
+}
+
+.shimeji__pet.state-falling {
+    cursor: grabbing;
+    transform: scale(1.05) rotate(-5deg);
+}
+
+/* Horizontal flip based on walk direction */
+.shimeji__pet.right {
+    transform: scaleX(-1);
+}
+
+.shimeji__pet.state-dragging.right {
+    transform: scaleX(-1) scale(1.15) rotate(5deg);
+}
+
+.shimeji__pet.state-falling.right {
+    transform: scaleX(-1) scale(1.05) rotate(-5deg);
+}
+
+.shimeji__svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+/* ──── Speech Bubble ──── */
+.shimeji__bubble {
+    pointer-events: none;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-primary);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-md);
+    padding: 8px 12px;
+    width: max-content;
+    max-width: 220px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    margin-bottom: 8px;
+    position: relative;
+    animation: bubblePop 200ms var(--ease-out) both;
+}
+
+/* Default centered speech bubble pointer */
+.shimeji__bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 6px;
+    background: var(--bg-surface);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    border-left: 1px solid var(--border-medium);
+    border-right: 1px solid var(--border-medium);
+}
+
+/* Right Edge Alignment (Bubble shifts left, arrow points to the right) */
+.shimeji__bubble.shimeji__bubble--right-edge {
+    transform: translateX(-80px);
+    animation: bubblePopRight 200ms var(--ease-out) both;
+}
+
+.shimeji__bubble.shimeji__bubble--right-edge::after {
+    left: calc(100% - 28px);
+}
+
+/* Left Edge Alignment (Bubble shifts right, arrow points to the left) */
+.shimeji__bubble.shimeji__bubble--left-edge {
+    transform: translateX(80px);
+    animation: bubblePopLeft 200ms var(--ease-out) both;
+}
+
+.shimeji__bubble.shimeji__bubble--left-edge::after {
+    left: 28px;
+}
+
+@keyframes bubblePop {
+    from { opacity: 0; transform: translateY(4px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes bubblePopRight {
+    from { opacity: 0; transform: translateX(-80px) translateY(4px) scale(0.96); }
+    to   { opacity: 1; transform: translateX(-80px) translateY(0) scale(1); }
+}
+
+@keyframes bubblePopLeft {
+    from { opacity: 0; transform: translateX(80px) translateY(4px) scale(0.96); }
+    to   { opacity: 1; transform: translateX(80px) translateY(0) scale(1); }
+}
+
+/* ──── Sleeping Zzz Bubble ──── */
+.shimeji__zzz {
+    position: absolute;
+    top: -24px;
+    right: 0px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    display: flex;
+    gap: 2px;
+    pointer-events: none;
+}
+
+.shimeji__zzz span {
+    animation: zzzFloat 2s infinite;
+    opacity: 0;
+}
+
+.shimeji__zzz span:nth-child(1) { animation-delay: 0s; }
+.shimeji__zzz span:nth-child(2) { animation-delay: 0.6s; }
+.shimeji__zzz span:nth-child(3) { animation-delay: 1.2s; }
+
+@keyframes zzzFloat {
+    0% {
+        transform: translateY(6px) scale(0.7);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-16px) scale(1.1);
+        opacity: 0;
+    }
+}
+
+/* ──── State Animations ──── */
+
+/* Walking */
+.shimeji__pet.state-walking {
+    animation: walkCycle 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes walkCycle {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-3px) rotate(1deg); }
+}
+
+.shimeji__pet.state-walking.right {
+    animation: walkCycleRight 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes walkCycleRight {
+    0% { transform: scaleX(-1) translateY(0) rotate(0deg); }
+    100% { transform: scaleX(-1) translateY(-3px) rotate(1deg); }
+}
+
+.shimeji__pet.state-walking .shimeji__leg-front {
+    animation: legWalkFront 0.25s infinite alternate;
+}
+.shimeji__pet.state-walking .shimeji__leg-back {
+    animation: legWalkBack 0.25s infinite alternate;
+}
+
+@keyframes legWalkFront {
+    from { transform: translateY(0); }
+    to { transform: translateY(-3px); }
+}
+@keyframes legWalkBack {
+    from { transform: translateY(-3px); }
+    to { transform: translateY(0); }
+}
+
+/* Sleeping */
+.shimeji__pet.state-sleeping {
+    animation: sleepBreathing 3s ease-in-out infinite;
+}
+
+@keyframes sleepBreathing {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(0.96) translateY(1px); }
+}
+
+.shimeji__pet.state-sleeping.right {
+    animation: sleepBreathingRight 3s ease-in-out infinite;
+}
+
+@keyframes sleepBreathingRight {
+    0%, 100% { transform: scaleX(-1) scale(1); }
+    50% { transform: scaleX(-1) scale(0.96) translateY(1px); }
+}
+
+/* Typing */
+.shimeji__pet.state-typing {
+    animation: typingBob 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes typingBob {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-2px); }
+}
+
+.shimeji__pet.state-typing.right {
+    animation: typingBobRight 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes typingBobRight {
+    0% { transform: scaleX(-1) translateY(0); }
+    100% { transform: scaleX(-1) translateY(-2px); }
+}
+
+.shimeji__pet.state-typing .shimeji__leg-front {
+    animation: typingHands 0.15s ease-in-out infinite alternate;
+}
+
+@keyframes typingHands {
+    from { transform: translateY(0) translateX(0); }
+    to { transform: translateY(-2px) translateX(2px); }
+}
+
+/* Tail wagging */
+.shimeji__pet:not(.state-sleeping) .shimeji__tail {
+    animation: tailWagNormal 1.2s ease-in-out infinite alternate;
+    transform-origin: 20px 60px;
+}
+
+@keyframes tailWagNormal {
+    from { transform: rotate(-3deg); }
+    to { transform: rotate(6deg); }
+}
+
+/* Hover tweaks */
+.shimeji__pet:hover {
+    transform: scale(1.08);
+}
+
+.shimeji__pet.right:hover {
+    transform: scaleX(-1) scale(1.08);
+}
+
+/* Mobile responsive scaling */
+@media (max-width: 768px) {
+    .shimeji__pet {
+        width: 44px;
+        height: 44px;
+    }
+
+    .shimeji__bubble {
+        font-size: 0.65rem;
+        padding: 6px 10px;
+        max-width: 160px;
+    }
+
+    /* Reduce animation complexity on mobile for smoother performance */
+    .shimeji__pet.state-typing .shimeji__leg-front {
+        animation: none;
+    }
+}
