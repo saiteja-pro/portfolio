@@ -2,5 +2,6 @@ export const contactsData = {
     email: 'saitejabhoomraogari1508@gmail.com',
     phone: '+1 (682)-433-2239',
     address: 'Austin, Texas',
+    calendly: 'https://calendly.com/saitejabhoomraogari',
     sheetAPI: ''
 };

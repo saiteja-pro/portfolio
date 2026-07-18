@@ -1,34 +1,55 @@
-# Sai Teja Bhoomraogari's Portfolio
+# saiteja.pro
 
-## Introduction
-Hey there! 👋 Thanks for stopping by. This space is a collection of the things I’ve built, explored, and enjoyed working on, from full-stack applications to creative side projects. 
+Personal portfolio site for Sai Teja Bhoomraogari. Built with React 17 and deployed to Netlify at [saiteja.pro](https://saiteja.pro).
 
-## About Me
-I’m someone who genuinely enjoys building things, whether it’s a functional backend service or a clean, intuitive user interface. I’ve always been curious about how things work, and that curiosity naturally led me to full-stack development. One of the things I love most is the freedom to work from anywhere. Being able to stay productive while exploring new places helps me stay inspired and creative.
+## Running locally
 
-## Beyond Coding
-Outside of coding, I have a soft spot for video editing and turning ideas into visual stories. I’m always looking for new skills to pick up, better ways to solve problems, and people to learn from. I believe in teamwork, staying adaptable, and creating things that are not just useful, but meaningful.
+```bash
+npm install
+npm start
+```
 
-## Tech Stack
-- **Languages**: Python, JavaScript, Java, HTML/CSS
-- **Frontend**: React, Material-UI
-- **Backend & APIs**: Django, Flask, GraphQL
-- **Databases**: MySQL, PostgreSQL, MongoDB, Redis, Elasticsearch
-- **Cloud & DevOps**: AWS, GCP, Terraform, Docker, Jenkins, Git
-- **Testing & Automation**: Selenium
+The dev server starts at `http://localhost:3000`.
 
-## Setup
-1. Clone the repository
-2. Run `npm install` to install dependencies
-3. Run `npm start` to start the development server
-4. Open `http://localhost:3000` in your browser
+## Building
 
-## Contact
-- Email: [saitejabhoomraogari1508@gmail.com](mailto:saitejabhoomraogari1508@gmail.com)
-- LinkedIn: [Sai Teja Bhoomraogari](https://www.linkedin.com/in/saitejapro/)
-- Personal Website: [www.saiteja.pro](https://www.saiteja.pro)
+```bash
+npm run build
+```
 
-I'm always open to exciting projects, tech conversations, or creative ideas. Looking forward to connecting!
+Output goes to `build/`. The site is a single-page app, so the `public/_redirects` file configures Netlify to serve `index.html` for all routes.
 
-## License
-Built by Sai Teja Bhoomraogari. Licensed under Apache License 2.0.
+## Structure
+
+```
+src/
+  components/     React components, one directory per component
+  data/           Content data files (experience, projects, etc.)
+  pages/          Page-level components (Main, Blog)
+  contexts/       React context (theme)
+  theme/          Theme token definitions
+  assets/         Fonts, images, PDFs
+```
+
+Content is separated from components. To update portfolio content (projects, experience bullets, etc.), edit the files in `src/data/`. No rebuild is needed in development; the dev server hot-reloads on save.
+
+## Design decisions
+
+**Typography:** DM Serif Display for headings, DM Sans for body copy, DM Mono for labels and metadata. The DM family was chosen for its restraint and legibility at both small and large sizes.
+
+**Color:** Near-black base (`#0d0d0d`) with a single warm-gold accent (`#c8a96e`). The accent is used only on interactive states, section labels, and bullet markers to keep visual noise low.
+
+**Motion:** Intersection Observer-based section reveals. No looping animations in the main page flow. The command palette (Cmd+K) is the only interaction with a spring-physics feel.
+
+**Command palette:** Pressing Cmd+K (or Ctrl+K) opens a keyboard-navigable command palette for jumping to sections, opening the resume, or copying the contact email. This replaces a complex nav structure with something faster for keyboard users.
+
+**Resume PDF route:** The resume is served as a static asset at `/static/media/Sai_Teja_Bhoomraogari_Resume.pdf` after the CRA build. The `target="_blank"` link in the hero opens it directly. On Netlify, this works without any special routing config because it is a physical file in the build output.
+
+## Dependencies worth noting
+
+- `react-router-dom` v5: used for the `/` and `/blog` routes. The blog page exists but is not linked from the main nav; it lives at `/blog` if needed.
+- `react-router-hash-link`: smooth-scroll to hash anchors for section navigation.
+- `react-helmet`: page-level meta tag management.
+- `react-icons`: icon library used for UI icons only (no skill icon grid).
+
+No CSS framework is used. All styles are vanilla CSS with custom properties defined in `src/index.css`.

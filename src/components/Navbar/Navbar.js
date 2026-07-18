@@ -1,235 +1,155 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { NavHashLink as NavLink } from 'react-router-hash-link';
-import { IoSunny, IoMoon, IoMenuSharp, IoClose } from 'react-icons/io5';
-import { makeStyles } from '@material-ui/core/styles';
-import { IconButton } from '@material-ui/core';
+import { IoSunny, IoMoon } from 'react-icons/io5';
 
 import './Navbar.css';
 import { headerData } from '../../data/headerData';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { darkTheme, lightTheme } from '../../theme/theme';
 
-const SECTION_IDS = ['experience', 'education', 'projects', 'achievement', 'blog', 'contacts'];
+const SECTION_IDS = ['work', 'experience', 'recognition', 'writing', 'volunteering', 'contacts'];
 
-function Navbar() {
+function Navbar({ onOpenPalette }) {
     const [scrolled, setScrolled] = useState(false);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [mobileOpen, setMobileOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('');
-    const { theme, setTheme, isIntroFinished } = useContext(ThemeContext);
-    const [isDark, setIsDark] = useState(theme.type === 'dark');
+    const { theme, setTheme } = useContext(ThemeContext);
+    const isDark = theme.type === 'dark';
 
     const navLinks = [
+        { to: '/#work', label: 'Work', id: 'work' },
         { to: '/#experience', label: 'Experience', id: 'experience' },
-        { to: '/#education', label: 'Education', id: 'education' },
-        { to: '/#projects', label: 'Projects', id: 'projects' },
-        { to: '/#achievement', label: 'Achievements', id: 'achievement' },
-        { to: '/#blog', label: 'Writing', id: 'blog' },
+        { to: '/#recognition', label: 'Recognition', id: 'recognition' },
+        { to: '/#writing', label: 'Writing', id: 'writing' },
+        { to: '/#volunteering', label: 'Community', id: 'volunteering' },
         { to: '/#contacts', label: 'Contact', id: 'contacts' },
     ];
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
+            setScrolled(window.scrollY > 60);
 
-            // Don't highlight any section if we're near the top (landing area)
-            if (window.scrollY < 500) {
+            if (window.scrollY < 400) {
                 setActiveSection('');
                 return;
             }
 
-            let currentSection = '';
-
-            // Find section whose top is closest to viewport top (within reasonable range)
-            for (const sectionId of SECTION_IDS) {
-                const element = document.getElementById(sectionId);
-                if (element) {
-                    const rect = element.getBoundingClientRect();
-                    // Section is active if its top is between -100 and 300 pixels from viewport top
-                    if (rect.top >= -100 && rect.top <= 300) {
-                        currentSection = sectionId;
+            for (const id of SECTION_IDS) {
+                const el = document.getElementById(id);
+                if (el) {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top >= -80 && rect.top <= 280) {
+                        setActiveSection(id);
                         break;
                     }
                 }
             }
-
-            setActiveSection(currentSection);
         };
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         handleScroll();
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Close mobile menu on route change or escape key
     useEffect(() => {
-        setIsDark(theme.type === 'dark');
-    }, [theme]);
+        if (!mobileOpen) return;
+        const handleKey = (e) => { if (e.key === 'Escape') setMobileOpen(false); };
+        document.addEventListener('keydown', handleKey);
+        return () => document.removeEventListener('keydown', handleKey);
+    }, [mobileOpen]);
 
     const toggleTheme = () => {
-        if (isDark) {
-            setTheme(lightTheme);
-        } else {
-            setTheme(darkTheme);
-        }
-        setIsDark(!isDark);
+        setTheme(isDark ? lightTheme : darkTheme);
     };
-
-    const toggleMobileMenu = () => {
-        setMobileMenuOpen(!mobileMenuOpen);
-    };
-
-    const closeMobileMenu = () => {
-        setMobileMenuOpen(false);
-    };
-
-    const useStyles = makeStyles((t) => ({
-        themeToggleButton: {
-            height: '38px',
-            width: '38px',
-            borderRadius: '50%',
-            overflow: 'hidden',
-            backgroundColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
-            border: isDark ? '1px solid rgba(255, 255, 255, 0.15)' : '1px solid rgba(0, 0, 0, 0.1)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: 0,
-            transition: 'all 0.3s ease',
-            cursor: 'pointer',
-            '&:hover': {
-                transform: 'scale(1.1)',
-                backgroundColor: isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.08)',
-            },
-        },
-        themeIcon: {
-            fontSize: '1.1rem',
-            color: theme.tertiary,
-            transition: 'all 0.3s ease',
-        },
-        mobileMenuButton: {
-            display: 'none',
-            height: '40px',
-            width: '40px',
-            borderRadius: '10px',
-            backgroundColor: 'transparent',
-            border: 'none',
-            cursor: 'pointer',
-            padding: 0,
-            color: theme.tertiary,
-            fontSize: '1.5rem',
-            [t.breakpoints.down('sm')]: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-            },
-        },
-    }));
-
-    const classes = useStyles();
 
     return (
-        <div
-            className={`navbar ${scrolled ? 'scrolled' : ''}`}
-            style={{
-                backgroundColor: scrolled
-                    ? (isDark ? 'rgba(10, 10, 10, 0.9)' : 'rgba(250, 250, 250, 0.9)')
-                    : 'transparent'
-            }}
-        >
-            <div className='navbar--container'>
-                <NavLink 
-                    to='/' 
-                    smooth={true} 
-                    style={{ 
-                        opacity: isIntroFinished ? 1 : 0, 
-                        transition: 'opacity 0.2s ease-in' 
-                    }}
-                >
-                    <h1 style={{ color: theme.tertiary }}>{headerData.firstName}</h1>
-                </NavLink>
+        <>
+            <nav className={`navbar${scrolled ? ' navbar--scrolled' : ''}`} aria-label="Main navigation">
+                <div className="navbar__inner">
+                    <NavLink to="/" smooth className="navbar__wordmark" aria-label="Home">
+                        {headerData.firstName}
+                    </NavLink>
 
-                <nav className='navbar--links'>
-                    {navLinks.map((link, index) => (
-                        <NavLink
-                            key={index}
-                            to={link.to}
-                            smooth={true}
-                            duration={2000}
-                            className={`navbar--link ${activeSection === link.id ? 'active' : ''}`}
-                            style={{ color: theme.tertiary }}
-                        >
-                            {link.label}
-                        </NavLink>
-                    ))}
-                </nav>
+                    <ul className="navbar__links">
+                        {navLinks.map((link) => (
+                            <li key={link.id}>
+                                <NavLink
+                                    to={link.to}
+                                    smooth
+                                    duration={1200}
+                                    className={`navbar__link${activeSection === link.id ? ' navbar__link--active' : ''}`}
+                                >
+                                    {link.label}
+                                </NavLink>
+                            </li>
+                        ))}
+                    </ul>
 
-                <div className='navbar--controls'>
-                    <IconButton
-                        className={classes.themeToggleButton}
-                        onClick={toggleTheme}
-                        aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
-                    >
-                        {isDark ? (
-                            <IoSunny className={classes.themeIcon} />
-                        ) : (
-                            <IoMoon className={classes.themeIcon} />
+                    <div className="navbar__controls">
+                        {onOpenPalette && (
+                            <button
+                                className="navbar__cmd-hint"
+                                onClick={onOpenPalette}
+                                aria-label="Open command palette (Cmd+K)"
+                            >
+                                <span className="navbar__cmd-hint-text">
+                                    <kbd>⌘</kbd><kbd>K</kbd>
+                                </span>
+                            </button>
                         )}
-                    </IconButton>
-
-                    <button
-                        className={classes.mobileMenuButton}
-                        onClick={toggleMobileMenu}
-                        aria-label='Open menu'
-                    >
-                        <IoMenuSharp />
-                    </button>
-                </div>
-            </div>
-
-            {/* Backdrop overlay */}
-            <div
-                className={`navbar--mobile-backdrop ${mobileMenuOpen ? 'open' : ''}`}
-                onClick={closeMobileMenu}
-            />
-
-            {/* Mobile Drawer Menu */}
-            <div
-                className={`navbar--mobile-menu ${mobileMenuOpen ? 'open' : ''}`}
-            >
-                <button
-                    className='navbar--mobile-close'
-                    onClick={closeMobileMenu}
-                    style={{ color: theme.tertiary }}
-                    aria-label='Close menu'
-                >
-                    <IoClose />
-                </button>
-
-                <div className='navbar--mobile-links'>
-                    {navLinks.filter(link => link.id !== 'contacts').map((link, index) => (
-                        <NavLink
-                            key={index}
-                            to={link.to}
-                            smooth={true}
-                            duration={2000}
-                            className={`navbar--mobile-link ${activeSection === link.id ? 'active' : ''}`}
-                            style={{ color: theme.tertiary }}
-                            onClick={closeMobileMenu}
+                        <button
+                            className="navbar__theme-btn"
+                            onClick={toggleTheme}
+                            aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
                         >
-                            {link.label}
-                        </NavLink>
-                    ))}
-                </div>
+                            {isDark ? <IoSunny /> : <IoMoon />}
+                        </button>
 
-                <NavLink
-                    to='/#contacts'
-                    smooth={true}
-                    className='navbar--mobile-cta'
-                    onClick={closeMobileMenu}
-                >
-                    Get in Touch
-                </NavLink>
+                        <button
+                            className={`navbar__hamburger${mobileOpen ? ' navbar__hamburger--open' : ''}`}
+                            onClick={() => setMobileOpen(!mobileOpen)}
+                            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+                            aria-expanded={mobileOpen}
+                        >
+                            <span />
+                            <span />
+                            <span />
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+            {/* Mobile menu */}
+            <div
+                className={`navbar__mobile${mobileOpen ? ' navbar__mobile--open' : ''}`}
+                aria-hidden={!mobileOpen}
+            >
+                <ul className="navbar__mobile-links">
+                    {navLinks.map((link) => (
+                        <li key={link.id}>
+                            <NavLink
+                                to={link.to}
+                                smooth
+                                duration={1200}
+                                className="navbar__mobile-link"
+                                onClick={() => setMobileOpen(false)}
+                            >
+                                {link.label}
+                            </NavLink>
+                        </li>
+                    ))}
+                </ul>
             </div>
-        </div>
+
+            {mobileOpen && (
+                <div
+                    className="navbar__overlay"
+                    onClick={() => setMobileOpen(false)}
+                    aria-hidden="true"
+                />
+            )}
+        </>
     );
 }
 

@@ -1,6 +1,9 @@
-:root {
-    --primaryFont: 'Poppins', sans-serif;
-    /* --primaryFont: 'Montserrat', sans-serif; */
-    /* --primaryFont: 'Raleway', sans-serif; */
-}
+/* App-level layout only. All design tokens live in index.css. */
 
+.app {
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text-primary);
+    transition: background var(--duration-base) var(--ease-in-out),
+                color var(--duration-base) var(--ease-in-out);
+}

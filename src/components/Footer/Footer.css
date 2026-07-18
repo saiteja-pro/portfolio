@@ -1,101 +1,117 @@
 .footer {
-    font-family: var(--font-primary, Inter, sans-serif);
-    width: 100%;
-    padding: 3rem 2rem;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: var(--space-8) 0 0 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer__container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--space-8) var(--space-8);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.footer__name {
+    font-family: 'BestermindRegular', Georgia, serif;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+.footer__copy {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+}
+
+/* ---- Mascot ---- */
+.footer__mascot-wrap {
+    position: absolute;
+    right: var(--space-8);
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-2);
+    pointer-events: none;
+}
+
+.footer__mascot-msg {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-primary);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-4);
+    max-width: 220px;
+    text-align: right;
+    animation: msgPop 0.25s var(--ease-out) both;
+    pointer-events: none;
     position: relative;
 }
 
-/* Subtle top border gradient */
-.footer::before {
+/* Speech bubble tail */
+.footer__mascot-msg::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    bottom: -7px;
+    right: 36px;
+    width: 12px;
+    height: 7px;
+    background: var(--bg-surface);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    border-left: 1px solid var(--border-medium);
+    border-right: 1px solid var(--border-medium);
 }
 
-.footer--container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
+@keyframes msgPop {
+    from { opacity: 0; transform: translateY(6px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Social Links */
-.footer--socials {
-    display: flex;
-    gap: 1.5rem;
-}
-
-.footer--socials a {
-    font-size: 1.4rem;
-    opacity: 0.6;
-    transition: all 300ms ease;
-}
-
-.footer--socials a:hover {
-    opacity: 1;
-    transform: translateY(-3px);
-}
-
-/* Copyright Text */
-.footer--text {
-    font-weight: 400;
-    font-size: 0.9rem;
-    opacity: 0.5;
-    letter-spacing: 0.5px;
-    text-align: center;
-}
-
-/* Back to Top Button */
-.footer--back-to-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+.footer__mascot-btn {
+    background: transparent;
     border: none;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    transition: all 300ms ease;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    z-index: 100;
+    padding: 0;
+    pointer-events: all;
+    display: block;
+    transition: transform 300ms var(--ease-out);
+    transform-origin: bottom right;
 }
 
-.footer--back-to-top:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+.footer__mascot-btn:hover {
+    transform: scale(1.04) translateY(-2px);
 }
 
-@media screen and (max-width: 600px) {
-    .footer {
-        padding: 2rem 1rem;
+.footer__mascot-img {
+    width: 110px;
+    height: auto;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+@media (max-width: 640px) {
+    .footer__container {
+        padding: 0 var(--space-5) var(--space-8);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-2);
     }
 
-    .footer--socials {
-        gap: 1.25rem;
+    .footer__mascot-img {
+        width: 80px;
     }
 
-    .footer--socials a {
-        font-size: 1.2rem;
-    }
-
-    .footer--text {
-        font-size: 0.8rem;
-    }
-
-    .footer--back-to-top {
-        width: 42px;
-        height: 42px;
-        bottom: 1.5rem;
-        right: 1.5rem;
+    .footer__mascot-wrap {
+        right: var(--space-5);
     }
 }

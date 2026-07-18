@@ -1,74 +1,106 @@
-import React, { useContext } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { FiAtSign, FiMapPin } from 'react-icons/fi';
+import React, { useEffect, useRef } from 'react';
+import { FiMail, FiLinkedin, FiGithub, FiFileText, FiCalendar } from 'react-icons/fi';
 
-import { ThemeContext } from '../../contexts/ThemeContext';
-import { contactsData } from '../../data/contactsData';
 import './Contacts.css';
+import { contactsData } from '../../data/contactsData';
+import { socialsData } from '../../data/socialsData';
+import { headerData } from '../../data/headerData';
 
 function Contacts() {
-    const { theme } = useContext(ThemeContext);
-    const useStyles = makeStyles(() => ({
-        detailsIcon: {
-            backgroundColor: theme.primary,
-            color: theme.secondary,
-            borderRadius: '50%',
-            width: '45px',
-            height: '45px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '23px',
-            transition: '250ms ease-in-out',
-            flexShrink: 0,
-            '&:hover': {
-                transform: 'scale(1.1)',
-                color: theme.secondary,
-                backgroundColor: theme.tertiary,
-            },
-        },
-    }));
+    const sectionRef = useRef(null);
 
-    const classes = useStyles();
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        const items = sectionRef.current?.querySelectorAll('[data-reveal]') || [];
+        items.forEach((el) => observer.observe(el));
+        return () => observer.disconnect();
+    }, []);
 
     return (
-        <div
-            className='contacts'
-            id='contacts'
-            style={{ backgroundColor: theme.secondary }}
-        >
-            <div className='contacts--container'>
-                <h1 style={{ color: theme.primary }}>Get in Touch</h1>
-                <div className='contacts-body'>
-                    <div className='contacts-details'>
+        <section className="contacts" id="contacts" ref={sectionRef} aria-labelledby="contacts-heading">
+            <div className="contacts__container">
+                <div className="contacts__content" data-reveal>
+                    <span className="section-label">Get in touch</span>
+                    <h2 id="contacts-heading" className="contacts__heading">
+                        Let's talk
+                    </h2>
+                    <p className="contacts__copy">
+                        Open to senior engineering roles, contract work, and technical conversations.
+                        Reach me directly at the email below, or schedule a calendar invite.
+                    </p>
+
+                    <a
+                        href={`mailto:${contactsData.email}`}
+                        className="contacts__email"
+                    >
+                        {contactsData.email}
+                    </a>
+
+                    <div className="contacts__links">
+                        {contactsData.calendly && (
+                            <a
+                                href={contactsData.calendly}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="contacts__link contacts__link--calendly"
+                            >
+                                <FiCalendar />
+                                <span>Schedule a call</span>
+                            </a>
+                        )}
                         <a
-                            href={`mailto:${contactsData.email}`}
-                            className='personal-details'
+                            href={socialsData.linkedIn}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="contacts__link"
                         >
-                            <div className={classes.detailsIcon}>
-                                <FiAtSign />
-                            </div>
-                            <p style={{ color: theme.tertiary, fontSize: '15px' }}>
-                                {contactsData.email}
-                            </p>
+                            <FiLinkedin />
+                            <span>LinkedIn</span>
                         </a>
-                        <div className='personal-details'>
-                            <div className={classes.detailsIcon}>
-                                <FiMapPin />
-                            </div>
-                            <p style={{ color: theme.tertiary }}>
-                                {contactsData.address}
-                            </p>
-                        </div>
+                        <a
+                            href={socialsData.github}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="contacts__link"
+                        >
+                            <FiGithub />
+                            <span>GitHub</span>
+                        </a>
+                        {headerData.resumePdf && (
+                            <a
+                                href={headerData.resumePdf}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="contacts__link"
+                            >
+                                <FiFileText />
+                                <span>Resume PDF</span>
+                            </a>
+                        )}
+                        {contactsData.email && (
+                            <a
+                                href={`mailto:${contactsData.email}`}
+                                className="contacts__link"
+                            >
+                                <FiMail />
+                                <span>Email</span>
+                            </a>
+                        )}
                     </div>
                 </div>
             </div>
-            <img
-                src={theme.contactsimg}
-                alt='contacts'
-                className='contacts--img'
-            />
-        </div>
+        </section>
     );
 }
 

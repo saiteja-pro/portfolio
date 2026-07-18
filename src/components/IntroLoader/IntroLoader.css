@@ -1,26 +1,14 @@
 .intro {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    inset: 0;
+    z-index: 9999;
+    background: var(--bg, #0d0d0d);
     display: flex;
-    justify-content: center;
     align-items: center;
-    z-index: 10000;
-    background-color: var(--intro-bg);
-    overflow: hidden;
-    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.intro[data-theme='light'] {
-    --intro-bg: #FAFAFA;
-    --intro-fg: #000000;
-}
-
-.intro[data-theme='dark'] {
-    --intro-bg: #000000;
-    --intro-fg: #FFFFFF;
+    justify-content: center;
+    flex-direction: column;
+    transition: opacity 500ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)),
+                transform 500ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1));
 }
 
 .intro--exit {
@@ -28,253 +16,85 @@
     pointer-events: none;
 }
 
-/* Ambient Glow Background */
-.intro__glow {
-    position: absolute;
-    width: 60vw;
-    height: 60vh;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    z-index: 1;
-    pointer-events: none;
-}
-
-.intro[data-theme='light'] .intro__glow {
-    background: radial-gradient(circle, rgba(0, 0, 0, 0.03) 0%, transparent 70%);
-}
-
-/* Subtle grid texture */
-.intro__texture {
-    position: absolute;
-    inset: 0;
-    opacity: 0.02;
-    background-size: 40px 40px;
-    background-image: 
-        linear-gradient(to right, var(--intro-fg) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--intro-fg) 1px, transparent 1px);
-    z-index: 1;
-    pointer-events: none;
-}
-
-/* ---- Typography Card ---- */
+/* Typography */
 .intro__typography {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-    will-change: transform;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 500ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)),
+                transform 500ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.intro__typography--visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .intro__name-display {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    margin: 0;
-    padding: 0;
+    gap: 8px;
 }
 
-/* Cursive First Name */
+/* Cursive first name */
 .intro__cursive {
-    font-family: 'BestermindRegular', cursive;
-    font-size: 6.5rem;
-    font-weight: normal;
-    color: var(--intro-fg);
+    font-family: 'BestermindRegular', Georgia, serif;
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 400;
+    color: var(--text-primary, #f0ede8);
     line-height: 1;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    white-space: pre;
-    will-change: transform, opacity;
+    letter-spacing: -0.01em;
+    overflow: hidden;
 }
 
-/* Sans-serif Last Name */
+/* Last name in display serif */
 .intro__sans {
-    font-family: var(--font-primary, 'Inter', sans-serif);
-    font-size: 4rem;
-    font-weight: 700;
-    color: var(--intro-fg);
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(1.5rem, 5vw, 2.75rem);
+    font-weight: 400;
+    color: var(--text-secondary, #a09a91);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     line-height: 1;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    white-space: pre;
-    will-change: transform, opacity;
 }
 
-/* Fly the typography to the Navbar */
-.intro--exit .intro__cursive {
-    animation: flyToNav 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards !important;
-}
-
-.intro--exit .intro__sans {
-    animation: flyToHero 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards !important;
-}
-
-/* Base state for characters before animation */
+/* Per-character stagger */
 .intro__char {
-    opacity: 0;
-    transform: scale(1.1) translateY(10px);
-    filter: blur(12px);
-    letter-spacing: 0.15em;
-    will-change: transform, opacity, filter;
     display: inline-block;
+    animation: charReveal 500ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)) both;
 }
 
-/* Reveal stagger */
-.intro__typography--visible .intro__char {
-    animation: cinematicReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+@keyframes charReveal {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* ---- Progress bar ---- */
+/* Progress bar */
 .intro__progress {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     height: 2px;
-    background: transparent;
-    z-index: 10001;
+    background: var(--border, rgba(240, 237, 232, 0.08));
 }
 
 .intro__progress-bar {
     height: 100%;
-    width: 0;
-    background: var(--intro-fg);
-    opacity: 0.15;
-    animation: progressFill 2.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
-    will-change: width;
-}
-
-/* ========================================
-   KEYFRAMES
-   ======================================== */
-
-@keyframes cinematicReveal {
-    0% {
-        opacity: 0;
-        transform: scale(1.1) translate3d(0, 10px, 0);
-        filter: blur(12px);
-        letter-spacing: 0.15em;
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1) translate3d(0, 0, 0);
-        filter: blur(0);
-        letter-spacing: 0;
-    }
+    width: 0%;
+    background: var(--accent, #c8a96e);
+    animation: progressFill 2.8s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)) forwards;
+    animation-delay: 100ms;
 }
 
 @keyframes progressFill {
-    0% { width: 0; }
-    100% { width: 100%; }
-}
-
-/* Flight Path: Top Left Navbar */
-@keyframes flyToNav {
-    0% {
-        transform: scale(1) translate3d(0, 0, 0);
-        opacity: 1;
-    }
-    40% {
-        opacity: 1;
-    }
-    100% {
-        /* Shrinks down to match Navbar h1 size (~2rem) */
-        transform: scale(0.3) translate3d(-160vw, -160vh, 0);
-        opacity: 0;
-    }
-}
-
-/* Flight Path: Center Left Hero Text */
-@keyframes flyToHero {
-    0% {
-        transform: scale(1) translate3d(0, 0, 0);
-        opacity: 1;
-    }
-    40% {
-        opacity: 1;
-    }
-    100% {
-        /* Translates to Landing h1 position (approximately right-center) */
-        transform: scale(0.85) translate3d(10vw, 15vh, 0);
-        opacity: 0;
-    }
-}
-
-/* ========================================
-   RESPONSIVE (Mobile Optimized)
-   ======================================== */
-
-@media screen and (max-width: 1024px) {
-    .intro__cursive { font-size: 5rem; }
-    .intro__sans { font-size: 3.2rem; }
-}
-
-@media screen and (max-width: 768px) {
-    .intro__cursive { font-size: 4rem; }
-    .intro__sans { font-size: 2.5rem; }
-
-    @keyframes flyToNav {
-        0% { transform: scale(1) translate3d(0, 0, 0); opacity: 1; }
-        40% { opacity: 1; }
-        100% { transform: scale(0.4) translate3d(-120vw, -150vh, 0); opacity: 0; }
-    }
-    
-    @keyframes flyToHero {
-        0% { transform: scale(1) translate3d(0, 0, 0); opacity: 1; }
-        40% { opacity: 1; }
-        100% { transform: scale(0.8) translate3d(0vw, 15vh, 0); opacity: 0; }
-    }
-    
-    /* Optimize Mobile GPU: Reduce blur which causes heavy lag on iOS/Android */
-    .intro__char {
-        filter: blur(4px); 
-    }
-    @keyframes cinematicReveal {
-        0% {
-            opacity: 0;
-            transform: scale(1.1) translate3d(0, 10px, 0);
-            filter: blur(4px);
-            letter-spacing: 0.1em;
-        }
-        100% {
-            opacity: 1;
-            transform: scale(1) translate3d(0, 0, 0);
-            filter: blur(0);
-            letter-spacing: 0;
-        }
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .intro__cursive { font-size: 3rem; }
-
-    @keyframes flyToNav {
-        0% { transform: scale(1) translate3d(0, 0, 0); opacity: 1; }
-        40% { opacity: 1; }
-        100% { transform: scale(0.5) translate3d(-100vw, -150vh, 0); opacity: 0; }
-    }
-}
-
-/* ---- Reduced motion ---- */
-@media (prefers-reduced-motion: reduce) {
-    .intro__char,
-    .intro__progress-bar {
-        animation-duration: 0.01ms !important;
-        animation-delay: 0ms !important;
-    }
-
-    .intro {
-        transition-duration: 0.01ms !important;
-    }
-    
-    .intro__cursive {
-        animation: none !important;
-    }
+    from { width: 0%; }
+    to { width: 100%; }
 }

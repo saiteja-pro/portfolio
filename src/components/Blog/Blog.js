@@ -1,84 +1,79 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom'
-import { makeStyles } from '@material-ui/core/styles';
-import { HiArrowRight } from "react-icons/hi";
-
+import React, { useEffect, useRef } from 'react';
+import { FiArrowUpRight } from 'react-icons/fi';
 import './Blog.css';
-import { ThemeContext } from '../../contexts/ThemeContext';
-import { blogData } from '../../data/blogData'
-import SingleBlog from './SingleBlog/SingleBlog';
-
+import { blogData } from '../../data/blogData';
+import { socialsData } from '../../data/socialsData';
 
 function Blog() {
+    const sectionRef = useRef(null);
 
-    const { theme } = useContext(ThemeContext);
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.08 }
+        );
 
-    const useStyles = makeStyles(() => ({
-        viewAllBtn: {
-            color: theme.secondary,
-            backgroundColor: theme.primary,
-            "&:hover": {
-                color: theme.tertiary,
-                backgroundColor: theme.primary,
-            }
-        },
-        viewArr: {
-            color: theme.tertiary,
-            backgroundColor: theme.secondary70,
-            width: '40px',
-            height: '40px',
-            padding: '0.5rem',
-            fontSize: '1.05rem',
-            borderRadius: '50%',
-            cursor: 'pointer',
-            "&:hover": {
-                color: theme.tertiary,
-                backgroundColor: theme.secondary,
-            }
-        },
-    }));
-
-    const classes = useStyles();
+        const items = sectionRef.current?.querySelectorAll('[data-reveal]') || [];
+        items.forEach((el) => observer.observe(el));
+        return () => observer.disconnect();
+    }, []);
 
     return (
-        <>
-            {blogData.length > 0 && (
-                <div className="blog" id="blog" style={{ backgroundColor: theme.secondary }}>
-                    <div className="blog--header">
-                        <h1 style={{ color: theme.primary }}>Writing</h1>
+        <section className="blog" id="writing" ref={sectionRef} aria-labelledby="writing-heading">
+            <div className="blog__container">
+                <div className="blog__header" data-reveal>
+                    <div className="blog__header-left">
+                        <span className="section-label">Writing</span>
+                        <h2 id="writing-heading" className="blog__heading">
+                            Selected essays
+                        </h2>
                     </div>
-                    <div className="blog--body">
-                        <div className="blog--bodyContainer">
-                            {blogData.slice(0, 3).map(blog => (
-                                <SingleBlog
-                                    theme={theme}
-                                    title={blog.title}
-                                    desc={blog.description}
-                                    date={blog.date}
-                                    image={blog.image}
-                                    url={blog.url}
-                                    key={blog.id}
-                                    id={blog.id}
-                                />
-                            ))}
-                        </div>
-
-                        {blogData.length >= 3 && (
-                            <div className="blog--viewAll">
-                                <Link to="/blog">
-                                    <button className={classes.viewAllBtn}>
-                                        View All
-                                        <HiArrowRight className={classes.viewArr} />
-                                    </button>
-                                </Link>
-                            </div>
-                        )}
-                    </div>
+                    {socialsData.medium && (
+                        <a
+                            href={socialsData.medium}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="blog__all-link"
+                            data-reveal
+                        >
+                            All writing
+                            <FiArrowUpRight />
+                        </a>
+                    )}
                 </div>
-            )}
 
-        </>
-    )
+                <div className="blog__grid">
+                    {blogData.map((post, index) => (
+                        <a
+                            key={post.id}
+                            href={post.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="blog-card"
+                            data-reveal
+                            style={{ transitionDelay: `${index * 60}ms` }}
+                            aria-label={post.title}
+                        >
+                            <div className="blog-card__date">{post.date}</div>
+                            <h3 className="blog-card__title">{post.title}</h3>
+                            <p className="blog-card__desc">{post.description}</p>
+                            <span className="blog-card__read">
+                                Read on Medium
+                                <FiArrowUpRight />
+                            </span>
+                        </a>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
 }
 
-export default Blog
+export default Blog;

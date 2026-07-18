@@ -1,69 +1,58 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './Volunteering.css';
-import { ThemeContext } from '../../contexts/ThemeContext';
 import { volunteeringData } from '../../data/volunteeringData';
-import { FaHandsHelping, FaMedkit, FaUsers, FaPalette } from 'react-icons/fa';
 
 function Volunteering() {
-    const { theme } = useContext(ThemeContext);
+    const sectionRef = useRef(null);
 
-    const getCauseIcon = (cause) => {
-        switch (cause) {
-            case 'Human Rights':
-                return <FaHandsHelping />;
-            case 'Health':
-                return <FaMedkit />;
-            case 'Social Services':
-                return <FaUsers />;
-            case 'Arts and Culture':
-                return <FaPalette />;
-            default:
-                return <FaHandsHelping />;
-        }
-    };
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.08 }
+        );
+
+        const items = sectionRef.current?.querySelectorAll('[data-reveal]') || [];
+        items.forEach((el) => observer.observe(el));
+        return () => observer.disconnect();
+    }, []);
 
     return (
-        <>
-            {volunteeringData.experiences.length > 0 && (
-                <div className="volunteering" id="volunteering" style={{ backgroundColor: theme.secondary }}>
-                    <div className="volunteering-container">
-                        <div className="volunteering-cards">
-                            {volunteeringData.experiences.map((exp) => (
-                                <div
-                                    key={exp.id}
-                                    className="volunteering-card"
-                                >
-                                    <div className="volunteering-card-content">
-                                        <div className="volunteering-card-header">
-                                            <h3 style={{ color: 'var(--text-primary)' }}>{exp.role}</h3>
-                                            <h4 style={{ color: 'var(--text-secondary)' }}>{exp.organization}</h4>
-                                        </div>
-                                        <p className="volunteering-description" style={{ color: 'var(--text-muted)' }}>
-                                            {exp.description}
-                                        </p>
-                                        <div className="volunteering-card-footer" style={{ color: 'var(--text-primary)' }}>
-                                            <span className="volunteering-duration">{exp.duration}</span>
-                                            <span className="volunteering-cause">
-                                                {getCauseIcon(exp.cause)} {exp.cause}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    {exp.image && (
-                                        <div className="volunteering-card-image">
-                                            <img src={exp.image} alt={exp.organization} />
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                        <div className="volunteering-body">
-                            <h1 style={{ color: theme.primary }}>Volunteering</h1>
-                            <p style={{ color: theme.tertiary }}>{volunteeringData.bio}</p>
-                        </div>
-                    </div>
+        <section className="volunteering" id="volunteering" ref={sectionRef} aria-labelledby="volunteering-heading">
+            <div className="volunteering__container">
+                <div className="volunteering__header" data-reveal>
+                    <span className="section-label">Community</span>
+                    <h2 id="volunteering-heading" className="volunteering__heading">
+                        Volunteering
+                    </h2>
                 </div>
-            )}
-        </>
+
+                <div className="volunteering__grid">
+                    {volunteeringData.experiences.map((item, index) => (
+                        <div
+                            className="vol-entry"
+                            key={item.id}
+                            data-reveal
+                            style={{ transitionDelay: `${index * 60}ms` }}
+                        >
+                            <div className="vol-entry__header">
+                                <span className="vol-entry__cause">{item.cause}</span>
+                                <span className="vol-entry__duration">{item.duration}</span>
+                            </div>
+                            <h3 className="vol-entry__role">{item.role}</h3>
+                            <span className="vol-entry__org">{item.organization}</span>
+                            <p className="vol-entry__desc">{item.description}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
     );
 }
 

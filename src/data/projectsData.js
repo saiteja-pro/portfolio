@@ -8,11 +8,13 @@ import capstoneDashboard from '../assets/png/capstone_dashboard.png'
 export const projectsData = [
     {
         id: 1,
-        projectName: 'DealEdge: AI Negotiation War Room',
-        projectDesc: 'Engineered a highly-scalable AI negotiation assistant during a single-day hackathon. The platform equips enterprise dealmakers with tactical battle plans and real-time voice analysis to optimize high-stakes negotiation outcomes.',
-        tags: ['Next.js 14', 'React', 'TypeScript', 'OpenAI API', 'Speech-to-Text'],
+        projectName: 'DealEdge',
+        projectSubtitle: 'AI Negotiation Intelligence Platform',
+        context: 'SAIF IT Hackathon 2026. One-day build to create a usable product from scratch.',
+        role: 'Designed and built the full application architecture. Made every technical decision: stack selection, API integration design, real-time audio pipeline, and deployment within the hackathon window.',
+        outcome: '3rd place at the SAIF IT Hackathon 2026. Functional demo with voice analysis, strategy generation, and multi-stage roleplay working end-to-end.',
+        tags: ['Next.js 14', 'TypeScript', 'OpenAI API', 'Speech-to-Text', 'React'],
         demo: 'https://github.com/saiteja-pro/dealedge',
-        videoDemo: '',
         images: [
             dealedge1,
             dealedge2,
@@ -20,30 +22,31 @@ export const projectsData = [
             trophy
         ],
         features: [
-            "Architected an AI Strategy Brief Generator (Power Score & Leverage Mapping)",
-            "Engineered an adaptive Practice Roleplay Simulator using LLMs",
-            "Implemented a Voice-to-Voice Hands-Free Live Coaching Mode",
-            "Designed a real-time analytics feedback loop across negotiation stages",
-            "Deployed cross-language support for global scalability"
+            'Strategy Brief Generator that scores deal leverage and maps counterparty position',
+            'Practice Roleplay Simulator using LLMs to simulate adversarial negotiation',
+            'Voice-to-Voice Live Coaching Mode with real-time transcription and feedback',
+            'Cross-language support for international negotiation contexts'
         ],
-        achievement: '3rd Place - SAIF IT Hackathon 2026'
+        achievement: '3rd Place, SAIF IT Hackathon 2026'
     },
     {
         id: 2,
-        projectName: 'UTA Capstone: NLP Summarization Pipeline',
-        projectDesc: 'Architected an end-to-end data pipeline for automated extraction and summarization of enterprise healthcare data. Integrated a fine-tuned HuggingFace NLP model to transform unstructured web data into concise, actionable business intelligence.',
-        tags: ['Python', 'HuggingFace', 'NLP', 'Selenium', 'Pandas'],
+        projectName: 'NLP Summarization Pipeline',
+        projectSubtitle: 'Healthcare Data Intelligence, UTA Capstone',
+        context: 'Graduate capstone project at UT Arlington. The challenge: enterprise healthcare data is scattered across unstructured web sources with no automated way to extract and summarize it.',
+        role: 'Architected the end-to-end system. Designed the scraping fleet, selected and fine-tuned the HuggingFace model, and built the ingestion pipeline that tied it together.',
+        outcome: 'Delivered a working system that automatically extracted and summarized healthcare business intelligence from unstructured sources, replacing a manual research process.',
+        tags: ['Python', 'HuggingFace Transformers', 'Selenium', 'BeautifulSoup', 'Pandas', 'NLP'],
         demo: '',
-        videoDemo: '',
         images: [
             capstonePipeline,
             capstoneDashboard
         ],
         features: [
-            "Developed an automated headless web scraping fleet (Selenium, BeautifulSoup)",
-            "Fine-Tuned a custom NLP Summarization Model via HuggingFace transformers",
-            "Engineered large-scale data ingestion and feature processing pipelines (Pandas)",
-            "Automated the extraction and structuring of Healthcare Core Offerings"
+            'Headless web scraping fleet collecting healthcare data at scale',
+            'Fine-tuned NLP summarization model adapted from a HuggingFace base checkpoint',
+            'Data ingestion and feature engineering pipeline handling the full ETL flow',
+            'Structured output layer organizing healthcare offerings for downstream analysis'
         ]
     }
 ]

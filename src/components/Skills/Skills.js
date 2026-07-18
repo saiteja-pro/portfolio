@@ -1,50 +1,60 @@
-import React, { useContext } from 'react';
-import Marquee from "react-fast-marquee";
-
-import './Skills.css'
-
-import { ThemeContext } from '../../contexts/ThemeContext';
-import { skillsData } from '../../data/skillsData'
-import { skillsImage } from '../../utils/skillsImage'
+import React, { useEffect, useRef } from 'react';
+import './Skills.css';
+import { skillsData } from '../../data/skillsData';
 
 function Skills() {
+    const sectionRef = useRef(null);
 
-    const { theme } = useContext(ThemeContext);
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
 
-    const skillBoxStyle = {
-        backgroundColor: theme.secondary,
-        boxShadow: `0px 0px 30px ${theme.primary30}`
-    }
+        const items = sectionRef.current?.querySelectorAll('[data-reveal]') || [];
+        items.forEach((el) => observer.observe(el));
+        return () => observer.disconnect();
+    }, []);
 
     return (
-        <div className="skills" id="skills" style={{ backgroundColor: theme.secondary }}>
-            <div className="skillsHeader">
-                <h2 style={{ color: theme.primary }}>Skills</h2>
-            </div>
-            <div className="skillsContainer">
-                <div className="skill--scroll">
-                    <Marquee
-                        gradient={false}
-                        speed={180}
-                        pauseOnHover={true}
-                        pauseOnClick={true}
-                        delay={0}
-                        play={true}
-                        direction="left"
-                    >
-                        {skillsData.map((skill, id) => (
-                            <div className="skill--box" key={id} style={skillBoxStyle}>
-                                <img src={skillsImage(skill)} alt={skill} />
-                                <h3 style={{ color: theme.tertiary }}>
-                                    {skill}
-                                </h3>
-                            </div>
-                        ))}
-                    </Marquee>
+        <section className="skills" id="skills" ref={sectionRef} aria-labelledby="skills-heading">
+            <div className="skills__container">
+                <div className="skills__header" data-reveal>
+                    <span className="section-label">Stack</span>
+                    <h2 id="skills-heading" className="skills__heading">
+                        Technical depth
+                    </h2>
+                </div>
+
+                <div className="skills__groups">
+                    {skillsData.groups.map((group, index) => (
+                        <div
+                            className="skill-group"
+                            key={group.domain}
+                            data-reveal
+                            style={{ transitionDelay: `${index * 80}ms` }}
+                        >
+                            <h3 className="skill-group__domain">{group.domain}</h3>
+                            <ul className="skill-group__list">
+                                {group.skills.map((skill) => (
+                                    <li key={skill} className="skill-group__item">
+                                        {skill}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
                 </div>
             </div>
-        </div>
-    )
+        </section>
+    );
 }
 
-export default Skills
+export default Skills;
