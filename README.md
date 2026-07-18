@@ -1,6 +1,6 @@
 # saiteja.pro
 
-Personal portfolio site for Sai Teja Bhoomraogari. Built with React 17 and deployed to Netlify at [saiteja.pro](https://saiteja.pro).
+Personal portfolio site for Sai Teja Bhoomraogari. Built with React 17 and deployed to Cloudflare at [saiteja.pro](https://saiteja.pro).
 
 ## Running locally
 
@@ -17,7 +17,7 @@ The dev server starts at `http://localhost:3000`.
 npm run build
 ```
 
-Output goes to `build/`. The site is a single-page app, so the `public/_redirects` file configures Netlify to serve `index.html` for all routes.
+Output goes to `build/`. The site is a single-page app, so the `public/_redirects` file configures Cloudflare to serve `index.html` for all routes.
 
 ## Structure
 
@@ -52,7 +52,7 @@ Content is separated from components. To update portfolio content (projects, exp
 
 **Motion:** Intersection Observer-based section reveals. No looping animations in the main page flow. The Shimeji mascot uses pure `requestAnimationFrame` loops for physics and walking, with reduced animation complexity on mobile devices.
 
-**Resume PDF route:** The resume is served as a static asset after the CRA build. The `target="_blank"` link in the hero opens it directly. On Netlify, this works without any special routing config because it is a physical file in the build output.
+**Resume PDF route:** The resume is served as a static asset after the CRA build. The `target="_blank"` link in the hero opens it directly. On Cloudflare, this works without any special routing config because it is a physical file in the build output.
 
 ## SEO and Open Graph
 
